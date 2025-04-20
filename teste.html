@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gym Progress Tracker</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .icon {
+      font-size: 24px;
+    }
+    .card p {
+      margin: 0;
+    }
+    .label {
+      font-size: 14px;
+      color: #6b7280;
+    }
+    .value {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .chart {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    canvas {
+      width: 100% !important;
+      height: 300px !important;
+    }
+    .button-container {
+      text-align: center;
+    }
+    .button {
+      background-color: #6366f1;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>🏋️ Gym Progress Tracker</h1>
+
+  <section class="grid">
+    <div class="card">
+      <div class="icon">🏋️‍♂️</div>
+      <div>
+        <p class="label">Exercícios Registrados</p>
+        <p class="value" id="exercicios">12</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="icon">📅</div>
+      <div>
+        <p class="label">Treinos este mês</p>
+        <p class="value" id="treinos">8</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="icon">📷</div>
+      <div>
+        <p class="label">Fotos Registradas</p>
+        <p class="value" id="fotos">4</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="chart">
+    <h2>📊 Evolução de Peso</h2>
+    <canvas id="graficoPeso"></canvas>
+  </div>
+
+  <div class="button-container">
+    <button class="button" onclick="adicionarTreino()">Adicionar Novo Treino</button>
+  </div>
+
+  <script>
+    let treinos = 8;
+
+    function adicionarTreino() {
+      treinos++;
+      document.getElementById("treinos").textContent = treinos;
+      alert("Novo treino adicionado com sucesso!");
+    }
+
+    // Dados de exemplo para o gráfico de evolução de peso
+    const dadosPeso = {
+      labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"],
+      datasets: [{
+        label: "Peso (kg)",
+        data: [80, 78, 77, 75, 74, 73],
+        borderColor: "#6366f1",
+        backgroundColor: "#a5b4fc",
+        tension: 0.4
+      }]
+    };
+
+    const config = {
+      type: 'line',
+      data: dadosPeso,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top'
+          },
+          title: {
+            display: false
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: false
+          }
+        }
+      },
+    };
+
+    // Renderiza o gráfico
+    window.onload = () => {
+      const ctx = document.getElementById('graficoPeso').getContext('2d');
+      new Chart(ctx, config);
+    };
+  </script>
+</body>
+</html>
