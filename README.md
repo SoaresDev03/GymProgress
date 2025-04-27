@@ -4,10 +4,10 @@ O Gym Quiz é um site simples e interativo criado para testar e aumentar os conh
 
 ## 🚀 Funcionalidades
 
-🎯 Quiz de perguntas e respostas sobre saúde e bem-estar;
-✅ Feedback imediato sobre acertos e erros;
-📈 Sistema de pontuação para acompanhar o desempenho;
-🔄 Reinício do quiz a qualquer momento.
+🎯 Quiz de perguntas e respostas sobre saúde e bem-estar; <br>
+✅ Feedback imediato sobre acertos e erros;<br>
+📈 Sistema de pontuação para acompanhar o desempenho;<br>
+🔄 Reinício do quiz a qualquer momento.<br>
 
 ## 🛠️ Tecnologias Utilizadas
 
