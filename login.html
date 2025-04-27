@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styleLogin.css">
-    <title>Document</title>
+    <script src="main.js"></script>
+    <title>Login</title>
 
 </head>
 
@@ -13,13 +14,29 @@
     <div class="containerLogin">
         <div id="box">
             <h1>Login</h1>
-            <div class="inputs">
-                <label for="inputEmail">Email*</label> <br>
-                <input type="text"> <br> <br>
-                <label for="inputSenha">Senha*</label> <br>
-                <input type="password"> <br>
-                <div> Ainda não tem login? <a href="cadastro.html">Cadastre-se</a> </div>
-            </div>
+
+        
+
+                <form class="inputs">
+                <label for="inputEmail">Email*</label> 
+                <input type="text" required id="inputEmail"> <br> <br>
+                <label for="inputSenha">Senha*</label> 
+
+                <div class="password-container">
+                    <input type="password" required id="inputSenha">
+                    <img onclick="togglePassword()" class="imgPass" src="assets/Oculto.svg" alt="">
+                </div>
+
+                <button type="submit" class="button" onclick="">Entrar</button>
+
+                <div class="textFoot"> Ainda não tem login? <a href="cadastro.html">Cadastre-se</a> <br>
+                    ou
+                    <br>
+                    Retorne a <a href="index.html">HOME</a>
+                </div>
+
+            </form>
+          
         </div>
         <div id="box2">
             <img src="assets/logo 2.svg" alt="">

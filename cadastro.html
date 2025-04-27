@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleCadastro.css">
+    <title>Cadastre-se</title>
+    <script src="main.js"></script>
+
+</head>
+
+<body>
+    <div class="containerLogin">
+        <div id="box">
+            <h1>Cadastro</h1>
+
+
+
+
+            <form class="inputs" onsubmit="Registrar()">
+                <label for="inputUsername">Nome de usuário*</label> <br>
+                <input type="text" required id="inputUsername"> <br> <br>
+                <label for="inputEmail">Email*</label> <br>
+                <input type="text" required id="inputEmail"> <br> <br>
+                <label for="inputSenha">Crie uma senha*</label> <br>
+                <input type="password" required id="inputSenha"> <br>
+                <label for="inputSenha">Digite novamente a senha*</label> <br>
+                <input type="password" required id="inputSenha2">
+                <img onclick="togglePassword()" class="imgPass" src="assets/Oculto.svg" alt=""> <br>
+                <button type="submit" class="button" onclick="">Registrar</button>
+                <div class="textFoot"> Já tem cadastro? <a href="login.html">Login</a> <br>
+                    ou
+                    <br>
+                    Retorne a <a href="index.html">HOME</a>
+                </div>
+
+
+
+            </form>
+        </div>
+        <div id="box2">
+            <img src="assets/logo 2.svg" alt="">
+        </div>
+    </div>
+</body>
+
+</html>

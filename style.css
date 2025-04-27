@@ -31,11 +31,9 @@
 
 #navbar {
     width: 100%;
-    /* align-items: end; */
+ 
     justify-self: start;
     display: flex;
     flex-direction: row-reverse;
-    /* align-items: center; */
-    /* justify-items: center; */
-    /* justify-content: center; */
+
 }
