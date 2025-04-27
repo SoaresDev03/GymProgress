@@ -14,4 +14,4 @@ O Gym Quiz é um site simples e interativo criado para testar e aumentar os conh
 - **Frontend:** CSS <img src="assets/iconCSS.png" width="30">
 - **Backend:** Node.js / JavaScript / HTML<img src="assets/iconNodeJs.png" width="30"> <img src="assets/iconHTML.png" width="30"><img src="assets/logoJs.png" width="30">
 - **Banco de Dados:** Oracle MySQL<img src="assets/iconMysql.png" width="30">
-- **Outros:** Chart.js <img src="" width="30">
+- **Outros:** Chart.js 
