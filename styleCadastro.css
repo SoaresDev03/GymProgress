@@ -9,16 +9,20 @@
 
 body {
     background-color: #ECE9E9;
+    overflow: hidden;
 }
 
 .containerLogin {
-    padding-left: 5%;
+
     display: flex;
     width: 100%;
-    height: 100%;
+   
+  
 }
 
 .inputs {
+    margin-left: 20px;
+
     display: flex;
     flex-direction: column;
     padding-left: 2%;
@@ -27,14 +31,16 @@ body {
 
 #box {
 
-    padding: 20px;
+    padding-left: 20px;
+    padding-bottom: 0;
     width: 38%;
-    max-height: 647px;
+    height: fit-content;
+
 
     h1 {
-        margin-top: 50px;
+        margin-top: 20px;
         margin-right: 100px;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
 
         width: 187px;
         height: 43px;
@@ -44,21 +50,6 @@ body {
         color: #1A1363;
         font-family: Poppins;
         font-size: 36px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-    }
-
-
-
-    label {
-        width: 146px;
-        height: 43px;
-        flex-shrink: 0;
-
-        color: #332F64;
-        font-family: Poppins;
-        font-size: 24px;
         font-style: normal;
         font-weight: 700;
         line-height: normal;
@@ -77,22 +68,31 @@ body {
     }
 }
 
-#box2 {
+.box2 {
+    display: flex;
+    align-items: end;
 
-    width: 62%;
-    height: 647px;
+    width: 38%;
+    max-height: 647px;
 
-    img {
-        position: absolute;
-        width: 800px;
-        bottom: 0;
-        right: 0;
-    }
+    align-self: self-end;
+}
+
+#logoMuscle {
+    position: absolute;
+    width: 800px;
+
+
+    bottom: -1;
+    right: 0;
 
 }
 
+
+
 .textFoot {
-    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-top: 30px;
     font-size: 20px;
     font-family: Poppins;
 }
@@ -109,11 +109,11 @@ body {
 #box {
     label {
         width: fit-content;
-        height: 20px;
+        height: 24px;
         flex-shrink: 0;
         color: #332F64;
         font-family: Poppins;
-        font-size: 24px;
+        font-size: 20px;
         font-style: normal;
         font-weight: 700;
         line-height: normal;

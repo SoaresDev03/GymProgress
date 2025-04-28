@@ -16,7 +16,6 @@ body {
 .containerLogin {
     padding-left: 5%;
     display: flex;
-    width: 100%;
     height: 100%;
 }
 
@@ -79,19 +78,16 @@ body {
 }
 
 
-#box2 {
 
-    width: 62%;
-    height: 647px;
 
-    img {
+    #logoMuscle {
         position: absolute;
         width: 800px;
-        bottom: 0;
+        bottom: 0px;
         right: 0;
-    }
+    } 
 
-}
+
 
 .textFoot {
     margin-top: 40px;
