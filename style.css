@@ -1,39 +1,31 @@
-* {
+*{
     margin: 0;
     padding: 0;
 }
 
-.container {
-    width: 100%;
+body{
+    background-color: #ECE9E9;
+    display: flex;
+    height: 2000px;
+}
+
+.container{
     height: 100%;
-
-}
-
-.Header {
-    justify-self: center;
-    align-self: center;
-    width: 95%;
-    display: flex;
-    height: 60px;
-    border-bottom: solid 2px;
-    background-color: cornflowerblue;
-    opacity: 90%;
-    align-items: center;
-    padding-left: 20px;
-    border-radius: 7px 7px 0px 0px;
-}
-
-#Logo {
-    font-size: 30px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    text-shadow: 2px 1px 4px rgba(0, 0, 0, 0.69);
-}
-
-#navbar {
     width: 100%;
- 
-    justify-self: start;
-    display: flex;
-    flex-direction: row-reverse;
+}
 
+.header{
+    display: flex;
+    flex-direction: column;
+}
+
+#logo{
+    margin-top: 5px;
+    width: 150px;
+}
+
+.navbar{
+    background-color: #1A1363;
+    width: 60%;
+    height: 100px;
 }

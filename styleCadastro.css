@@ -105,6 +105,10 @@ body {
 
 }
 
+.imgPass:hover {
+    transform: scale(1.2);
+}
+
 
 #box {
     label {
@@ -147,4 +151,9 @@ a {
     font-family: Poppins;
     font-size: 30px;
     font-weight: 700;
+}
+
+.button:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
 }
