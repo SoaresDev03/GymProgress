@@ -20,6 +20,22 @@ body {
   
 }
 
+
+#btnHome{
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    margin-top: 10px;
+    img{
+        width: 50px;
+    }
+
+    img:hover{
+        transform: scale(1.1);
+        transition: 500ms;
+    }
+}
+
 .inputs {
     margin-left: 20px;
 
@@ -83,7 +99,7 @@ body {
     width: 800px;
 
 
-    bottom: -1;
+    bottom: 0;
     right: 0;
 
 }
