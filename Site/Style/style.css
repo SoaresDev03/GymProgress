@@ -24,7 +24,7 @@ body {
 
 #logo {
     margin-top: 5px;
-    width: 170px;
+    width: 210px;
     margin-left: 5px;
 }
 
@@ -33,14 +33,14 @@ body {
     background-color: #1A1363;
     width: 70%;
     height: 90px;
-    margin-left: 50px;
+    margin-left: 10px;
     margin-top: 10px;
     border-radius: 30px;
     align-items: center;
     justify-content: space-evenly;
 
     a {
-        color: #ECE9E9;
+        color: #fff;
         text-decoration: none;
         font-size: 25px;
         font-family: Poppins;
@@ -61,9 +61,10 @@ body {
 }
 
 #imgPerfil {
-
+    margin-left: 5px;
+    align-self: center;
     color: #ECE9E9;
-    width: 90px;
+    width: 70px;
 }
 
 .boxes {
@@ -104,14 +105,14 @@ body {
     font-family: Poppins;
     font-size: 26px;
     border-radius: 20px;
-    background-color: #1A1363;
-    color: #D9D9D9;
+    background-color: #054c8a;
+    color: #fff;
     font-weight: bold;
 
- 
+
 }
 
-iframe{
+iframe {
     border-radius: 10px;
 }
 
@@ -122,7 +123,7 @@ iframe{
     height: auto;
     margin-bottom: 20000px;
     margin-right: 360px;
-
+    opacity: 50%;
 }
 
 button {
@@ -138,7 +139,7 @@ button:hover {
     background-color: #D9D9D9;
     height: 900px;
     width: auto;
-    margin-top: 200px;
+    margin-top: 150px;
     font-family: Poppins;
     padding: 20px;
     padding-top: 60px;
@@ -169,7 +170,7 @@ button:hover {
         font-size: 35px;
     }
 
-    a:hover{
+    a:hover {
         transform: scale(1.01);
     }
 }
@@ -187,7 +188,7 @@ button:hover {
     height: 448px;
     font-weight: bold;
     background-color: #1A1363;
-    color: #D9D9D9;
+    color: #fff;
     opacity: 90%;
     font-size: 25px;
     opacity: 90%;
@@ -201,6 +202,7 @@ button:hover {
     right: 0;
     margin-top: -100px;
     z-index: 2;
+    opacity: 50%;
 }
 
 h1 {
@@ -210,20 +212,144 @@ h1 {
     cursor: pointer;
 }
 
-html{
+html {
     scroll-behavior: smooth;
 
 }
 
-#curiosidades{
-h1{
-    margin-top: 20px;
-}
-}
+#curiosidades {
+    margin-top: 50px;
 
-.containerCuriosidade{
-height: 700px;
+    h1 {
+        margin-top: 20px;
+    }
 }
 
+.containerCuriosidade {
+
+    height: 800px;
+    position: relative;
 
 
+}
+
+.curiosidade {
+
+    display: flex;
+    margin: 20px;
+    gap: 20px;
+    font-size: 20px;
+    justify-content: flex-end;
+    margin-bottom: 50px;
+
+    .informacao {
+        text-align: start;
+        color: #FFFF;
+        background-color: #39355f;
+        padding: 10px;
+        border-radius: 0px 20px 0px 0px;
+
+    }
+
+    #imgEugen {
+        border-radius: 20px 0px 0px 0px;
+        ;
+    }
+
+    .informacao1 {
+        text-align: end;
+        color: #FFFF;
+        background-color: #054c8a;
+        padding: 10px;
+
+    }
+
+    .informacao2 {
+
+        border-radius: 0px 0px 20px 0px;
+        z-index: 2;
+        text-align: end;
+        color: #FFFF;
+        background-color: #39355f;
+        padding: 10px;
+    }
+}
+
+.fontesRedir {
+    font-size: 14px;
+    color: chartreuse;
+}
+
+#imgLevantamento {
+    border-radius: 0px 0px 0px 20px;
+}
+
+#imgGarrafa {
+    padding-top: 200px;
+    width: 700px;
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+    opacity: 30%;
+}
+
+#returnTop {
+    position: absolute;
+    right: 0;
+    background-color: #1A1363;
+    margin-right: 50px;
+    border-radius: 20px;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    height: 150px;
+    background-color: #1A1363;
+}
+
+#infoAboutme {
+    color: #D9D9D9;
+    height: 150px;
+    width: 500px;
+
+    img {
+        margin-top: 10px;
+        width: 150px;
+    }
+
+    a {
+        color: #D9D9D9;
+    }
+}
+
+#contato {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    color: #fff;
+    width: 500px;
+    gap: 10px;
+}
+
+.lineFooter {
+    display: flex;
+    height: 50px;
+    align-items: center;
+    gap: 10px;
+
+    a {
+        color: #fff;
+    }
+}
+
+.imgFooter {
+    margin-top: 5px;
+    width: 40px;
+    padding: 5px;
+    background-color: black;
+    border-radius: 100%;
+}
