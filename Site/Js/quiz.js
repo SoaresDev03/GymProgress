@@ -90,7 +90,7 @@ let tentativaIncorreta = 0
 let certas = 0
 let erradas = 0
 let quantidadeDeQuestoes = listaDeQuestoes.length
-// let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
+let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
 function onloadEsconder() {
     document.getElementById('pontuacao').style.display = "none"
@@ -109,7 +109,7 @@ function iniciarQuiz() {
     btnSubmeter.disabled = false
     btnProx.disabled = true
     btnConcluir.disabled = true
-    // btnTentarNovamente.disabled = true
+ btnTentarNovamente.disabled = true
 }
 
 function preencherHTMLcomQuestaoAtual(index) {
@@ -261,7 +261,7 @@ function finalizarJogo() {
 
     btnProx.disabled = true
     btnSubmeter.disabled = true
-    // btnConcluir.disabled = true
+    btnConcluir.disabled = true
     btnTentarNovamente.disabled = true
 
 }
