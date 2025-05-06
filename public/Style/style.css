@@ -170,11 +170,17 @@ button:hover {
         font-weight: bold;
         font-size: 35px;
         bottom: 180px;
-    
+        background-color: #054c8a;
+        color: #FFF;
+        border-radius: 20px;
+        padding: 10px;
     }
 
     a:hover {
-        transform: scale(1.01);
+      transform: scale(1.01);
+      color: #000; 
+      background-color: rgb(0, 207, 45); 
+      transition: all 0.3s ease;
     }
 
     #imgSobre{
@@ -193,7 +199,7 @@ button:hover {
     align-content: center;
     padding: 20px;
     width: 700px;
-    height: 448px;
+    height: 400px;
     font-weight: bold;
     background-color: #1A1363;
     color: #fff;
@@ -276,7 +282,7 @@ html {
 
         border-radius: 0px 0px 20px 0px;
         z-index: 2;
-        text-align: end;
+        text-align: start;
         color: #FFFF;
         background-color: #39355f;
         padding: 10px;
