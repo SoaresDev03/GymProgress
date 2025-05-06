@@ -69,18 +69,19 @@ function registrar() {
     }
 
     if (senha2 != senha) {
+        senha2Valida = false;
         alert("As senhas não coincidem!")
     }
 
     if (emailValido && senhaValida && senha2Valida) {
         alert("Cadastro realizado com sucesso.");
-        window.location = 'login.html';
+        window.location.href = '../login.html';
     }
 
 }
 
 function entrar() {
 
-    window.location = 'dashboard.html';
+    window.location = 'index.html';
 
 }

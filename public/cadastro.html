@@ -79,19 +79,16 @@
             mensagem_erro.innerHTML =
                 "(Mensagem de erro para todos os campos em branco)";
 
-            finalizarAguardar();
             return false;
         } else if (senhaVar != senha2Var) {
             cardErro.style.display = "block";
             mensagem_erro.innerHTML = "As senhas não coincidem.";
-            finalizarAguardar();
             return false;
 
         } else if (usernameVar.length < 1) {
             cardErro.style.display = "block";
             mensagem_erro.innerHTML =
                 "(Mensagem de erro para nome inválido)";
-            finalizarAguardar();
             return false;
         }
         else {
@@ -117,18 +114,18 @@
                         "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
                     setTimeout(() => {
-                        window.location = "login.html";
+                        window.location.href = "login.html";
                     }, "2000");
 
-                    limparFormulario();
-                    finalizarAguardar();
+                    // limparFormulario();
+                 
                 } else {
                     throw "Houve um erro ao tentar realizar o cadastro!";
                 }
             })
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
-                finalizarAguardar();
+             
             });
 
         return false;

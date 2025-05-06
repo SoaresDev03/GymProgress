@@ -7,23 +7,16 @@ function validarSessao() {
     if (email != null && nome != null) {
         b_usuario.innerHTML = nome;
     } else {
-        window.location = "../login.html";
+        window.location.href = "/login.html";
     }
 }
 
 function limparSessao() {
     sessionStorage.clear();
-    window.location = "../login.html";
+    window.location.href = "/login.html";
 }
 
 
 
-function finalizarAguardar(texto) {
 
-    var divErrosLogin = document.getElementById("div_erros_login");
-    if (texto) {
-        divErrosLogin.style.display = "flex";
-        divErrosLogin.innerHTML = texto;
-    }
-}
 
