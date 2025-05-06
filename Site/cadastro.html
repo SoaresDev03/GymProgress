@@ -55,3 +55,34 @@
 </body>
 
 </html>
+
+<script>
+
+var usernameVar = inputUsername.value;
+var emaiVar = inuptEmail.value;
+var senhaVar = inputSenha.value;
+var senha2Var = inputSenha.value;
+
+if(usernameVar == "" ||
+emaiVar == "" ||
+senhaVar == "" ||
+senha2Var == "" 
+){
+    cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+
+      finalizarAguardar();
+      return false;
+}else if (nomeVar.length < 1) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para nome inválido)";
+        finalizarAguardar();
+        return false;
+}
+else if(emailVar.indexOf){
+
+}
+
+</script>

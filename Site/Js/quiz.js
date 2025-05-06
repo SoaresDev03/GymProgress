@@ -83,14 +83,13 @@ const listaDeQuestoes = [
 
 ]
 
-// variáveis globais    
-let numeroDaQuestaoAtual = 0
+let DaQuestaoAtual = 0
 let pontuacaoFinal = 0
 let tentativaIncorreta = 0
 let certas = 0
 let erradas = 0
 let quantidadeDeQuestoes = listaDeQuestoes.length
-let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
+let isUltima = DaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
 function onloadEsconder() {
     document.getElementById('pontuacao').style.display = "none"
@@ -115,7 +114,7 @@ function iniciarQuiz() {
 function preencherHTMLcomQuestaoAtual(index) {
     habilitarAlternativas(true)
     const questaoAtual = listaDeQuestoes[index]
-    numeroDaQuestaoAtual = index
+    DaQuestaoAtual = index
     console.log("questaoAtual")
     console.log(questaoAtual)
     document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
@@ -165,11 +164,11 @@ function avancar() {
 
     desmarcarRadioButtons()
 
-    if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
-        preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-    } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
+    if (DaQuestaoAtual < quantidadeDeQuestoes - 1) {
+        preencherHTMLcomQuestaoAtual(DaQuestaoAtual)
+    } else if (DaQuestaoAtual == quantidadeDeQuestoes - 1) {
         alert("Atenção... a próxima é a ultima questão!")
-        preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        preencherHTMLcomQuestaoAtual(DaQuestaoAtual)
     } else {
         finalizarJogo()
     }
@@ -182,7 +181,7 @@ function tentarNovamente() {
 }
 
 function checarResposta() {
-    const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
+    const questaoAtual = listaDeQuestoes[DaQuestaoAtual] // questão atual 
     const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
 
     const options = document.getElementsByName("option"); // recupera alternativas no html
@@ -203,7 +202,7 @@ function checarResposta() {
             pontuacaoFinal++
             certas++
             document.getElementById("spanCertas").innerHTML = certas
-            numeroDaQuestaoAtual++
+            DaQuestaoAtual++
         } else if (option.checked && option.value !== respostaQuestaoAtual) {
             const wrongLabelId = option.labels[0].id
 
@@ -212,7 +211,7 @@ function checarResposta() {
             tentativaIncorreta++
             erradas++
             document.getElementById("spanErradas").innerHTML = erradas
-            numeroDaQuestaoAtual++
+            DaQuestaoAtual++
         }
     })
 }
