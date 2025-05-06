@@ -20,25 +20,30 @@
             </a>
             <h1>Cadastro</h1>
 
-
+            <div class="alerta_erro" style="display: none;">
+                <div class="card_erro" id="cardErro">
+                    <span id="mensagem_erro"></span>
+                </div>
+            </div>
 
 
             <form class="inputs" onsubmit="Registrar()">
-                <label for="inputUsername">Nome de usuário*</label> 
+                <label for="inputUsername">Nome de usuário*</label>
                 <input type="text" required id="inputUsername"> <br> <br>
 
                 <label for="inputEmail">Email*</label>
                 <input type="text" required id="inputEmail"> <br> <br>
 
-                <label for="inputSenha">Crie uma senha*</label> 
+                <label for="inputSenha">Crie uma senha*</label>
                 <input type="password" required id="inputSenha"> <br>
 
-                <label for="inputSenha">Digite novamente a senha*</label> 
+                <label for="inputSenha">Digite novamente a senha*</label>
                 <input type="password" required id="inputSenha2">
 
                 <img onclick="togglePassword()" class="imgPass" src="Style/assets/Oculto.svg" alt=""> <br>
 
-                <button type="submit" class="button" onclick="">Registrar</button>
+                <button type="submit" class="button" onclick="registrar()">Registrar</button>
+
 
                 <div class="textFoot"> Já tem cadastro? <a href="login.html">Login</a> <br>
 
@@ -48,41 +53,104 @@
 
             </form>
         </div>
-<div class="box2">
-        <img id="logoMuscle" src="Style/assets/logo 2.svg" alt="">
-    </div>
+        <div class="box2">
+            <img id="logoMuscle" src="Style/assets/logo 2.svg" alt="">
+        </div>
     </div>
 </body>
 
 </html>
 
 <script>
+    function registrar() {
 
-var usernameVar = inputUsername.value;
-var emaiVar = inuptEmail.value;
-var senhaVar = inputSenha.value;
-var senha2Var = inputSenha.value;
+        var usernameVar = inputUsername.value;
+        var emaiVar = inuptEmail.value;
+        var senhaVar = inputSenha.value;
+        var senha2Var = inputSenha.value;
 
-if(usernameVar == "" ||
-emaiVar == "" ||
-senhaVar == "" ||
-senha2Var == "" 
-){
-    cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+        if (usernameVar == "" ||
+            emaiVar == "" ||
+            senhaVar == "" ||
+            senha2Var == ""
+        ) {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML =
+                "(Mensagem de erro para todos os campos em branco)";
 
-      finalizarAguardar();
-      return false;
-}else if (nomeVar.length < 1) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para nome inválido)";
-        finalizarAguardar();
+            finalizarAguardar();
+            return false;
+        } else if (senhaVar != confirmacaoSenhaVar) {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = "As senhas não coincidem.";
+            finalizarAguardar();
+            return false;
+
+        } else if (nomeVar.length < 1) {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML =
+                "(Mensagem de erro para nome inválido)";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000);
+        } fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                nomeServer: usernameVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    cardErro.style.display = "block";
+
+                    mensagem_erro.innerHTML =
+                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                    setTimeout(() => {
+                        window.location = "login.html";
+                    }, "2000");
+
+                    limparFormulario();
+                    finalizarAguardar();
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                finalizarAguardar();
+            });
+
         return false;
-}
-else if(emailVar.indexOf){
+    }
 
-}
+    function sumirMensagem() {
+        cardErro.style.display = "none";
+    }
 
+    function mostrarAguardar() {
+        div_aguardar.style.display = "flex";
+    }
+
+    function finalizarAguardar() {
+        div_aguardar.style.display = "none";
+    }
+
+    function limparFormulario() {
+        inputUsername.value = "";
+        inputEmail.value = "";
+        inputSenha.value = "";
+        inputSenha2.value = "";
+    }
+
+    
 </script>
