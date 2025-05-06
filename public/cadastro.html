@@ -66,12 +66,12 @@
     function registrar() {
 
         var usernameVar = inputUsername.value;
-        var emaiVar = inuptEmail.value;
+        var emailVar = inputEmail.value;
         var senhaVar = inputSenha.value;
         var senha2Var = inputSenha.value;
 
         if (usernameVar == "" ||
-            emaiVar == "" ||
+            emailVar == "" ||
             senhaVar == "" ||
             senha2Var == ""
         ) {
@@ -81,13 +81,13 @@
 
             finalizarAguardar();
             return false;
-        } else if (senhaVar != confirmacaoSenhaVar) {
+        } else if (senhaVar != senha2Var) {
             cardErro.style.display = "block";
             mensagem_erro.innerHTML = "As senhas não coincidem.";
             finalizarAguardar();
             return false;
 
-        } else if (nomeVar.length < 1) {
+        } else if (usernameVar.length < 1) {
             cardErro.style.display = "block";
             mensagem_erro.innerHTML =
                 "(Mensagem de erro para nome inválido)";
