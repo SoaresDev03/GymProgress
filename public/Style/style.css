@@ -137,7 +137,7 @@ button:hover {
 
 #sobre {
     background-color: #D9D9D9;
-    height: 900px;
+    height: 800px;
     width: auto;
     margin-top: 150px;
     font-family: Poppins;
@@ -192,13 +192,13 @@ button:hover {
     text-align: center;
     align-content: center;
     padding: 20px;
-    width: 780px;
+    width: 700px;
     height: 448px;
     font-weight: bold;
     background-color: #1A1363;
     color: #fff;
     opacity: 90%;
-    font-size: 25px;
+    font-size: 20px;
     opacity: 90%;
     border-radius: 20px;
     z-index: 3;
