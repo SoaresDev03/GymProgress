@@ -161,6 +161,7 @@ button:hover {
     width: 700px;
 
     a {
+        position: absolute;
         align-self: center;
         width: fit-content;
         text-align: center;
@@ -168,10 +169,17 @@ button:hover {
         font-family: Poppins;
         font-weight: bold;
         font-size: 35px;
+        bottom: 180px;
+    
     }
 
     a:hover {
         transform: scale(1.01);
+    }
+
+    #imgSobre{
+        position: absolute;
+        width: 500px;
     }
 }
 
@@ -352,4 +360,5 @@ html {
     padding: 5px;
     background-color: black;
     border-radius: 100%;
+    cursor: pointer;
 }
