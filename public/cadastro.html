@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="Style/styleCadastro.css">
     <link rel="shortcut icon" href="Style/assets/logo 2.ico" type="image/x-icon">
     <script src="Js/main.js"></script>
+    <script src="Js/sessao.js"></script>
     <title>Cadastre-se</title>
 
 </head>
@@ -27,7 +28,7 @@
             </div>
 
 
-            <form class="inputs" onsubmit="Registrar()">
+            <form class="inputs" onsubmit="registrar()">
                 <label for="inputUsername">Nome de usuário*</label>
                 <input type="text" required id="inputUsername"> <br> <br>
 
@@ -42,7 +43,7 @@
 
                 <img onclick="togglePassword()" class="imgPass" src="Style/assets/Oculto.svg" alt=""> <br>
 
-                <button type="submit" class="button" onclick="registrar()">Registrar</button>
+                <button type="submit" class="button" >Registrar</button>
 
 
                 <div class="textFoot"> Já tem cadastro? <a href="login.html">Login</a> <br>
@@ -135,14 +136,6 @@
 
     function sumirMensagem() {
         cardErro.style.display = "none";
-    }
-
-    function mostrarAguardar() {
-        div_aguardar.style.display = "flex";
-    }
-
-    function finalizarAguardar() {
-        div_aguardar.style.display = "none";
     }
 
     function limparFormulario() {

@@ -1,4 +1,4 @@
-// function calc() { }
+
 
 function togglePassword() {
     const passwordInput = document.getElementById('inputSenha');

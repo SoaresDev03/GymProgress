@@ -8,3 +8,5 @@ CREATE TABLE usuario (
 	email VARCHAR(50),
 	senha VARCHAR(50)
 );
+
+select * from usuario;
