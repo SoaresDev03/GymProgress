@@ -68,7 +68,7 @@
         var usernameVar = inputUsername.value;
         var emailVar = inputEmail.value;
         var senhaVar = inputSenha.value;
-        var senha2Var = inputSenha.value;
+        var senha2Var = inputSenha2.value;
 
         if (usernameVar == "" ||
             emailVar == "" ||
@@ -92,8 +92,7 @@
             return false;
         }
         else {
-            setInterval(sumirMensagem, 5000);
-        } fetch("/usuarios/cadastrar", {
+            fetch("/usuarios/cadastrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -103,21 +102,17 @@
                 emailServer: emailVar,
                 senhaServer: senhaVar
             }),
-        })
-            .then(function (resposta) {
+        }).then(function (resposta) {
+           
                 console.log("resposta: ", resposta);
-
                 if (resposta.ok) {
-                    cardErro.style.display = "block";
+                    window.location.assign("login.html")
 
-                    mensagem_erro.innerHTML =
-                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                    // setTimeout(() => {
+                    //     window.location.assign("login.html")
+                    // }, "2000");
 
-                    setTimeout(() => {
-                        window.location.href = "login.html";
-                    }, "2000");
-
-                    // limparFormulario();
+                    // // limparFormulario();
                  
                 } else {
                     throw "Houve um erro ao tentar realizar o cadastro!";
@@ -129,6 +124,7 @@
             });
 
         return false;
+        } 
     }
 
     function sumirMensagem() {

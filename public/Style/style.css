@@ -178,8 +178,8 @@ button:hover {
 
     a:hover {
       transform: scale(1.01);
-      color: #000; 
-      background-color: rgb(0, 207, 45); 
+      /* color: #000;  */
+      background-color:#1A1363; 
       transition: all 0.3s ease;
     }
 

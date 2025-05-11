@@ -79,9 +79,3 @@ function registrar() {
     }
 
 }
-
-function entrar() {
-
-    window.location = 'index.html';
-
-}
