@@ -1,123 +1,392 @@
+// const listaDeQuestoes = [
+//     {
+//         pergunta: "Qual é o músculo mais forte do corpo humano em relação ao seu tamanho?",
+//         alternativaA: "Bíceps",
+//         alternativaB: "Quadríceps",
+//         alternativaC: "Masseter (mandíbula)",
+//         alternativaD: "Glúteo máximo",
+//         alternativaCorreta: "alternativaC"
+//     },
+//     {
+//         pergunta: "Qual é o principal músculo trabalhado no exercício supino reto?",
+//         alternativaA: "Dorsais",
+//         alternativaB: "Peitoral maior",
+//         alternativaC: "Deltóides",
+//         alternativaD: "Tríceps",
+//         alternativaCorreta: "alternativaB"
+//     },
+//     {
+//         pergunta: "Qual desses exercícios é considerado um dos melhores para desenvolver as costas?",
+//         alternativaA: "Leg Press",
+//         alternativaB: "Barra fixa",
+//         alternativaC: "Elevação lateral",
+//         alternativaD: "Rosca direta",
+//         alternativaCorreta: "alternativaB"
+//     },
+//     {
+//         pergunta: "Quantos grupos musculares principais existem no corpo humano?",
+//         alternativaA: "5",
+//         alternativaB: "8",
+//         alternativaC: "11",
+//         alternativaD: "14",
+//         alternativaCorreta: "alternativaC"
+//     },
+//     {
+//         pergunta: "Qual é o tempo ideal de descanso entre séries para hipertrofia muscular?",
+//         alternativaA: "15-30 segundos",
+//         alternativaB: "30-60 segundos",
+//         alternativaC: "60-90 segundos",
+//         alternativaD: "90-120 segundos",
+//         alternativaCorreta: "alternativaC"
+//     },
+//     {
+//         pergunta: "Qual desses nutrientes é mais importante para a recuperação muscular pós-treino?",
+//         alternativaA: "Carboidratos",
+//         alternativaB: "Proteínas",
+//         alternativaC: "Gorduras",
+//         alternativaD: "Vitaminas",
+//         alternativaCorreta: "alternativaB"
+//     },
+//     {
+//         pergunta: "Qual é o principal músculo trabalhado no agachamento?",
+//         alternativaA: "Panturrilhas",
+//         alternativaB: "Quadríceps e glúteos",
+//         alternativaC: "Abdominais",
+//         alternativaD: "Ombros",
+//         alternativaCorreta: "alternativaB"
+//     },
+//     {
+//         pergunta: "O que significa a sigla 'RM' na musculação?",
+//         alternativaA: "Repetições Máximas",
+//         alternativaB: "Resistência Muscular",
+//         alternativaC: "Repouso Mínimo",
+//         alternativaD: "Rotina Mensal",
+//         alternativaCorreta: "alternativaA"
+//     },
+//     {
+//         pergunta: "Qual desses exercícios é considerado um dos melhores para desenvolver os ombros?",
+//         alternativaA: "Desenvolvimento com halteres",
+//         alternativaB: "Rosca martelo",
+//         alternativaC: "Extensão de tríceps",
+//         alternativaD: "Cadeira extensora",
+//         alternativaCorreta: "alternativaA"
+//     },
+//     {
+//         pergunta: "Qual é a função principal do músculo abdominal?",
+//         alternativaA: "Flexão do tronco",
+//         alternativaB: "Extensão das pernas",
+//         alternativaC: "Rotação dos ombros",
+//         alternativaD: "Flexão dos braços",
+//         alternativaCorreta: "alternativaA"
+//     }
+// ];
+
+// let DaQuestaoAtual = 0;
+// let pontuacaoFinal = 0;
+// let tentativaIncorreta = 0;
+// let certas = 0;
+// let erradas = 0;
+// const quantidadeDeQuestoes = listaDeQuestoes.length;
+
+// function onloadEsconder() {
+//     document.getElementById('pontuacao').style.display = "none";
+//     document.getElementById('jogo').style.display = "none";
+// }
+
+// function iniciarQuiz() {
+//     document.getElementById('pontuacao').style.display = "flex";
+//     document.getElementById('jogo').style.display = "flex";
+//     document.getElementById('btnIniciarQuiz').style.display = "none";
+//     document.getElementById('UsernameExib').style.display = "none";
+
+//     document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes;
+//     preencherHTMLcomQuestaoAtual(0);
+
+//     btnSubmeter.disabled = false;
+//     btnProx.disabled = true;
+//     btnConcluir.disabled = true;
+//     btnTentarNovamente.disabled = true;
+// }
+
+// function preencherHTMLcomQuestaoAtual(index) {
+//     habilitarAlternativas(true);
+//     const questaoAtual = listaDeQuestoes[index];
+//     DaQuestaoAtual = index;
+
+//     document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = index + 1;
+//     document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
+//     document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
+//     document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
+//     document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
+//     document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+// }
+
+// function submeter() {
+//     const options = document.getElementsByName("option");
+
+//     let hasChecked = false;
+//     for (let i = 0; i < options.length; i++) {
+//         if (options[i].checked) {
+//             hasChecked = true;
+//             break;
+//         }
+//     }
+
+//     if (!hasChecked) {
+//         alert("Não há alternativas escolhidas. Escolha uma opção.");
+//         return;
+//     }
+
+//     btnSubmeter.disabled = true;
+//     btnProx.disabled = false;
+//     habilitarAlternativas(false);
+//     checarResposta();
+// }
+
+// function habilitarAlternativas(ativar) {
+//     primeiraOpcao.disabled = !ativar;
+//     segundaOpcao.disabled = !ativar;
+//     terceiraOpcao.disabled = !ativar;
+//     quartaOpcao.disabled = !ativar;
+// }
+
+// function avancar() {
+//     btnProx.disabled = true;
+//     btnSubmeter.disabled = false;
+//     desmarcarRadioButtons();
+//     limparCoresBackgroundOpcoes();
+
+//     if (DaQuestaoAtual < quantidadeDeQuestoes - 1) {
+//         preencherHTMLcomQuestaoAtual(DaQuestaoAtual);
+//     } else if (DaQuestaoAtual === quantidadeDeQuestoes - 1) {
+//         alert("Atenção... a próxima é a última questão!");
+//         preencherHTMLcomQuestaoAtual(DaQuestaoAtual);
+//     } else {
+//         finalizarJogo();
+//     }
+// }
+
+// function tentarNovamente() {
+//     window.location.reload();
+// }
+
+// function checarResposta() {
+//     const questaoAtual = listaDeQuestoes[DaQuestaoAtual];
+//     const respostaCorreta = questaoAtual.alternativaCorreta;
+//     const options = document.getElementsByName("option");
+
+//     let idCorreta = "";
+
+//     options.forEach((option) => {
+//         if (option.value === respostaCorreta) {
+//             idCorreta = option.labels[0].id;
+//         }
+//     });
+
+//     options.forEach((option) => {
+//         if (option.checked && option.value === respostaCorreta) {
+//             document.getElementById(idCorreta).classList.add("text-success-with-bg");
+//             pontuacaoFinal++;
+//             certas++;
+//             document.getElementById("spanCertas").innerHTML = certas;
+//         } else if (option.checked && option.value !== respostaCorreta) {
+//             const idErrada = option.labels[0].id;
+//             document.getElementById(idErrada).classList.add("text-danger-with-bg");
+//             document.getElementById(idCorreta).classList.add("text-success-with-bg");
+//             erradas++;
+//             document.getElementById("spanErradas").innerHTML = erradas;
+//         }
+//     });
+
+//     DaQuestaoAtual++;
+// }
+
+// function limparCoresBackgroundOpcoes() {
+//     const options = document.getElementsByName("option");
+//     options.forEach((option) => {
+//         const label = document.getElementById(option.labels[0].id);
+//         label.classList.remove("text-success-with-bg", "text-danger-with-bg");
+//     });
+// }
+
+// function desmarcarRadioButtons() {
+//     const options = document.getElementsByName("option");
+//     options.forEach(option => option.checked = false);
+// }
+
+// function finalizarJogo() {
+//     let textoParaMensagemFinal = "";
+//     let classComCoresParaMensagemFinal = "";
+//     const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes;
+
+//     if (porcentagemFinalDeAcertos <= 0.3) {
+//         textoParaMensagemFinal = "Parece que você não estudou...";
+//         classComCoresParaMensagemFinal = "text-danger-with-bg";
+//     } else if (porcentagemFinalDeAcertos < 0.9) {
+//         textoParaMensagemFinal = "Pode melhorar na próxima, hein!";
+//         classComCoresParaMensagemFinal = "text-warning-with-bg";
+//     } else {
+//         textoParaMensagemFinal = "Uau, parabéns!";
+//         classComCoresParaMensagemFinal = "text-success-with-bg";
+//     }
+
+//     textoParaMensagemFinal += "<br> Você acertou " + Math.round(porcentagemFinalDeAcertos * 100) + "% das questões.";
+
+//     document.getElementById('jogo').style.display = "none";
+//     document.getElementById('pontuacaoDuranteJogo').style.display = "none";
+//     document.getElementById('pontuacaoFinalJogo').style.display = "block";
+//     document.getElementById('pontuacao').style.display = "flex";
+
+//     document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal;
+//     document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal);
+//     document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal;
+
+//     document.getElementById('pontuacaoEJogo').style.flexDirection = "column";
+//     document.getElementById('pontuacaoEJogo').style.alignItems = "center";
+//     document.getElementById('pontuacaoEJogo').style.justifyContent = "center";
+
+//     btnProx.disabled = true;
+//     btnSubmeter.disabled = true;
+//     btnConcluir.disabled = true;
+//     btnTentarNovamente.disabled = false;
+// }
+
+
 const listaDeQuestoes = [
+    {
+        pergunta: "Qual é o músculo mais forte do corpo humano em relação ao seu tamanho?",
+        alternativaA: "Bíceps",
+        alternativaB: "Quadríceps",
+        alternativaC: "Masseter (mandíbula)",
+        alternativaD: "Glúteo máximo",
+        alternativaCorreta: "alternativaC"
+    },
+    {
+        pergunta: "Qual é o principal músculo trabalhado no exercício supino reto?",
+        alternativaA: "Dorsais",
+        alternativaB: "Peitoral maior",
+        alternativaC: "Deltóides",
+        alternativaD: "Tríceps",
+        alternativaCorreta: "alternativaB"
+    },
+    {
+        pergunta: "Qual desses exercícios é considerado um dos melhores para desenvolver as costas?",
+        alternativaA: "Leg Press",
+        alternativaB: "Barra fixa",
+        alternativaC: "Elevação lateral",
+        alternativaD: "Rosca direta",
+        alternativaCorreta: "alternativaB"
+    },
+    {
+        pergunta: "Quantos grupos musculares principais existem no corpo humano?",
+        alternativaA: "5",
+        alternativaB: "8",
+        alternativaC: "11",
+        alternativaD: "14",
+        alternativaCorreta: "alternativaC"
+    },
+    {
+        pergunta: "Qual é o tempo ideal de descanso entre séries para hipertrofia muscular?",
+        alternativaA: "15-30 segundos",
+        alternativaB: "30-60 segundos",
+        alternativaC: "60-90 segundos",
+        alternativaD: "90-120 segundos",
+        alternativaCorreta: "alternativaC"
+    },
+    {
+        pergunta: "Qual desses nutrientes é mais importante para a recuperação muscular pós-treino?",
+        alternativaA: "Carboidratos",
+        alternativaB: "Proteínas",
+        alternativaC: "Gorduras",
+        alternativaD: "Vitaminas",
+        alternativaCorreta: "alternativaB"
+    },
+    {
+        pergunta: "Qual é o principal músculo trabalhado no agachamento?",
+        alternativaA: "Panturrilhas",
+        alternativaB: "Quadríceps e glúteos",
+        alternativaC: "Abdominais",
+        alternativaD: "Ombros",
+        alternativaCorreta: "alternativaB"
+    },
+    {
+        pergunta: "O que significa a sigla 'RM' na musculação?",
+        alternativaA: "Repetições Máximas",
+        alternativaB: "Resistência Muscular",
+        alternativaC: "Repouso Mínimo",
+        alternativaD: "Rotina Mensal",
+        alternativaCorreta: "alternativaA"
+    },
+    {
+        pergunta: "Qual desses exercícios é considerado um dos melhores para desenvolver os ombros?",
+        alternativaA: "Desenvolvimento com halteres",
+        alternativaB: "Rosca martelo",
+        alternativaC: "Extensão de tríceps",
+        alternativaD: "Cadeira extensora",
+        alternativaCorreta: "alternativaA"
+    },
+    {
+        pergunta: "Qual é a função principal do músculo abdominal?",
+        alternativaA: "Flexão do tronco",
+        alternativaB: "Extensão das pernas",
+        alternativaC: "Rotação dos ombros",
+        alternativaD: "Flexão dos braços",
+        alternativaCorreta: "alternativaA"
+    }
+];
 
-        {
-            pergunta: "Qual é o músculo mais forte do corpo humano em relação ao seu tamanho?",
-            alternativaA: "Bíceps",
-            alternativaB: "Quadríceps",
-            alternativaC: "Masseter (mandíbula)",
-            alternativaD: "Glúteo máximo",
-            alternativaCorreta: "alternativaC"
-        },
-        {
-            pergunta: "Qual é o principal músculo trabalhado no exercício supino reto?",
-            alternativaA: "Dorsais",
-            alternativaB: "Peitoral maior",
-            alternativaC: "Deltóides",
-            alternativaD: "Tríceps",
-            alternativaCorreta: "alternativaB"
-        },
-        {
-            pergunta: "Qual desses exercícios é considerado um dos melhores para desenvolver as costas?",
-            alternativaA: "Leg Press",
-            alternativaB: "Barra fixa",
-            alternativaC: "Elevação lateral",
-            alternativaD: "Rosca direta",
-            alternativaCorreta: "alternativaB"
-        },
-        {
-            pergunta: "Quantos grupos musculares principais existem no corpo humano?",
-            alternativaA: "5",
-            alternativaB: "8",
-            alternativaC: "11",
-            alternativaD: "14",
-            alternativaCorreta: "alternativaC"
-        },
-        {
-            pergunta: "Qual é o tempo ideal de descanso entre séries para hipertrofia muscular?",
-            alternativaA: "15-30 segundos",
-            alternativaB: "30-60 segundos",
-            alternativaC: "60-90 segundos",
-            alternativaD: "90-120 segundos",
-            alternativaCorreta: "alternativaC"
-        },
-        {
-            pergunta: "Qual desses nutrientes é mais importante para a recuperação muscular pós-treino?",
-            alternativaA: "Carboidratos",
-            alternativaB: "Proteínas",
-            alternativaC: "Gorduras",
-            alternativaD: "Vitaminas",
-            alternativaCorreta: "alternativaB"
-        },
-        {
-            pergunta: "Qual é o principal músculo trabalhado no agachamento?",
-            alternativaA: "Panturrilhas",
-            alternativaB: "Quadríceps e glúteos",
-            alternativaC: "Abdominais",
-            alternativaD: "Ombros",
-            alternativaCorreta: "alternativaB"
-        },
-        {
-            pergunta: "O que significa a sigla 'RM' na musculação?",
-            alternativaA: "Repetições Máximas",
-            alternativaB: "Resistência Muscular",
-            alternativaC: "Repouso Mínimo",
-            alternativaD: "Rotina Mensal",
-            alternativaCorreta: "alternativaA"
-        },
-        {
-            pergunta: "Qual desses exercícios é considerado um dos melhores para desenvolver os ombros?",
-            alternativaA: "Desenvolvimento com halteres",
-            alternativaB: "Rosca martelo",
-            alternativaC: "Extensão de tríceps",
-            alternativaD: "Cadeira extensora",
-            alternativaCorreta: "alternativaA"
-        },
-        {
-            pergunta: "Qual é a função principal do músculo abdominal?",
-            alternativaA: "Flexão do tronco",
-            alternativaB: "Extensão das pernas",
-            alternativaC: "Rotação dos ombros",
-            alternativaD: "Flexão dos braços",
-            alternativaCorreta: "alternativaA"
-        }
+let DaQuestaoAtual = 0;
+let pontuacaoFinal = 0;
+// let tentativaIncorreta = 0; // This variable was declared but not used in the original code.
+let certas = 0;
+let erradas = 0;
+const quantidadeDeQuestoes = listaDeQuestoes.length;
 
-]
-
-let DaQuestaoAtual = 0
-let pontuacaoFinal = 0
-let tentativaIncorreta = 0
-let certas = 0
-let erradas = 0
-let quantidadeDeQuestoes = listaDeQuestoes.length
-let isUltima = DaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
+// Get the action button reference once
+let btnAcao; 
 
 function onloadEsconder() {
-    document.getElementById('pontuacao').style.display = "none"
-    document.getElementById('jogo').style.display = "none"
+    document.getElementById('pontuacao').style.display = "none";
+    document.getElementById('jogo').style.display = "none";
 }
 
 function iniciarQuiz() {
-    document.getElementById('pontuacao').style.display = "flex"
-    document.getElementById('jogo').style.display = "flex"
-    document.getElementById('btnIniciarQuiz').style.display = "none"
+    btnAcao = document.getElementById("btnAcao"); // Initialize btnAcao
 
-    document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
+    document.getElementById('pontuacao').style.display = "flex";
+    document.getElementById('jogo').style.display = "flex";
+    document.getElementById('btnIniciarQuiz').style.display = "none";
+    document.getElementById('UsernameExib').style.display = "none";
 
-    preencherHTMLcomQuestaoAtual(0)
+    document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes;
+    DaQuestaoAtual = 0; // Reset question index
+    certas = 0;
+    erradas = 0;
+    pontuacaoFinal = 0;
+    document.getElementById("spanCertas").innerHTML = certas;
+    document.getElementById("spanErradas").innerHTML = erradas;
 
-    btnSubmeter.disabled = false
-    btnProx.disabled = true
-    btnConcluir.disabled = true
- btnTentarNovamente.disabled = true
+
+    preencherHTMLcomQuestaoAtual(DaQuestaoAtual);
+
+    btnAcao.textContent = "Enviar resposta";
+    btnAcao.onclick = processarResposta;
+    btnAcao.disabled = false;
+
+    document.getElementById('btnConcluir').disabled = true;
+    document.getElementById('btnTentarNovamente').disabled = true;
+    document.getElementById('pontuacaoFinalJogo').style.display = "none";
+    document.getElementById('pontuacaoDuranteJogo').style.display = "flex";
+
 }
 
 function preencherHTMLcomQuestaoAtual(index) {
-    habilitarAlternativas(true)
-    const questaoAtual = listaDeQuestoes[index]
-    DaQuestaoAtual = index
-    console.log("questaoAtual")
-    console.log(questaoAtual)
-    document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
+    habilitarAlternativas(true);
+    desmarcarRadioButtons();
+    limparCoresBackgroundOpcoes();
+    const questaoAtual = listaDeQuestoes[index];
+    
+    document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = index + 1;
     document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
     document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
     document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
@@ -125,142 +394,135 @@ function preencherHTMLcomQuestaoAtual(index) {
     document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
 }
 
-function submeter() {
-    const options = document.getElementsByName("option"); // recupera alternativas no html
-
-    let hasChecked = false
+function processarResposta() {
+    const options = document.getElementsByName("option");
+    let hasChecked = false;
     for (let i = 0; i < options.length; i++) {
         if (options[i].checked) {
-            hasChecked = true
-            break
+            hasChecked = true;
+            break;
         }
     }
 
     if (!hasChecked) {
-        alert("Não há alternativas escolhidas. Escolha uma opção.")
+        alert("Não há alternativas escolhidas. Escolha uma opção.");
+        return;
+    }
+
+    habilitarAlternativas(false);
+    checarResposta(); 
+    
+    if (DaQuestaoAtual < quantidadeDeQuestoes) {
+        btnAcao.textContent = "Próxima questão";
+        btnAcao.onclick = carregarProximaQuestao;
+        btnAcao.disabled = false; 
     } else {
-        btnSubmeter.disabled = true
-        btnProx.disabled = false
-
-        habilitarAlternativas(false)
-
-        checarResposta()
+        finalizarJogo();
     }
 }
 
-function habilitarAlternativas(trueOrFalse) {
-    let opcaoEscolhida = trueOrFalse ? false : true
-
-    primeiraOpcao.disabled = opcaoEscolhida
-    segundaOpcao.disabled = opcaoEscolhida
-    terceiraOpcao.disabled = opcaoEscolhida
-    quartaOpcao.disabled = opcaoEscolhida
-
+function carregarProximaQuestao() {
+    
+    preencherHTMLcomQuestaoAtual(DaQuestaoAtual);
+    
+    btnAcao.textContent = "Enviar resposta";
+    btnAcao.onclick = processarResposta;
+    btnAcao.disabled = false;
+    // habilitarAlternativas(true); // This is now at the start of preencherHTMLcomQuestaoAtual
 }
 
-function avancar() {
-    btnProx.disabled = true
-    btnSubmeter.disabled = false
 
-    desmarcarRadioButtons()
-
-    if (DaQuestaoAtual < quantidadeDeQuestoes - 1) {
-        preencherHTMLcomQuestaoAtual(DaQuestaoAtual)
-    } else if (DaQuestaoAtual == quantidadeDeQuestoes - 1) {
-        alert("Atenção... a próxima é a ultima questão!")
-        preencherHTMLcomQuestaoAtual(DaQuestaoAtual)
-    } else {
-        finalizarJogo()
-    }
-    limparCoresBackgroundOpcoes()
+function habilitarAlternativas(ativar) {
+    document.getElementById('primeiraOpcao').disabled = !ativar;
+    document.getElementById('segundaOpcao').disabled = !ativar;
+    document.getElementById('terceiraOpcao').disabled = !ativar;
+    document.getElementById('quartaOpcao').disabled = !ativar;
 }
 
 function tentarNovamente() {
-    // atualiza a página
-    window.location.reload()
+    DaQuestaoAtual = 0;
+    pontuacaoFinal = 0;
+    certas = 0;
+    erradas = 0;
+    
+    iniciarQuiz(); 
 }
 
 function checarResposta() {
-    const questaoAtual = listaDeQuestoes[DaQuestaoAtual] // questão atual 
-    const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
-
-    const options = document.getElementsByName("option"); // recupera alternativas no html
-
-    let alternativaCorreta = null // variável para armazenar a alternativa correta
+    const questaoAtual = listaDeQuestoes[DaQuestaoAtual];
+    const respostaCorreta = questaoAtual.alternativaCorreta;
+    const options = document.getElementsByName("option");
+    let idCorreta = "";
 
     options.forEach((option) => {
-        if (option.value === respostaQuestaoAtual) {
-            console.log("alternativaCorreta está no componente: " + alternativaCorreta)
-            alternativaCorreta = option.labels[0].id
+        if (option.value === respostaCorreta) {
+            idCorreta = option.labels[0].id;
         }
-    })
+    });
 
-    // verifica se resposta assinalada é correta
     options.forEach((option) => {
-        if (option.checked === true && option.value === respostaQuestaoAtual) {
-            document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-            pontuacaoFinal++
-            certas++
-            document.getElementById("spanCertas").innerHTML = certas
-            DaQuestaoAtual++
-        } else if (option.checked && option.value !== respostaQuestaoAtual) {
-            const wrongLabelId = option.labels[0].id
-
-            document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
-            document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-            tentativaIncorreta++
-            erradas++
-            document.getElementById("spanErradas").innerHTML = erradas
-            DaQuestaoAtual++
+        if (option.checked && option.value === respostaCorreta) {
+            document.getElementById(option.labels[0].id).classList.add("text-success-with-bg");
+            pontuacaoFinal++;
+            certas++;
+            document.getElementById("spanCertas").innerHTML = certas;
+        } else if (option.checked && option.value !== respostaCorreta) {
+            const idErrada = option.labels[0].id;
+            document.getElementById(idErrada).classList.add("text-danger-with-bg");
+            document.getElementById(idCorreta).classList.add("text-success-with-bg");
+            erradas++;
+            document.getElementById("spanErradas").innerHTML = erradas;
         }
-    })
+    });
+    DaQuestaoAtual++; 
 }
 
 function limparCoresBackgroundOpcoes() {
-    const options = document.getElementsByName("option");
-    options.forEach((option) => {
-        document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
-        document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
-    })
+    const labels = document.querySelectorAll(".option");
+    labels.forEach((label) => {
+        label.classList.remove("text-success-with-bg", "text-danger-with-bg");
+    });
 }
 
 function desmarcarRadioButtons() {
     const options = document.getElementsByName("option");
-    for (let i = 0; i < options.length; i++) {
-        options[i].checked = false;
-    }
+    options.forEach(option => option.checked = false);
 }
 
 function finalizarJogo() {
-    let textoParaMensagemFinal = null
-    let classComCoresParaMensagemFinal = null
-    const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
+    let textoParaMensagemFinal = "";
+    let classComCoresParaMensagemFinal = "";
+    const porcentagemFinalDeAcertos = quantidadeDeQuestoes > 0 ? (pontuacaoFinal / quantidadeDeQuestoes) : 0;
 
     if (porcentagemFinalDeAcertos <= 0.3) {
-        textoParaMensagemFinal = "Parece que você não estudou..."
-        classComCoresParaMensagemFinal = "text-danger-with-bg"
-    }
-    else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
-        textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
-        classComCoresParaMensagemFinal = "text-warning-with-bg"
-    }
-    else if (porcentagemFinalDeAcertos >= 0.9) {
-        textoParaMensagemFinal = "Uau, parabéns!"
-        classComCoresParaMensagemFinal = "text-success-with-bg"
+        textoParaMensagemFinal = "Parece que você não estudou...";
+        classComCoresParaMensagemFinal = "text-danger-with-bg";
+    } else if (porcentagemFinalDeAcertos < 0.9) {
+        textoParaMensagemFinal = "Pode melhorar na próxima, hein!";
+        classComCoresParaMensagemFinal = "text-warning-with-bg";
+    } else {
+        textoParaMensagemFinal = "Uau, parabéns!";
+        classComCoresParaMensagemFinal = "text-success-with-bg";
     }
 
-    textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
+    textoParaMensagemFinal += "<br> Você acertou " + Math.round(porcentagemFinalDeAcertos * 100) + "% das questões.";
 
+    document.getElementById('jogo').style.display = "none";
+    document.getElementById('pontuacaoDuranteJogo').style.display = "none";
+    document.getElementById('pontuacaoFinalJogo').style.display = "block"; 
+    document.getElementById('pontuacao').style.display = "flex";
 
-    document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-    document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
-    document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
+    document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal;
+    
+    document.getElementById('msgFinal').className = 'width-fit-content'; 
+    document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal);
+    document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal;
 
-    document.getElementById('jogo').classList.add("text-new-gray")
+    document.getElementById('pontuacaoEJogo').style.flexDirection = "column";
+    document.getElementById('pontuacaoEJogo').style.alignItems = "center";
+    document.getElementById('pontuacaoEJogo').style.justifyContent = "center";
 
-    btnProx.disabled = true
-    btnSubmeter.disabled = true
-    btnConcluir.disabled = true
-    btnTentarNovamente.disabled = true
-
+    btnAcao.disabled = true; 
+    document.getElementById('btnConcluir').disabled = true; 
+    document.getElementById('btnTentarNovamente').disabled = false;
 }

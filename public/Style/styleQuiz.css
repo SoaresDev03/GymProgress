@@ -16,7 +16,7 @@ body {
 .flex-colunar {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 .width-fit-content {
@@ -63,11 +63,10 @@ body {
 
 #pontuacaoEJogo {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    margin-top: 40px;
+    gap: 10px;
 }
 
 #btnIniciarQuiz {
@@ -96,7 +95,10 @@ body {
     max-width: 300px;
     text-align: center;
     display: none;
+    align-self: center;
+    margin-top: 20px;
 }
+
 
 #pontuacaoDuranteJogo span,
 #pontuacaoFinalJogo span {
@@ -121,9 +123,11 @@ body {
 #jogo {
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    width: 100%;
+    width: 800px;
+    align-self: center;
+    justify-self: center;
     display: none;
+    gap: 0;
 }
 
 #infoQuestao span {
@@ -143,7 +147,7 @@ body {
 }
 
 #opcoes {
-    gap: 12px;
+    gap: 8px;
 }
 
 .radio {
@@ -184,12 +188,12 @@ body {
     transition: all 0.3s ease;
 }
 
-#btnSubmeter {
+#btnAcao {
     background-color: #1A1363;
     color: white;
 }
 
-#btnSubmeter:hover {
+#btnAcao:hover {
     background-color: #2980b9;
 }
 

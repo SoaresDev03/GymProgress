@@ -1,81 +1,88 @@
-
-
 function togglePassword() {
     const passwordInput = document.getElementById('inputSenha');
     const password2Input = document.getElementById('inputSenha2');
 
     if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
-
     } else {
         passwordInput.type = 'password';
-
     }
 
     if (password2Input.type === 'password') {
         password2Input.type = 'text';
-
     } else {
         password2Input.type = 'password';
     }
 }
 
 function registrar() {
-
-    var usuario = document.getElementById('inputUsername').value;
-    var email = document.getElementById('inputEmail').value;
+    var username = document.getElementById('inputUsername').value.trim();
+    var email = document.getElementById('inputEmail').value.trim();
     var senha = document.getElementById('inputSenha').value;
-    var senha2 = document.getElementById('inputSenha2').value
+    var senha2 = document.getElementById('inputSenha2').value;
 
-    var usuarioValido = true;
-    var emailValido = true;
-    var senhaValida = true;
-    var senha2Valida = true;
+    var cardErro = document.getElementById("cardErro");
+    var mensagemErro = document.getElementById("mensagem_erro");
 
-    if (email.indexOf('@') === -1) {
-        usuarioValido = false;
-        alert("Usuário deve conter um '@' no e-mail.");
+     var usernameVar = inputUsername.value;
+        var emailVar = inputEmail.value;
+        var senhaVar = inputSenha.value;
+        var senha2Var = inputSenha2.value;
+
+    if (!username || !email || !senha || !senha2) {
+        alert("Todos os campos são obrigatórios.");
+        return false;
     }
 
+    if (!email.includes('@')) {
+        alert("E-mail inválido. Deve conter '@'.");
+        return false;
+    }
+
+    if (senha !== senha2) {
+        alert("As senhas não coincidem.");
+        return false;
+    }
+
+  
     if (senha.length < 8) {
-        senhaValida = false;
-        alert("Senha deve ter no mínimo 8 caracteres.");
-    } else {
-        var temLetraMinuscula = false;
-        var temLetraMaiuscula = false;
-        var temCaractereEspecial = false;
-        var caracteresEspeciais = "!@#$%^&*()-_=+[]{};:,.<>?/|\\";
+        alert("A senha deve ter no mínimo 8 caracteres.");
+        return false;
+    }
 
-        for (var indiceSenha = 0; indiceSenha < senha.length; indiceSenha++) {
-            if (senha[indiceSenha] >= 'a' && senha[indiceSenha] <= 'z') {
-                temLetraMinuscula = true;
-            }
-            if (senha[indiceSenha] >= 'A' && senha[indiceSenha] <= 'Z') {
-                temLetraMaiuscula = true;
-            }
-            for (var indiceCaractereEspecial = 0; indiceCaractereEspecial < caracteresEspeciais.length; indiceCaractereEspecial++) {
-                if (senha[indiceSenha] === caracteresEspeciais[indiceCaractereEspecial]) {
-                    temCaractereEspecial = true;
-                }
-            }
+    var temLetraMinuscula = /[a-z]/.test(senha);
+    var temLetraMaiuscula = /[A-Z]/.test(senha);
+    var temCaractereEspecial = /[!@#$%^&*()\-_=+[\]{};:,.<>?/|\\]/.test(senha);
+
+    if (!temLetraMinuscula || !temLetraMaiuscula || !temCaractereEspecial) {
+        alert(`A senha deve conter:
+
+         Pelo menos uma letra minúscula.
+         Pelo menos uma letra maiúscula.
+         Pelo menos um caractere especial.
+        `);
+        return false;
+    }
+    fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            nomeServer: usernameVar,
+            emailServer: emailVar,
+            senhaServer: senhaVar
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            window.location.href = "login.html";
+        } else {
+            alert("Erro ao cadastrar. Tente novamente.");
         }
+    }).catch(function (erro) {
+        console.error("Erro na requisição: ", erro);
+        alert("Erro na conexão com o servidor.");
+    });
 
-        if (!temLetraMinuscula || !temLetraMaiuscula || !temCaractereEspecial) {
-            senhaValida = false;
-            alert(` Senha deve ter pelo menos uma letra minúscula. \n
-                Senha deve ter pelo menos uma letra maiúscula. \n
-                Senha deve ter pelo menos um caractere especial.`);
-        }
-    }
-
-    if (senha2 != senha) {
-        senha2Valida = false;
-        alert("As senhas não coincidem!")
-    }
-
-    if (emailValido && senhaValida && senha2Valida) {
-        alert("Cadastro realizado com sucesso.");
-        window.location.href = '../login.html';
-    }
-
+    return false;
 }

@@ -3,12 +3,17 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: Poppins;
 }
 
 body {
     background-color: #ECE9E9;
 }
 
+html {
+    scroll-behavior: smooth;
+
+}
 .container {
     height: 900px;
     padding-top: 20px;
@@ -33,7 +38,6 @@ h1 {
     }
 
     img:hover {
-
         transform: scale(1.1);
         transition: 500ms;
     }
@@ -46,7 +50,6 @@ h1 {
     gap: 10px;
     z-index: 2;
     justify-content: center;
-     font-family: Poppins;
 }
 
 
@@ -62,13 +65,103 @@ h1 {
     border-radius: 20px;
 }
 
-.textos{
+.textos {
     display: flex;
     flex-direction: column;
     font-size: 25px;
     gap: 10px;
 }
-.aprofundamento{
-  
+
+.aprofundamento {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
 }
 
+#textoAprofund {
+    font-size: 22px;
+    text-align: end;
+}
+
+#emogiBike {
+    position: absolute;
+    z-index: -1;
+    opacity: 10%;
+    right: 200px;
+    width: 500px;
+}
+
+#emogiWater {
+    position: absolute;
+    z-index: -1;
+    opacity: 10%;
+    top: 550px;
+    width: 500px;
+}
+
+#returnTop {
+    left: 0;
+    background-color: #1A1363;
+    margin-left: 50px;
+    border-radius: 20px;
+    margin-bottom: 20px;    
+}
+#returnTop:hover{
+cursor: pointer;
+}
+
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    height: 150px;
+    background-color: #1A1363;
+    cursor: pointer;
+}
+
+#infoAboutme {
+    color: #D9D9D9;
+    height: 150px;
+    width: 500px;
+
+    img {
+        margin-top: 10px;
+        width: 150px;
+    }
+
+    a {
+        color: #D9D9D9;
+    }
+}
+
+#contato {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    color: #fff;
+    width: 100px;
+    gap: 10px;
+}
+
+.lineFooter {
+    display: flex;
+    height: 50px;
+    align-items: center;
+    gap: 10px;
+
+    a {
+        color: #fff;
+    }
+}
+
+.imgFooter {
+    margin-top: 5px;
+    width: 40px;
+    padding: 5px;
+    background-color: black;
+    border-radius: 100%;
+    cursor: pointer;
+}

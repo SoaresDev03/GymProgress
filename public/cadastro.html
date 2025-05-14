@@ -21,14 +21,8 @@
             </a>
             <h1>Cadastro</h1>
 
-            <div class="alerta_erro" style="display: none;">
-                <div class="card_erro" id="cardErro">
-                    <span id="mensagem_erro"></span>
-                </div>
-            </div>
 
-
-            <form class="inputs" onsubmit="registrar()">
+            <form class="inputs" >
                 <label for="inputUsername">Nome de usuário*</label>
                 <input type="text" required id="inputUsername"> <br> <br>
 
@@ -43,7 +37,7 @@
 
                 <img onclick="togglePassword()" class="imgPass" src="Style/assets/Oculto.svg" alt=""> <br>
 
-                <button type="submit" class="button" >Registrar</button>
+                <button type="button" class="button" onclick="registrar()" >Registrar</button>
 
 
                 <div class="textFoot"> Já tem cadastro? <a href="login.html">Login</a> <br>
@@ -63,69 +57,6 @@
 </html>
 
 <script>
-    function registrar() {
-
-        var usernameVar = inputUsername.value;
-        var emailVar = inputEmail.value;
-        var senhaVar = inputSenha.value;
-        var senha2Var = inputSenha2.value;
-
-        if (usernameVar == "" ||
-            emailVar == "" ||
-            senhaVar == "" ||
-            senha2Var == ""
-        ) {
-            cardErro.style.display = "block";
-            mensagem_erro.innerHTML =
-                "(Mensagem de erro para todos os campos em branco)";
-
-            return false;
-        } else if (senhaVar != senha2Var) {
-            cardErro.style.display = "block";
-            mensagem_erro.innerHTML = "As senhas não coincidem.";
-            return false;
-
-        } else if (usernameVar.length < 1) {
-            cardErro.style.display = "block";
-            mensagem_erro.innerHTML =
-                "(Mensagem de erro para nome inválido)";
-            return false;
-        }
-        else {
-            fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                nomeServer: usernameVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            }),
-        }).then(function (resposta) {
-           
-                console.log("resposta: ", resposta);
-                if (resposta.ok) {
-                    window.location.assign("login.html")
-
-                    // setTimeout(() => {
-                    //     window.location.assign("login.html")
-                    // }, "2000");
-
-                    // // limparFormulario();
-                 
-                } else {
-                    throw "Houve um erro ao tentar realizar o cadastro!";
-                }
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-             
-            });
-
-        return false;
-        } 
-    }
 
     function sumirMensagem() {
         cardErro.style.display = "none";
