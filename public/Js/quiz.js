@@ -83,12 +83,10 @@ const listaDeQuestoes = [
 
 let DaQuestaoAtual = 0;
 let pontuacaoFinal = 0;
-// let tentativaIncorreta = 0; // This variable was declared but not used in the original code.
 let certas = 0;
 let erradas = 0;
 const quantidadeDeQuestoes = listaDeQuestoes.length;
 
-// Get the action button reference once
 let btnAcao; 
 
 function onloadEsconder() {
@@ -97,7 +95,7 @@ function onloadEsconder() {
 }
 
 function iniciarQuiz() {
-    btnAcao = document.getElementById("btnAcao"); // Initialize btnAcao
+    btnAcao = document.getElementById("btnAcao"); 
 
     document.getElementById('pontuacao').style.display = "flex";
     document.getElementById('jogo').style.display = "flex";
@@ -105,7 +103,7 @@ function iniciarQuiz() {
     document.getElementById('UsernameExib').style.display = "none";
 
     document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes;
-    DaQuestaoAtual = 0; // Reset question index
+    DaQuestaoAtual = 0;
     certas = 0;
     erradas = 0;
     pontuacaoFinal = 0;
@@ -174,7 +172,6 @@ function carregarProximaQuestao() {
     btnAcao.textContent = "Enviar resposta";
     btnAcao.onclick = processarResposta;
     btnAcao.disabled = false;
-    // habilitarAlternativas(true); // This is now at the start of preencherHTMLcomQuestaoAtual
 }
 
 
@@ -272,7 +269,13 @@ function finalizarJogo() {
     document.getElementById('btnConcluir').disabled = true; 
     document.getElementById('btnTentarNovamente').disabled = false;
 
-     fetch("/quiz/registrar", {
+    if (!sessionStorage.ID_USUARIO) {
+        console.error("ID do usuário não encontrado no sessionStorage");
+        alert("Erro: Usuário não identificado. Faça login novamente.");
+        return;
+    }
+
+    fetch("/quiz/registrar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -281,6 +284,20 @@ function finalizarJogo() {
             erros: erradas
         })
     })
+    .then(res => {
+        if (!res.ok) {
+            return res.json().then(err => { throw err; });
+        }
+        return res.json();
+    })
+    .then(data => {
+        console.log("Resultado do quiz registrado:", data);
+    })
+    .catch(err => {
+        console.error("Erro ao registrar quiz:", err);
+        alert(`Erro ao salvar resultados: ${err.message || "Tente novamente mais tarde"}`);
+    })
+
     .then(res => res.ok ? console.log("Resultado do quiz registrado") : console.error("Erro ao registrar quiz"))
     .catch(err => console.error("Erro na requisição:", err));
 }
