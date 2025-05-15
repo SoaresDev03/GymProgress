@@ -9,5 +9,15 @@ CREATE TABLE usuario (
 	senha VARCHAR(50)
 );
 
+CREATE TABLE resultado_quiz (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fk_usuario INT,
+    acertos INT,
+    erros INT,
+    data_resposta DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+);
+
 select * from usuario;
+select * from resultado_quiz;
 TRUNCATE table usuario;

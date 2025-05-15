@@ -1,18 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" href="Style/styleDash.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard & ranking</title>
 </head>
+
 <body>
     <div id="container">
         <div id="menuLateral">
-<a href="index.html">Home</a>
+
+            <a href="index.html">Home</a>
+            <a href="quiz.html">Retornar ao quiz</a>
+        </div>
+        <div class="boxDash">
+            <h3 id="UsernameExib">Bem-vindo, <span id="b_usuario">usuário</span>!
+                <br>
+            </h3>
+
+            <div class="containerKpi">
+                <div class="boxKpi">Usuários cadastrados:<span>100</span></div>
+                <div class="boxKpi">Posição no ranking:<span>4°</span></div>
+                <div class="boxKpi">Última tentativa:<span>2025-03-20</span></div>
+                <div class="boxKpi">Acertos<span>8</span></div>
+            </div>
+            <div class="dash">
+
+                <div class="telaGrafico">
+                    <canvas id="topRanking"></canvas>
+                </div>
+
+
+
+            </div>
 
         </div>
 
+        <img id="logoQuiz" src="Style/assets/logo 2.svg" alt="">
     </div>
 </body>
+
 </html>
+
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    var topRanking = new Chart(document.getElementById('topRanking').getContext('2d'), {
+        type: 'bar',
+        data: {
+            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+            datasets: [
+                // {
+                //     label: 'CO²',
+                //     data: [740, 730, 710, 690, 690, 680],
+                //     borderColor: '#38B622',
+                //     backgroundColor: '#38B622'
+                // },
+                {
+                    label: 'Quiz 1',
+                    data: [800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800],
+                    borderColor: '#FF0000',
+                    fill: false,
+                    pointBorderWidth: 0,
+                    pointRadius: 0,
+                    backgroundColor: '#FF0000'
+                },
+                {
+                    label: 'Quiz 2',
+                    data: [380, 380, 380, 380, 380, 380, 380, 380, 380, 380],
+                    borderColor: '#E100FF',
+                    fill: false,
+                    pointBorderWidth: 0,
+                    pointRadius: 0,
+                    backgroundColor: '#E100FF'
+                }
+            ]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Top Players',
+                    font: {
+                        size: 18
+                    },
+                    color: 'white',
+                    padding: {
+                        top: 1,
+                        bottom: 3
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    min: 0,
+                    max: 10,
+                    title: {
+                        display: true,
+                        text: 'Acertos'
+                    }
+                }
+            }
+        }
+    });
+</script>
