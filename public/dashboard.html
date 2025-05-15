@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Style/styleDash.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <title>Dashboard & ranking</title>
 </head>
 
@@ -22,10 +23,10 @@
             </h3>
 
             <div class="containerKpi">
-                <div class="boxKpi">Usuários cadastrados:<span>100</span></div>
-                <div class="boxKpi">Posição no ranking:<span>4°</span></div>
-                <div class="boxKpi">Última tentativa:<span>2025-03-20</span></div>
-                <div class="boxKpi">Acertos<span>8</span></div>
+                <div class="boxKpi">Usuários cadastrados:<p>100</p></div>
+                <div class="boxKpi">Posição no ranking:<p>4°</p></div>
+                <div class="boxKpi">Última tentativa:<p>2025-03-20</p></div>
+                <div class="boxKpi">Acertos<p id="totalAcertos"></p></div>
             </div>
             <div class="dash">
 
@@ -48,62 +49,147 @@
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    var topRanking = new Chart(document.getElementById('topRanking').getContext('2d'), {
-        type: 'bar',
-        data: {
-            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-            datasets: [
-                // {
-                //     label: 'CO²',
-                //     data: [740, 730, 710, 690, 690, 680],
-                //     borderColor: '#38B622',
-                //     backgroundColor: '#38B622'
-                // },
-                {
-                    label: 'Quiz 1',
-                    data: [800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800],
-                    borderColor: '#FF0000',
-                    fill: false,
-                    pointBorderWidth: 0,
-                    pointRadius: 0,
-                    backgroundColor: '#FF0000'
-                },
-                {
-                    label: 'Quiz 2',
-                    data: [380, 380, 380, 380, 380, 380, 380, 380, 380, 380],
-                    borderColor: '#E100FF',
-                    fill: false,
-                    pointBorderWidth: 0,
-                    pointRadius: 0,
-                    backgroundColor: '#E100FF'
-                }
-            ]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Top Players',
-                    font: {
-                        size: 18
-                    },
-                    color: 'white',
-                    padding: {
-                        top: 1,
-                        bottom: 3
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    min: 0,
-                    max: 10,
-                    title: {
-                        display: true,
-                        text: 'Acertos'
-                    }
-                }
-            }
-        }
-    });
-</script>
+    // var topRanking = new Chart(document.getElementById('topRanking').getContext('2d'), {
+    //     type: 'bar',
+    //     data: {
+    //         labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+    //         datasets: [
+    //             // {
+    //             //     label: 'CO²',
+    //             //     data: [740, 730, 710, 690, 690, 680],
+    //             //     borderColor: '#38B622',
+    //             //     backgroundColor: '#38B622'
+    //             // },
+    //             {
+    //                 label: 'Quiz 1',
+    //                 data: [800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800],
+    //                 borderColor: '#FF0000',
+    //                 fill: false,
+    //                 pointBorderWidth: 0,
+    //                 pointRadius: 0,
+    //                 backgroundColor: '#FF0000'
+    //             },
+    //             {
+    //                 label: 'Quiz 2',
+    //                 data: [380, 380, 380, 380, 380, 380, 380, 380, 380, 380],
+    //                 borderColor: '#E100FF',
+    //                 fill: false,
+    //                 pointBorderWidth: 0,
+    //                 pointRadius: 0,
+    //                 backgroundColor: '#E100FF'
+    //             }
+    //         ]
+    //     },
+    //     options: {
+    //         plugins: {
+    //             title: {
+    //                 display: true,
+    //                 text: 'Top Players',
+    //                 font: {
+    //                     size: 18
+    //                 },
+    //                 color: 'white',
+    //                 padding: {
+    //                     top: 1,
+    //                     bottom: 3
+    //                 }
+    //             }
+    //         },
+    //         scales: {
+    //             y: {
+    //                 min: 0,
+    //                 max: 10,
+    //                 title: {
+    //                     display: true,
+    //                     text: 'Acertos'
+    //                 }
+    //             }
+    //         }
+    //     }
+    // });
+
+//     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+// window.onload = function () {
+//     obterDadosQuiz();
+// }
+
+// function obterDadosQuiz() {
+//     fetch("/dash/exibir", { 
+//         method: "GET",
+//         headers: {
+//             "Content-Type": "application/json"
+//         }
+//     })
+//         .then(resposta => {
+//             if (resposta.ok) {
+//                 resposta.json().then(dados => {
+//                     console.log("Dados recebidos do servidor:", dados);
+//                     exibirDados(dados);
+//                 });
+//             } else {
+//                 console.error("Erro ao obter dados do quiz:", resposta);
+//                 resposta.json().then(erro => {
+//                     console.error("Detalhes do erro:", erro);
+//                     alert("Erro ao obter dados do quiz: " + erro.message);
+//                 });
+//             }
+//         })
+//         .catch(erro => {
+//             console.error("Erro na requisição:", erro);
+//             alert("Erro na requisição: " + erro.message);
+//         });
+// }
+
+
+// function exibirDados(dados) {
+//     let totalAcertos = 0;
+//     let totalErros = 0;
+//     let totalQuizzesJogados = dados.length;
+
+//     dados.forEach(resultado => {
+//         totalAcertos += resultado.acertos;
+//         totalErros += resultado.erros;
+//     });
+
+//     document.getElementById("totalAcertos").textContent = totalAcertos;
+//     document.getElementById("totalErros").textContent = totalErros;
+//     document.getElementById("totalQuizzesJogados").textContent = totalQuizzesJogados;
+
+//     const ctx = document.getElementById('acertosPorcentagem').getContext('2d');
+//     const myChart = new Chart(ctx, {
+//         type: 'pie',
+//         data: {
+//             labels: ['Acertos', 'Erros'],
+//             datasets: [{
+//                 label: 'Porcentagem de Acertos e Erros',
+//                 data: [totalAcertos, totalErros],
+//                 backgroundColor: [
+//                     'rgba(0, 255, 0, 0.7)',
+//                     'rgba(255, 0, 0, 0.7)'
+//                 ],
+//                 borderColor: [
+//                     'rgba(0, 255, 0, 1)',
+//                     'rgba(255, 0, 0, 1)'
+//                 ],
+//                 borderWidth: 1
+//             }]
+//         },
+//         options: {
+//             responsive: true,
+//             plugins: {
+//                 legend: {
+//                     position: 'top',
+//                 },
+//                 title: {
+//                     display: true,
+//                     text: 'Porcentagem de Acertos e Erros',
+//                     font: {
+//                         size: 16
+//                     }
+//                 }
+//             }
+//         }
+//     });
+// }
+// </script>

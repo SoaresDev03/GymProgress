@@ -237,6 +237,43 @@ function finalizarJogo() {
     let classComCoresParaMensagemFinal = "";
     const porcentagemFinalDeAcertos = quantidadeDeQuestoes > 0 ? (pontuacaoFinal / quantidadeDeQuestoes) : 0;
 
+
+    if (!sessionStorage.ID_USUARIO) {
+        const mensagem = "Erro: Usuário não identificado. Faça login novamente.";
+        console.error("ID do usuário não encontrado no sessionStorage", mensagem);
+        alert(mensagem);
+        return;
+    }
+
+    fetch("/quiz/registrar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            fk_usuario: sessionStorage.ID_USUARIO,
+            acertos: certas,
+            erros: erradas
+        })
+    })
+    .then(res => {
+        if (!res.ok) {
+            return res.json().then(err => { 
+                console.error("Erro na resposta do servidor:", err);
+                throw err; 
+            });
+        }
+        return res.json();
+    })
+    .then(data => {
+        console.log("Resultado do quiz registrado:", data);
+        alert("Quiz finalizado com sucesso!");
+    })
+    .catch(err => {
+        const mensagem = err.message || "Erro ao salvar resultados: Tente novamente mais tarde.";
+        console.error("Erro ao registrar quiz:", err, mensagem);
+        alert(mensagem);
+    });
+
+
     if (porcentagemFinalDeAcertos <= 0.3) {
         textoParaMensagemFinal = "Parece que você não estudou...";
         classComCoresParaMensagemFinal = "text-danger-with-bg";
