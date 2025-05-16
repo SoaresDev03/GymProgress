@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Style/styleDash.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="Js/dashJS.js"></script>
 
     <title>Dashboard & ranking</title>
 </head>
@@ -23,6 +24,11 @@
             </h3>
 
             <div class="containerKpi">
+                <div class="boxKpi">Erros<p id="totalErros">0</p>
+                </div>
+                <div class="boxKpi">Tentativas<p id="totalQuizzesJogados">0</p>
+                </div>
+
                 <div class="boxKpi">Usuários cadastrados:<p>100</p>
                 </div>
                 <div class="boxKpi">Posição no ranking:<p>4°</p>
@@ -49,7 +55,7 @@
 </body>
 
 </html>
-
+<!-- 
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
@@ -195,4 +201,116 @@
             }
         });
     }
-// </script>
+// </script> -->
+
+<script>
+   window.onload = function () {
+    // Referenciando o span que vai mostrar o nome do usuário
+    const bUsuario = document.getElementById("b_usuario");
+    const nomeUsuario = sessionStorage.NOME_USUARIO;
+    const idUsuario = sessionStorage.ID_USUARIO;
+
+    if (!idUsuario) {
+        alert("Usuário não autenticado. Faça login novamente.");
+        window.location.href = "login.html";
+        return;
+    }
+
+    bUsuario.textContent = nomeUsuario;
+    obterDadosQuiz(idUsuario);
+};
+
+function obterDadosQuiz(idUsuario) {
+    fetch(`/dash/exibir?idUsuario=${idUsuario}`)
+        .then(resposta => {
+            if (!resposta.ok) {
+                throw new Error("Erro ao obter dados: " + resposta.status);
+            }
+            return resposta.json();
+        })
+        .then(dados => {
+            console.log("Dados recebidos:", dados);
+            exibirDados(dados);
+        })
+        .catch(erro => {
+            console.error("Erro ao buscar dados:", erro);
+            alert("Erro ao buscar dados do quiz.");
+        });
+}
+
+function exibirDados(dados) {
+    let totalAcertos = 0;
+    let totalErros = 0;
+    let totalQuizzesJogados = dados.length;
+
+    // Obter a data da última tentativa (mais recente)
+    let ultimaTentativa = null;
+
+    dados.forEach(resultado => {
+        totalAcertos += resultado.acertos;
+        totalErros += resultado.erros;
+
+        // Verifica a data mais recente
+        const dataResposta = new Date(resultado.data_resposta);
+        if (!ultimaTentativa || dataResposta > ultimaTentativa) {
+            ultimaTentativa = dataResposta;
+        }
+    });
+
+    // Atualiza os KPIs no HTML
+    document.getElementById("totalAcertos").textContent = totalAcertos;
+    document.getElementById("totalErros").textContent = totalErros;
+    document.getElementById("totalQuizzesJogados").textContent = totalQuizzesJogados;
+
+    // Atualiza a data da última tentativa no formato YYYY-MM-DD
+    if (ultimaTentativa) {
+        document.querySelector('.boxKpi:nth-child(5) p').textContent = ultimaTentativa.toISOString().split('T')[0];
+    }
+
+    atualizarGrafico(totalAcertos, totalErros);
+}
+
+function atualizarGrafico(acertos, erros) {
+    const canvasId = 'topRanking';
+    const ctx = document.getElementById(canvasId).getContext('2d');
+
+    if (window.graficoAcertosErros instanceof Chart) {
+        window.graficoAcertosErros.destroy();
+    }
+
+    window.graficoAcertosErros = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Acertos', 'Erros'],
+            datasets: [{
+                label: 'Desempenho do Usuário',
+                data: [acertos, erros],
+                backgroundColor: ['#38B622', '#FF0000']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Desempenho no Quiz',
+                    color: 'white',
+                    font: { size: 18 }
+                },
+                legend: { display: false }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    suggestedMax: Math.max(acertos, erros) + 5,
+                    title: {
+                        display: true,
+                        text: 'Quantidade'
+                    }
+                }
+            }
+        }
+    });
+}
+
+</script>
