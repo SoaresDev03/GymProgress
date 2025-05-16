@@ -20,15 +20,16 @@ var database = require("../database/config");
 
 function selecionarDados(idUsuario) {
     const instrucaoSql = `
-        SELECT 
-            fk_usuario,
-            acertos,
-            erros,
-            data_resposta
-        FROM resultado_quiz
-        join usuario on id_usuario=fk_usuario
-        WHERE fk_usuario = ${idUsuario};
-    `;
+    SELECT 
+        u.nome,
+        r.fk_usuario,
+        r.acertos,
+        r.erros,
+        r.data_resposta
+    FROM resultado_quiz as r
+    join usuario as u on r.fk_usuario = u.idUsuario
+    WHERE u.idUsuario = ${idUsuario};
+        `;
     console.log("Executando SQL para selecionar dados do usuário:", instrucaoSql);
     return database.executar(instrucaoSql);
 }

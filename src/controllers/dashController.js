@@ -1,19 +1,9 @@
-// var quizModel = require("../models/dashModel");
-
-//     function exibirDados(req,res){
-//         const { fk_usuario, acertos,data_resposta } = req.body;
-//         console.log("Dados recebidos para registrar quiz:", { fk_usuario, acertos, data_resposta });
-
-//         dashModel.selecionarDados
-
-//     }
-
 var dashModel = require("../models/dashModel");
 
 function exibirDados(req, res) {
-    const idUsuario = req.session.id_usuario;
+    const idUsuario = sessionStorage.idUsuario;
 
-    dashModel.selecionarDados(idUsuario) 
+    dashModel.selecionarDados() 
         .then(resultados => {
             if (resultados && resultados.length > 0) {
                 res.json(resultados);

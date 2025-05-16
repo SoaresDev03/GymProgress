@@ -32,7 +32,7 @@
                     <img onclick="togglePassword()" class="imgPass" src="Style/assets/Oculto.svg" alt="">
                 </div>
 
-                <button type="submit" class="button" onclick="entrar()">Entrar</button>
+                <button type="button" class="button" onclick="entrar()">Entrar</button>
 
 
                 <div class="textFoot"> Ainda não tem login? <a id="redCadastro" href="cadastro.html">Cadastre-se</a>
@@ -88,8 +88,8 @@
                         sessionStorage.ID_USUARIO = json.id;
 
 
+                        window.location.href="quiz.html"
                     });
-                    window.location.assign("quiz.html")
                 } else {
 
                     console.log("Houve um erro ao tentar realizar o login!");
@@ -105,16 +105,10 @@
             })
 
         }
-
-
-
-
         return false;
     }
 
     function sumirMensagem() {
         cardErro.style.display = "none"
     }
-
-
 </script>
