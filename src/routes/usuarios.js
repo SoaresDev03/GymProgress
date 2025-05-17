@@ -10,8 +10,7 @@ router.post("/cadastrar", function (req, res) {
 router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
-
-
-
+router.get("/total", usuarioController.obterTotalUsuarios);
+router.get("/top3", usuarioController.listarTop3);
 
 module.exports = router;

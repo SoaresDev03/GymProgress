@@ -21,13 +21,10 @@ function registrar() {
     var senha = document.getElementById('inputSenha').value;
     var senha2 = document.getElementById('inputSenha2').value;
 
-    var cardErro = document.getElementById("cardErro");
-    var mensagemErro = document.getElementById("mensagem_erro");
-
-     var usernameVar = inputUsername.value;
-        var emailVar = inputEmail.value;
-        var senhaVar = inputSenha.value;
-        var senha2Var = inputSenha2.value;
+    var usernameVar = inputUsername.value;
+    var emailVar = inputEmail.value;
+    var senhaVar = inputSenha.value;
+    var senha2Var = inputSenha2.value;
 
     if (!username || !email || !senha || !senha2) {
         alert("Todos os campos são obrigatórios.");
@@ -44,7 +41,7 @@ function registrar() {
         return false;
     }
 
-  
+
     if (senha.length < 8) {
         alert("A senha deve ter no mínimo 8 caracteres.");
         return false;
@@ -75,7 +72,11 @@ function registrar() {
         }),
     }).then(function (resposta) {
         if (resposta.ok) {
-            window.location.href = "login.html";
+            alert("Cadastro realizado com sucesso!")
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 5000);
+
         } else {
             alert("Erro ao cadastrar. Tente novamente.");
         }

@@ -62,7 +62,31 @@ function cadastrar(req, res) {
     }
 }
 
+function obterTotalUsuarios(req, res) {
+    usuarioModel.contarUsuarios()
+        .then(resultado => {
+            res.json(resultado[0]); // envia { total: X }
+        })
+        .catch(erro => {
+            console.error("Erro ao contar usuários:", erro);
+            res.status(500).json({ mensagem: "Erro ao contar usuários." });
+        });
+    }
+
+    function listarTop3(req, res) {
+    usuarioModel.obterTop3()
+        .then(resultado => {
+            res.json(resultado);
+        })
+        .catch(erro => {
+            console.error("Erro ao buscar top 3 usuários:", erro);
+            res.status(500).json({ mensagem: "Erro ao buscar ranking." });
+        });
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    obterTotalUsuarios,
+    listarTop3
 };

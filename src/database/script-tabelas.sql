@@ -1,6 +1,4 @@
-CREATE DATABASE gymP;
-
-USE gymP;
+-- Active: 1742234339979@@127.0.0.1@3306@gymp
 
 CREATE TABLE usuario (
 	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -15,7 +13,7 @@ CREATE TABLE resultado_quiz (
     acertos INT,
     erros INT,
     data_resposta DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+    FOREIGN KEY (fk_usuario) REFERENCES usuario(idUsuario)
 );
 
 select * from usuario;
@@ -23,13 +21,8 @@ select * from resultado_quiz;
 TRUNCATE table usuario;
 TRUNCATE table resultado_quiz;
 
+DROP DATABASE gymP;
+CREATE DATABASE gymP;
+USE gymP;
 
- SELECT 
-        u.nome,
-        r.fk_usuario,
-        r.acertos,
-        r.erros,
-        r.data_resposta
-    FROM resultado_quiz as r
-    join usuario as u on r.fk_usuario = u.idUsuario
-    WHERE u.idUsuario = 1;
+

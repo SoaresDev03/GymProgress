@@ -7,7 +7,7 @@
 }
 
 body {
-    /* overflow: hidden; */
+
     background-color: #ECE9E9;
 }
 
@@ -53,8 +53,8 @@ body {
 }
 
 #b_usuario {
-color: brown;
-text-decoration: underline;
+    color: brown;
+    text-decoration: underline;
 }
 
 #logoQuiz {
@@ -66,17 +66,17 @@ text-decoration: underline;
     bottom: 0;
 }
 
-.boxDash{
+.boxDash {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
 
-.containerKpi{
+.containerKpi {
     padding: 10px;
     width: 80%;
-    background-color: rgba(95, 158, 160,0.4);
+    background-color: rgba(95, 158, 160, 0.4);
     margin: 10px;
     border-radius: 20px;
     display: flex;
@@ -85,7 +85,7 @@ text-decoration: underline;
     align-items: center;
 }
 
-.boxKpi{
+.boxKpi {
     width: 25%;
     height: 97%;
     background-color: #1a1363;
@@ -94,20 +94,56 @@ text-decoration: underline;
     flex-direction: column;
     text-align: center;
     border-radius: 10px;
-    
-    span{
+
+    span {
         font-size: 25px;
         font-family: Poppins;
         font-weight: 700;
     }
 }
 
-.telaGrafico{
+.dash {
+    display: flex;
+    gap: 100px;
+    padding-top: 20px;
+    align-items: center;
+}
+
+.telaGrafico {
     width: 600px;
     background-color: #1A1363;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 5px 10px 1px #000;
 }
 
-#topRanking{
-     color: #ECE9E9;
+.topRankingBox {
+    color: #ECE9E9;
+    background-color: #1A1363;
+    width: 300px;
+    height: 200px;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 1px 5px 10px 1px #000;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.topRankingBox h3 {
+    text-align: center;
+    text-decoration: underline;
+
+}
+
+.topRankingBox ol {
+    list-style: none;
+    gap: 10px;
+    margin-top: 10px;
+    width: 80%;
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

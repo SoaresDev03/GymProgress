@@ -20,8 +20,29 @@ function cadastrar(nome,email,senha){
     return database.executar(instrucaoSql);
 }
 
+function contarUsuarios() {
+    const instrucaoSql = `SELECT COUNT(*) AS total FROM usuario;`;
+    return database.executar(instrucaoSql);
+}
+
+function obterTop3() {
+    const instrucaoSql = `
+        SELECT 
+            u.nome,
+            COALESCE(SUM(r.acertos), 0) AS total_acertos
+        FROM usuario u
+        LEFT JOIN resultado_quiz r ON u.idUsuario = r.fk_usuario
+        GROUP BY u.idUsuario
+        ORDER BY total_acertos DESC
+        LIMIT 3;
+    `;
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    contarUsuarios,
+    obterTop3
 };
    

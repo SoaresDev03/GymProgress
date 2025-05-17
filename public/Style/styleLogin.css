@@ -13,6 +13,46 @@ body {
     background-color: #ECE9E9;
 }
 
+#divErroVazio {
+    position: absolute;
+    display: none;
+    width: 550px;
+    font-size: 25px;
+    font-weight: 700;
+    background-color: #1A1363;
+    color: #e9e9e9;
+    height: 100px;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    border-radius: 20px;
+    border: red solid 2px;
+    opacity: 95%;
+}
+
+#divErro {
+    position: absolute;
+    display: none;
+    width: 550px;
+    font-size: 25px;
+    font-weight: 700;
+    background-color: #1A1363;
+    color: #e9e9e9;
+    height: 100px;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    border-radius: 20px;
+    border: red solid 2px;
+    opacity: 95%;
+}
+
 .containerLogin {
     padding-left: 5%;
     display: flex;
@@ -102,8 +142,9 @@ body {
     height: 35px;
     width: 30px;
 
-  
+
 }
+
 .imgPass:hover {
     transform: scale(1.2);
 }
@@ -115,16 +156,18 @@ a {
     cursor: pointer;
 
 }
-#btnHome{
+
+#btnHome {
     position: absolute;
     right: 0;
     margin-right: 20px;
     margin-top: 10px;
-    img{
+
+    img {
         width: 50px;
     }
 
-    img:hover{
+    img:hover {
         transform: scale(1.1);
         transition: 500ms;
     }

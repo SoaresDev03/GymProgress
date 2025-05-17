@@ -34,6 +34,9 @@
 
                 <button type="button" class="button" onclick="entrar()">Entrar</button>
 
+                <div id="divErro">Erro ao Realizar o login, <u> tente novamente!</u></div>
+
+                <div id="divErroVazio">Login inválido! Preencha todos os campos.</div>
 
                 <div class="textFoot"> Ainda não tem login? <a id="redCadastro" href="cadastro.html">Cadastre-se</a>
                     <br>
@@ -52,6 +55,22 @@
 </html>
 
 <script>
+
+    function exibirErro() {
+        divErro.style.display = "flex";
+        setTimeout(() => {
+            divErro.style.display = "none";
+            window.location.href = "login.html"
+        }, 5000);
+    }
+
+    function exibirErroVazio() {
+        divErroVazio.style.display = "flex";
+        setTimeout(() => {
+            divErroVazio.style.display = "none";
+        }, 5000);
+    }
+
     function entrar() {
 
 
@@ -59,7 +78,7 @@
         var senhaVar = inputSenha.value;
 
         if (emailVar == "" || senhaVar == "") {
-            alert("Login inválido! Preencha todos os campos!")
+            exibirErroVazio()
             return false;
         }
         else {
@@ -88,11 +107,13 @@
                         sessionStorage.ID_USUARIO = json.idUsuario;
 
 
-                        window.location.href="quiz.html"
+                        window.location.href = "quiz.html"
                     });
                 } else {
+                    exibirErro();
 
                     console.log("Houve um erro ao tentar realizar o login!");
+
 
                     resposta.text().then(texto => {
                         console.error(texto);
