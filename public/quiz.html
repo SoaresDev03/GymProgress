@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +35,8 @@
                 </span>
                 <span id="msgFinal" class="width-fit-content">***</span>
                 <br>
-                <button id="btnDash" onclick="window.location='dashboard.html'">Vizualize as respostas dos demais usuários</button>
+                <button id="btnDash" onclick="window.location='dashboard.html'">Vizualize as respostas dos demais
+                    usuários</button>
             </div>
         </div>
 
@@ -86,5 +85,16 @@
 
 </html>
 <script>
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    window.onload = function () {
+        const nomeUsuario = sessionStorage.getItem("NOME_USUARIO");
+        const idUsuario = sessionStorage.getItem("ID_USUARIO");
+
+        if (!nomeUsuario || !idUsuario) {
+            alert("Usuário não autenticado. Faça login novamente.");
+            window.location.href = "login.html";
+            return;
+        }
+
+        document.getElementById("b_usuario").textContent = nomeUsuario;
+    };
 </script>

@@ -9,12 +9,12 @@ console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: co
     return database.executar(instrucaoSql);
 }
 
-function cadastrar(nome,email,senha){
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha);
+function cadastrar(nome,email,senha,genero){
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha, genero);
     
 
     var instrucaoSql = `
-        INSERT INTO usuario (nome, email, senha) VALUES ('${nome}', '${email}', '${senha}');
+        INSERT INTO usuario (nome, email, senha, genero) VALUES ('${nome}', '${email}', '${senha}', '${genero}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -39,10 +39,21 @@ function obterTop3() {
     return database.executar(instrucaoSql);
 }
 
+function UsuariosPorGenero() {
+    const instrucaoSql = `
+        SELECT genero, COUNT(*) AS quantidade
+        FROM usuario
+        GROUP BY genero;
+    `;
+    return database.executar(instrucaoSql);
+}
+
+
 module.exports = {
     autenticar,
     cadastrar,
     contarUsuarios,
-    obterTop3
+    obterTop3,
+    UsuariosPorGenero
 };
    

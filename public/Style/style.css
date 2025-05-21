@@ -24,7 +24,7 @@ body {
 
 #logo {
     margin-top: 5px;
-    width: 210px;
+    width: 190px;
     margin-left: 5px;
 }
 
@@ -32,7 +32,7 @@ body {
     display: flex;
     background-color: #1A1363;
     width: 70%;
-    height: 90px;
+    height: 70px;
     margin-left: 10px;
     margin-top: 10px;
     border-radius: 30px;
@@ -42,7 +42,7 @@ body {
     a {
         color: #fff;
         text-decoration: none;
-        font-size: 25px;
+        font-size: 20px;
         font-family: Poppins;
         font-weight: bold;
     }
@@ -50,8 +50,8 @@ body {
 
 .btnPerfil {
     background-color: #1A1363;
-    width: 90px;
-    height: 90px;
+    width: 70px;
+    height: 70px;
     margin-top: 10px;
     margin-right: 5px;
     border-radius: 30px;
@@ -61,10 +61,10 @@ body {
 }
 
 #imgPerfil {
-    margin-left: 5px;
+    margin-left: 8px;
     align-self: center;
     color: #ECE9E9;
-    width: 70px;
+    width: 50px;
 }
 
 .boxes {
@@ -75,20 +75,25 @@ body {
     gap: 20px;
 
     #textInicial {
-        padding-top: 60px;
+        padding-top: 30px;
         text-align: center;
-        font-size: 34px;
+        font-size: 25px;
         font-family: Poppins;
         width: 500px;
         height: 500px;
         font-weight: bold;
+        gap: 20px;
+    }
 
+    #textoInicial {
+        padding-top: 50px;
+        margin-bottom: 100px;
     }
 
     #videoHome {
         background-color: #D9D9D9;
-        width: 750px;
-        height: 500px;
+        width: 700px;
+        height: 400px;
     }
 
 }
@@ -97,19 +102,16 @@ body {
     display: flex;
     align-self: center;
     justify-self: center;
-    width: 500px;
-    height: 100px;
-    text-align: center;
-    align-items: center;
+    width: 350px;
+    height: 70px;
     justify-content: center;
     font-family: Poppins;
-    font-size: 26px;
+    font-size: 20px;
     border-radius: 20px;
     background-color: #054c8a;
     color: #fff;
     font-weight: bold;
-
-
+    cursor: pointer;
 }
 
 iframe {
@@ -118,12 +120,14 @@ iframe {
 
 #imgHalter {
     position: absolute;
-    right: 0;
-    width: 100px;
+    top: 200px;
+    left: 100px;
+    width: 400px;
     height: auto;
     margin-bottom: 20000px;
     margin-right: 360px;
-    opacity: 50%;
+    opacity: 10%;
+    z-index: -1;
 }
 
 button {
@@ -137,17 +141,12 @@ button:hover {
 
 #sobre {
     background-color: #D9D9D9;
-    height: 800px;
+    height: 600px;
     width: auto;
-    margin-top: 150px;
     font-family: Poppins;
     padding: 20px;
-    padding-top: 60px;
     z-index: 1;
     position: relative;
-
-
-
 }
 
 #containerSobre {
@@ -168,29 +167,33 @@ button:hover {
         margin-top: 100px;
         font-family: Poppins;
         font-weight: bold;
-        font-size: 35px;
-        bottom: 180px;
+        font-size: 25px;
+        bottom: 85px;
         background-color: #054c8a;
         color: #FFF;
-        border-radius: 20px;
+        border-radius: 15px;
+        margin-top: 20px;
         padding: 10px;
+        left: 195px;
     }
 
     a:hover {
-      transform: scale(1.01);
-      /* color: #000;  */
-      background-color:#1A1363; 
-      transition: all 0.3s ease;
+        transform: scale(1.01);
+        background-color: #1A1363;
+        transition: all 0.3s ease;
     }
 
-    #imgSobre{
+    #imgSobre {
+        margin-left: 20px;
         position: absolute;
         width: 500px;
+        border-radius: 15px;
     }
 }
 
 #boxDireita {
     width: 900px;
+    margin-right: 20px;
 }
 
 #textinhoSobre {
@@ -199,7 +202,7 @@ button:hover {
     align-content: center;
     padding: 20px;
     width: 700px;
-    height: 400px;
+    height: 300px;
     font-weight: bold;
     background-color: #1A1363;
     color: #fff;
@@ -232,19 +235,16 @@ html {
 }
 
 #curiosidades {
-    margin-top: 50px;
-
     h1 {
         margin-top: 20px;
+        margin-bottom: 0px;
     }
 }
 
 .containerCuriosidade {
 
-    height: 800px;
+    height: 600px;
     position: relative;
-
-
 }
 
 .curiosidade {
@@ -252,9 +252,9 @@ html {
     display: flex;
     margin: 20px;
     gap: 20px;
-    font-size: 20px;
+    font-size: 18px;
     justify-content: flex-end;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 
     .informacao {
         text-align: start;
@@ -320,18 +320,23 @@ html {
     flex-direction: row;
     justify-content: space-between;
     padding: 10px;
-    height: 150px;
+    height: 100px;
     background-color: #1A1363;
 }
 
 #infoAboutme {
     color: #D9D9D9;
-    height: 150px;
-    width: 500px;
+    height: 100px;
+    width: 550px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 
     img {
         margin-top: 10px;
         width: 150px;
+        height: 90px;
     }
 
     a {

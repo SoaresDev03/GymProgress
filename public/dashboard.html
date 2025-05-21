@@ -12,6 +12,8 @@
 </head>
 
 <body>
+<img id="logo" src="Style/assets/GymQuiz-removebg-preview.svg" alt="">
+
     <div id="container">
         <div id="menuLateral">
 
@@ -24,16 +26,16 @@
             </h3>
 
             <div class="containerKpi">
-                <div class="boxKpi">Erros<p id="totalErros">0</p>
+                <div class="boxKpi">Seus erros<p id="totalErros"></p>
                 </div>
-                <div class="boxKpi">Tentativas<p id="totalQuizzesJogados">0</p>
+                <div class="boxKpi">Suas tentativas<p id="totalQuizzesJogados"></p>
                 </div>
 
-                <div class="boxKpi"> Usuários cadastrados:<p id="totalUsuarios">0</p>
+                <div class="boxKpi">Total de usuarios<p id="totalUsuarios"></p>
                 </div>
-                <div class="boxKpi">Última tentativa:<p id="ultimaTentativa">2025-03-20</p>
+                <div class="boxKpi">Última tentativa<p id="ultimaTentativa"></p>
                 </div>
-                <div class="boxKpi">Acertos<p id="totalAcertos"></p>
+                <div class="boxKpi">Seus certos<p id="totalAcertos"></p>
                 </div>
             </div>
             <div class="dash">
@@ -42,9 +44,15 @@
                     <canvas id="topRanking"></canvas>
                 </div>
 
-                <div class="topRankingBox">
-                    <h3>Top 3 Pontuadores🏆</h3>
-                    <ol id="listaTop3"></ol>
+                <div id="graficosDireita">
+                    <div class="topRankingBox">
+                        <h3>Top 3 Pontuadores🏆</h3>
+                        <ol id="listaTop3"></ol>
+                    </div>
+
+                    <div class="porcentGenero">
+                        <canvas id="graficoGenero"></canvas>
+                    </div>
                 </div>
 
             </div>
@@ -72,6 +80,7 @@
         obterDadosQuiz(idUsuario);
         buscarTotalUsuarios();
         exibirTop3();
+        exibirUsuariosPorGenero();
     };
 
     function exibirTop3() {
@@ -79,7 +88,7 @@
             .then(res => res.json())
             .then(lista => {
                 const listaTop3 = document.getElementById("listaTop3");
-                
+
                 listaTop3.innerHTML = "";
                 const medalhas = ["🥇", "🥈", "🥉"];
 
@@ -123,6 +132,7 @@
                 alert("Erro ao buscar dados do quiz.");
             });
     }
+
 
     function exibirDados(dados) {
         let totalAcertos = 0;
@@ -196,5 +206,48 @@
             }
         });
     }
+
+    function exibirUsuariosPorGenero() {
+    fetch("/usuarios/usuarios-por-genero")
+        .then(res => res.json())
+        .then(lista => {
+            const ctx = document.getElementById("graficoGenero").getContext("2d");
+
+            const labels = lista.map(item => item.genero);
+            const dados = lista.map(item => item.quantidade);
+
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: "Distribuição de Usuários por Gênero",
+                        data: dados,
+                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#8e44ad']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Distribuição de Usuários por Gênero',
+                            color: 'white',
+                            font: { size: 16 }
+                        },
+                        legend: {
+                            labels: {
+                                color: 'white'
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(err => {
+            console.error("Erro ao buscar usuários por gênero:", err);
+        });
+}
+
 
 </script>

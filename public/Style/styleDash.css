@@ -11,6 +11,13 @@ body {
     background-color: #ECE9E9;
 }
 
+#logo{
+    width: 180px;
+    top: 10px;
+    left: 18px;
+    position: absolute;
+}
+
 #container {
     height: 647px;
     display: flex;
@@ -82,7 +89,12 @@ body {
     display: flex;
     gap: 20px;
     height: 80px;
-    align-items: center;
+    align-items: center; 
+}
+
+.containerKpi p {
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .boxKpi {
@@ -101,6 +113,7 @@ body {
         font-weight: 700;
     }
 }
+
 
 .dash {
     display: flex;
@@ -121,7 +134,7 @@ body {
     color: #ECE9E9;
     background-color: #1A1363;
     width: 300px;
-    height: 200px;
+    height: 140px;
     padding: 10px;
     border-radius: 20px;
     box-shadow: 1px 5px 10px 1px #000;
@@ -146,4 +159,25 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#graficosDireita {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.porcentGenero {
+    color: #ECE9E9;
+    background-color: #1A1363;
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 1px 5px 10px 1px #000;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }

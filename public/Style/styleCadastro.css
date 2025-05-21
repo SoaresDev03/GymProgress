@@ -213,3 +213,11 @@ a {
     transform: scale(1.05);
     transition: 0.3s;
 }
+
+#slcGenero{
+    width: 200px;
+    height: 27px;
+    cursor: pointer;
+    border: #1A1363 solid 2px;
+    border-radius: 10px;
+}

@@ -20,13 +20,15 @@ function registrar() {
     var email = document.getElementById('inputEmail').value.trim();
     var senha = document.getElementById('inputSenha').value;
     var senha2 = document.getElementById('inputSenha2').value;
+    var genero = document.getElementById('slcGenero').value;
 
     var usernameVar = inputUsername.value;
     var emailVar = inputEmail.value;
     var senhaVar = inputSenha.value;
+    var generoVar = slcGenero.value;
     var senha2Var = inputSenha2.value;
 
-    if (!username || !email || !senha || !senha2) {
+    if (!username || !email || !senha || !senha2 || genero == "#") {
         alert("Todos os campos são obrigatórios.");
         return false;
     }
@@ -68,7 +70,8 @@ function registrar() {
         body: JSON.stringify({
             nomeServer: usernameVar,
             emailServer: emailVar,
-            senhaServer: senhaVar
+            senhaServer: senhaVar,
+            generoServer: generoVar
         }),
     }).then(function (resposta) {
         if (resposta.ok) {

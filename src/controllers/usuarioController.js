@@ -11,14 +11,14 @@ function autenticar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-        usuarioModel.autenticar(email, senha) 
+        usuarioModel.autenticar(email, senha)
             .then(
                 function (resultado) {
                     if (resultado.length > 0) {
-                        
-                        res.json(resultado[0]); 
+
+                        res.json(resultado[0]);
                     } else {
-                      
+
                         res.status(403).send("Email e/ou senha inválidos!");
                     }
                 }
@@ -36,6 +36,7 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
+    var genero = req.body.generoServer;
 
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -43,8 +44,10 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
+    } else if (genero == "#" || genero == undefined) {
+        res.status(400).send("Seu gênero está undefined!");
     } else {
-        usuarioModel.cadastrar(nome, email, senha)
+        usuarioModel.cadastrar(nome, email, senha, genero)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -71,9 +74,9 @@ function obterTotalUsuarios(req, res) {
             console.error("Erro ao contar usuários:", erro);
             res.status(500).json({ mensagem: "Erro ao contar usuários." });
         });
-    }
+}
 
-    function listarTop3(req, res) {
+function listarTop3(req, res) {
     usuarioModel.obterTop3()
         .then(resultado => {
             res.json(resultado);
@@ -84,9 +87,22 @@ function obterTotalUsuarios(req, res) {
         });
 }
 
+function obterUsuariosPorGenero(req, res) {
+    usuarioModel.UsuariosPorGenero()
+        .then(resultado => {
+            res.json(resultado);
+        })
+        .catch(erro => {
+            console.error("Erro ao contar usuários por gênero:", erro);
+            res.status(500).json({ mensagem: "Erro ao contar usuários por gênero." });
+        });
+}
+
+
 module.exports = {
     autenticar,
     cadastrar,
     obterTotalUsuarios,
-    listarTop3
+    listarTop3,
+    obterUsuariosPorGenero
 };

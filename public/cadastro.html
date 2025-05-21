@@ -22,7 +22,7 @@
             <h1>Cadastro</h1>
 
 
-            <form class="inputs" >
+            <form class="inputs">
                 <label for="inputUsername">Nome de usuário*</label>
                 <input type="text" required id="inputUsername"> <br> <br>
 
@@ -35,9 +35,16 @@
                 <label for="inputSenha">Digite novamente a senha*</label>
                 <input type="password" required id="inputSenha2">
 
-                <img onclick="togglePassword()" class="imgPass" src="Style/assets/Oculto.svg" alt=""> <br>
+                <img onclick="togglePassword()" class="imgPass" src="Style/assets/Oculto.svg" alt=""><br>
 
-                <button type="button" class="button" onclick="registrar()" >Registrar</button>
+                <select id="slcGenero">
+                    <option value="#">Selecione seu sexo</option>
+                    <option value="Feminino">Feminino</option>
+                    <option value="Masculino">Masculino</option>
+                </select>
+                <br>
+
+                <button type="button" class="button" onclick="registrar()">Registrar</button>
 
 
                 <div class="textFoot"> Já tem cadastro? <a href="login.html">Login</a> <br>
@@ -59,11 +66,12 @@
 <script>
 
     function limparFormulario() {
+        slcGenero="#"
         inputUsername.value = "";
         inputEmail.value = "";
         inputSenha.value = "";
         inputSenha2.value = "";
     }
 
-    
+
 </script>
