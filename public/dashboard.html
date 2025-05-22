@@ -12,13 +12,13 @@
 </head>
 
 <body>
-<img id="logo" src="Style/assets/GymQuiz-removebg-preview.svg" alt="">
+    <img id="logo" src="Style/assets/GymQuiz-removebg-preview.svg" alt="">
 
     <div id="container">
         <div id="menuLateral">
-
             <a href="index.html">Home</a>
             <a href="quiz.html">Retornar ao quiz</a>
+            <a onclick="exibirForm()">Indicação de treino</a>
         </div>
         <div class="boxDash">
             <h3 id="UsernameExib">Bem-vindo, <span id="b_usuario">usuário</span>!
@@ -60,6 +60,48 @@
         </div>
 
         <img id="logoQuiz" src="Style/assets/logo 2.svg" alt="">
+    </div>
+
+    <div id="formulario">
+        <h3>Preencha os campos:</h3>
+        <div id="perguntasForm">
+            <div class="perguntasTreino">
+                <p>Seu nível de treinamento:</p>
+                <select id="slcNivel">
+                    <option value="#">Selecione uma opção</option>
+                    <option value="iniciante">iniciante</option>
+                    <option value="intermediario">Intermediário</option>
+                    <option value="avancado">Avançado</option>
+                </select>
+            </div>
+
+            <div class="perguntasTreino">
+                <p>Grupo que gostaria de treinar:</p>
+                <select id="slcNivel">
+                    <option value="#">Grupo muscular</option>
+                    <option value="bracos">Braços</option>
+                    <option value="pernas">Pernas</option>
+                    <option value="costas">Costas</option>
+                    <option value="peito">Peito</option>
+                </select>
+            </div>
+
+            <div class="perguntasTreino">
+                <p>Quatos dias irá treinar?</p>
+                <select id="slcNivel">
+                    <option value="#">Dias por semana</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+
+        </div>
+        <div id="boxResposta">
+            Solicite uma ficha de treino
+        </div>
+        <button onclick="exibirResposta()">Solicitar ficha de treino</button>
     </div>
 </body>
 
@@ -208,46 +250,46 @@
     }
 
     function exibirUsuariosPorGenero() {
-    fetch("/usuarios/usuarios-por-genero")
-        .then(res => res.json())
-        .then(lista => {
-            const ctx = document.getElementById("graficoGenero").getContext("2d");
+        fetch("/usuarios/usuarios-por-genero")
+            .then(res => res.json())
+            .then(lista => {
+                const ctx = document.getElementById("graficoGenero").getContext("2d");
 
-            const labels = lista.map(item => item.genero);
-            const dados = lista.map(item => item.quantidade);
+                const labels = lista.map(item => item.genero);
+                const dados = lista.map(item => item.quantidade);
 
-            new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: "Distribuição de Usuários por Gênero",
-                        data: dados,
-                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#8e44ad']
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Distribuição de Usuários por Gênero',
-                            color: 'white',
-                            font: { size: 16 }
-                        },
-                        legend: {
-                            labels: {
-                                color: 'white'
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: "Distribuição de Usuários por Gênero",
+                            data: dados,
+                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#8e44ad']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Distribuição de Usuários por Gênero',
+                                color: 'white',
+                                font: { size: 16 }
+                            },
+                            legend: {
+                                labels: {
+                                    color: 'white'
+                                }
                             }
                         }
                     }
-                }
+                });
+            })
+            .catch(err => {
+                console.error("Erro ao buscar usuários por gênero:", err);
             });
-        })
-        .catch(err => {
-            console.error("Erro ao buscar usuários por gênero:", err);
-        });
-}
+    }
 
 
 </script>

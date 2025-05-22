@@ -11,3 +11,22 @@ fetch("/dash/exibir")
     });
   })
   .catch(error => console.error('Erro ao buscar top 3 pontuadores:', error));
+
+
+function esconderForm() {
+  formulario.style.display = "none";
+}
+
+function exibirForm() {
+  if (formulario.style.display === "none") {
+    formulario.style.display = "flex";
+  } else {
+    esconderForm()
+  }
+}
+
+
+function exibirResposta() {
+    const box = document.getElementById("boxResposta");
+    box.classList.toggle("expandir");
+}
