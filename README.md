@@ -10,7 +10,36 @@ O Gym Quiz é um site simples e interativo criado para testar e aumentar os conh
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Frontend:** CSS <img src="public/Style/assets/iconCSS.png" width="30">
-- **Backend:** Node.js / JavaScript / HTML<img src="public/Style/assets/iconNodeJs.png" width="30"> <img src="public/Style/assets/iconHTML.png" width="30"><img src="public/Style/assets/logoJs.png" width="30">
-- **Banco de Dados:** Oracle MySQL<img src="public/Style/assets/iconMysql.png" width="30">
+<div align="center">
+  <img src="https://skillicons.dev/icons?i=html,css,js,nodejs,mysql,github,git">
+  <br />
+</div> 
+
+- **Frontend:** CSS 
+- **Backend:** Node.js / JavaScript / HTML
+- **Banco de Dados:** Oracle MySQL
 - **Outros:** Chart.js 
+
+## 📖 Instalação e Uso
+
+1. Clone o repositório:
+    ```bash
+    git clone https://github.com/SoaresDev03/GymProgress.git
+    ```
+
+2. Entre no diretorio Site
+   ```bash
+    cd public
+    ```
+3. Instale as Dependências
+   ```bash
+    npm i ou npm install
+    ```
+4. inicialize o Serivodor Local - app.js
+   ```bash
+    npm start
+    ```
+
+## 📝 Licença
+
+Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.
