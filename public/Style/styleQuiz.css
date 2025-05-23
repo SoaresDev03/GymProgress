@@ -10,7 +10,11 @@
 body {
     background-color: #ECE9E9;
     color: #1A1363;
-    padding: 20px;
+}
+
+#container {
+    height: 647px;
+    display: flex;
 }
 
 .flex-colunar {
@@ -56,18 +60,28 @@ body {
 
 }
 
+#logo {
+    width: 180px;
+    top: 10px;
+    left: 35px;
+    position: absolute;
+}
+
 #btnHome:hover {
     transform: scale(1.1);
 }
 
-
 #pontuacaoEJogo {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
+    justify-self: center;
+    align-self: center;
+    width: 100%;
 }
+
 
 #btnIniciarQuiz {
     background-color: #1A1363;
@@ -86,6 +100,7 @@ body {
     background-color: #52da04;
     transform: translateY(-2px);
 }
+
 
 
 
@@ -229,5 +244,141 @@ body {
     #btnHome {
         top: 10px;
         left: 10px;
+    }
+}
+
+#btnIndicacao {
+    background-color: #1A1363;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#btnIndicacao:hover {
+    color: #ffffff;
+    background-color: #0b0994;
+    transform: translateY(-2px);
+}
+
+#formulario {
+    position: absolute;
+    display: none;
+    gap: 10px;
+    flex-direction: column;
+    z-index: 3;
+    width: 500px;
+    height: auto;
+    top: 80px;
+    left: 550px;
+    background-color: #80b4b6;
+    padding: 10px;
+    align-items: center;
+    border: 2px #1A1363 solid;
+    border-radius: 10px;
+}
+
+#btnFechar{
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    width: 40px;
+}
+
+#perguntasForm {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+
+.perguntasTreino {
+    display: flex;
+    flex-direction: column;
+    background-color: #054c8a;
+    padding: 5px;
+    width: 45%;
+    height: 90px;
+    justify-content: space-between;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #FFF;
+
+    select{
+        border-radius: 10px;
+        cursor: pointer;
+    }
+}
+
+
+#boxResposta {
+    overflow: hidden;
+    height: 0;
+    width: 95%;
+    padding: 0;
+    transition: height 0.5s ease, padding 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    border: #054c8a;
+    border-radius: 10px;
+    background-color: #FFF;
+}
+    
+#boxResposta.expandir {
+    height: 280px;
+    padding: 10px;
+    opacity: 1;
+}
+
+#btnFormulario{
+    background-color: #054c8a;
+    color: #FFF;
+    font-size: 17px;
+    padding: 10px;
+    font-family: Poppins;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#btnFormulario:hover{
+    transition: 0.5s;
+    background-color: #1a1363;
+    border: solid 2px white;
+}
+
+#menuLateral {
+    display: flex;
+    flex-direction: column;
+    background-color: #1A1363;
+    min-width: 250px;
+    max-width: 250px;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+
+    a {
+        text-align: center;
+        text-decoration: none;
+        font-family: Poppins;
+        color: #ECE9E9;
+        font-size: 22px;
+        font-weight: 800;
+        cursor: pointer;
+    }
+
+    a:hover {
+        color: black;
+        text-decoration: underline;
+
     }
 }

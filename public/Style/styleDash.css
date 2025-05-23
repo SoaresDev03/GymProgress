@@ -126,6 +126,7 @@ body {
 
 .telaGrafico {
     width: 600px;
+    height: 350px;
     background-color: #1A1363;
     padding: 20px;
     border-radius: 10px;
@@ -182,69 +183,4 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-}
-
-#formulario {
-    position: absolute;
-    display: none;
-    gap: 10px;
-    flex-direction: column;
-    z-index: 3;
-    width: 500px;
-    height: auto;
-    top: 20px;
-    left: 450px;
-    background-color: #80b4b6;
-    padding: 10px;
-    align-items: center;
-    border: 2px #1A1363 solid;
-    border-radius: 10px;
-}
-
-
-
-
-#perguntasForm {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-}
-
-
-.perguntasTreino {
-    display: flex;
-    flex-direction: column;
-    background-color: #054c8a;
-    padding: 5px;
-    width: 45%;
-    height: 75px;
-    justify-content: space-between;
-    text-align: center;
-    border-radius: 10px;
-
-    select{
-        border-radius: 10px;
-        cursor: pointer;
-    }
-}
-
-
-#boxResposta {
-    overflow: hidden;
-    height: 0;
-    width: 95%;
-    padding: 0;
-    transition: height 0.5s ease, padding 0.5s ease, opacity 0.5s ease;
-    opacity: 0;
-    border: #054c8a;
-    border-radius: 10px;
-    background-color: #FFF;
-}
-    
-#boxResposta.expandir {
-    height: 280px;
-    padding: 10px;
-    opacity: 1;
 }

@@ -87,7 +87,7 @@ let certas = 0;
 let erradas = 0;
 const quantidadeDeQuestoes = listaDeQuestoes.length;
 
-let btnAcao; 
+let btnAcao;
 
 function onloadEsconder() {
     document.getElementById('pontuacao').style.display = "none";
@@ -95,7 +95,7 @@ function onloadEsconder() {
 }
 
 function iniciarQuiz() {
-    btnAcao = document.getElementById("btnAcao"); 
+    btnAcao = document.getElementById("btnAcao");
 
     document.getElementById('pontuacao').style.display = "flex";
     document.getElementById('jogo').style.display = "flex";
@@ -129,7 +129,7 @@ function preencherHTMLcomQuestaoAtual(index) {
     desmarcarRadioButtons();
     limparCoresBackgroundOpcoes();
     const questaoAtual = listaDeQuestoes[index];
-    
+
     document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = index + 1;
     document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
     document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
@@ -154,21 +154,21 @@ function processarResposta() {
     }
 
     habilitarAlternativas(false);
-    checarResposta(); 
-    
+    checarResposta();
+
     if (DaQuestaoAtual < quantidadeDeQuestoes) {
         btnAcao.textContent = "Próxima questão";
         btnAcao.onclick = carregarProximaQuestao;
-        btnAcao.disabled = false; 
+        btnAcao.disabled = false;
     } else {
         finalizarJogo();
     }
 }
 
 function carregarProximaQuestao() {
-    
+
     preencherHTMLcomQuestaoAtual(DaQuestaoAtual);
-    
+
     btnAcao.textContent = "Enviar resposta";
     btnAcao.onclick = processarResposta;
     btnAcao.disabled = false;
@@ -187,8 +187,8 @@ function tentarNovamente() {
     pontuacaoFinal = 0;
     certas = 0;
     erradas = 0;
-    
-    iniciarQuiz(); 
+
+    iniciarQuiz();
 }
 
 function checarResposta() {
@@ -217,7 +217,7 @@ function checarResposta() {
             document.getElementById("spanErradas").innerHTML = erradas;
         }
     });
-    DaQuestaoAtual++; 
+    DaQuestaoAtual++;
 }
 
 function limparCoresBackgroundOpcoes() {
@@ -254,24 +254,24 @@ function finalizarJogo() {
             erros: erradas
         })
     })
-    .then(res => {
-        if (!res.ok) {
-            return res.json().then(err => { 
-                console.error("Erro na resposta do servidor:", err);
-                throw err; 
-            });
-        }
-        return res.json();
-    })
-    .then(data => {
-        console.log("Resultado do quiz registrado:", data);
-        alert("Quiz finalizado com sucesso!");
-    })
-    .catch(err => {
-        const mensagem = err.message || "Erro ao salvar resultados: Tente novamente mais tarde.";
-        console.error("Erro ao registrar quiz:", err, mensagem);
-        alert(mensagem);
-    });
+        .then(res => {
+            if (!res.ok) {
+                return res.json().then(err => {
+                    console.error("Erro na resposta do servidor:", err);
+                    throw err;
+                });
+            }
+            return res.json();
+        })
+        .then(data => {
+            console.log("Resultado do quiz registrado:", data);
+            alert("Quiz finalizado com sucesso!");
+        })
+        .catch(err => {
+            const mensagem = err.message || "Erro ao salvar resultados: Tente novamente mais tarde.";
+            console.error("Erro ao registrar quiz:", err, mensagem);
+            alert(mensagem);
+        });
 
 
     if (porcentagemFinalDeAcertos <= 0.3) {
@@ -289,12 +289,12 @@ function finalizarJogo() {
 
     document.getElementById('jogo').style.display = "none";
     document.getElementById('pontuacaoDuranteJogo').style.display = "none";
-    document.getElementById('pontuacaoFinalJogo').style.display = "block"; 
+    document.getElementById('pontuacaoFinalJogo').style.display = "block";
     document.getElementById('pontuacao').style.display = "flex";
 
     document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal;
-    
-    document.getElementById('msgFinal').className = 'width-fit-content'; 
+
+    document.getElementById('msgFinal').className = 'width-fit-content';
     document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal);
     document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal;
 
@@ -302,8 +302,8 @@ function finalizarJogo() {
     document.getElementById('pontuacaoEJogo').style.alignItems = "center";
     document.getElementById('pontuacaoEJogo').style.justifyContent = "center";
 
-    btnAcao.disabled = true; 
-    document.getElementById('btnConcluir').disabled = true; 
+    btnAcao.disabled = true;
+    document.getElementById('btnConcluir').disabled = true;
     document.getElementById('btnTentarNovamente').disabled = false;
 
     if (!sessionStorage.ID_USUARIO) {
@@ -321,20 +321,69 @@ function finalizarJogo() {
             erros: erradas
         })
     })
-    .then(res => {
-        if (!res.ok) {
-            return res.json().then(err => { throw err; });
-        }
-        return res.json();
-    })
-    .then(data => {
-        console.log("Resultado do quiz registrado:", data);
-    })
-    .catch(err => {
-        console.error("Erro ao registrar quiz:", err);
-        alert(`Erro ao salvar resultados: ${err.message || "Tente novamente mais tarde"}`);
-    })
+        .then(res => {
+            if (!res.ok) {
+                return res.json().then(err => { throw err; });
+            }
+            return res.json();
+        })
+        .then(data => {
+            console.log("Resultado do quiz registrado:", data);
+        })
+        .catch(err => {
+            console.error("Erro ao registrar quiz:", err);
+            alert(`Erro ao salvar resultados: ${err.message || "Tente novamente mais tarde"}`);
+        })
 
-    .then(res => res.ok ? console.log("Resultado do quiz registrado") : console.error("Erro ao registrar quiz"))
-    .catch(err => console.error("Erro na requisição:", err));
+        .then(res => res.ok ? console.log("Resultado do quiz registrado") : console.error("Erro ao registrar quiz"))
+        .catch(err => console.error("Erro na requisição:", err));
 }
+
+
+function esconderForm() {
+    formulario.style.display = "none";
+}
+
+function fechar() {
+    formulario.style.display = "none";
+    btnIniciarQuiz.style.display = "flex";
+    pontuacaoEJogo.style.display = "flex";
+}
+
+function exibirForm() {
+    if (formulario.style.display == "none") {
+        formulario.style.display = "flex";
+        btnIniciarQuiz.style.display = "none";
+        document.getElementById('pontuacao').style.display = "none";
+        document.getElementById('jogo').style.display = "none";
+        pontuacaoEJogo.style.display = "none"
+    } else {
+        esconderForm()
+        pontuacaoEJogo.style.display = "flex"
+    }
+}
+
+
+function exibirResposta() {
+    const box = document.getElementById("boxResposta");
+    box.classList.toggle("expandir");
+
+    var listaPeitoIniciante = ["Supino Máquina", "Supino Inclinado Máquina", "Crucifixo Reto"]
+    var listaPeitoIntermediario = ["Cross-over Polia Baixa", "Supino Inclinado com Halteres", "Flexão de Braço"]
+    var listaPeitoAvancado = ["Supino Reto com Halteres", "Supino Declinado com Halteres", "Fly/Peck-deck"]
+
+    var listaBracoIniciante = ["Rosca Direta com Halteres", "Pulley Frente na Polia", "Rosca Alternada com Halteres"]
+    var listaBracoIntermediario = ["Rosca Direta com Barra", "Rosca Scott com Halteres", "Tríceps Testa"]
+    var listaBracoAvancado = ["Rosca Inversa", ""]
+
+    var listaPernaIniciante = []
+    var listaPernaIntermediario = []
+    var listaPernaAvancado = []
+
+    var listaCostasIniciante = []
+    var listaCostasIntermediario = []
+    var listaCostasAvancado = []
+}
+
+
+
