@@ -28,7 +28,7 @@ O Gym Quiz é um site simples e interativo criado para testar e aumentar os conh
    git clone https://github.com/SoaresDev03/GymProgress.git
    ```
 
-2. Entre no diretorio Site
+2. Entre no diretorio public
    ```bash
     cd public
    ```
