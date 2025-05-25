@@ -375,6 +375,7 @@ async function gerarResposta() {
 
     const nivelTreino = document.getElementById('slcNivel').value;
     const grupoMuscular = document.getElementById('slcGrupo').value;
+    const idade = document.getElementById('slcIdade').value;
 
     resposta.style.overflowY = "scroll"
 
@@ -383,7 +384,7 @@ async function gerarResposta() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ nivelTreino, grupoMuscular })
+        body: JSON.stringify({ nivelTreino, grupoMuscular, idade })
     });
 
     const data = await response.json();

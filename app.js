@@ -54,9 +54,10 @@ app.listen(PORTA_APP, function () {
 app.post("/perguntar", async (req, res) => {
     const nivelTreino = req.body.nivelTreino;
     const grupoMuscular = req.body.grupoMuscular;
+    const idade = req.body.idade;
 
     try {
-        const resultado = await gerarResposta(nivelTreino,grupoMuscular);
+        const resultado = await gerarResposta(nivelTreino,grupoMuscular,idade);
         res.json({ resultado });
     } catch (error) {
         res.status(500).json({ error: 'Erro interno do servidor' });
@@ -65,11 +66,11 @@ app.post("/perguntar", async (req, res) => {
 });
 
 
-async function gerarResposta(nivelTreino,grupoMuscular) {
+async function gerarResposta(nivelTreino,grupoMuscular,idade) {
     try {
         const modeloIA = chatIA.models.generateContent({
             model: "gemini-2.0-flash",
-            contents: `Dê no máximo 3 exercícios de ${grupoMuscular}, para um praticante ${nivelTreino}, utilizando no maximo 20 palavras para cada.`
+            contents: `Dê no máximo 3 exercícios de ${grupoMuscular}, para um praticante ${nivelTreino} com idade ${idade}, utilizando no maximo 20 palavras para cada.`
         });
 
         const resposta = (await modeloIA).text;

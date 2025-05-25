@@ -49,11 +49,41 @@ function registrar() {
         return false;
     }
 
-    var temLetraMinuscula = /[a-z]/.test(senha);
-    var temLetraMaiuscula = /[A-Z]/.test(senha);
-    var temCaractereEspecial = /[!@#$%^&*()\-_=+[\]{};:,.<>?/|\\]/.test(senha);
+    function temLetraMinuscula(senha) {
+        for (let i = 0; i < senha.length; i++) {
+            const c = senha[i];
+            if (c >= 'a' && c <= 'z') {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    if (!temLetraMinuscula || !temLetraMaiuscula || !temCaractereEspecial) {
+    function temLetraMaiuscula(senha) {
+        for (let i = 0; i < senha.length; i++) {
+            const c = senha[i];
+            if (c >= 'A' && c <= 'Z') {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function temCaractereEspecial(senha) {
+        const especiais = "!@#$%^&*()-_=+[]{};:,.<>?/|\\";
+        for (let i = 0; i < senha.length; i++) {
+            const c = senha[i];
+            for (let j = 0; j < especiais.length; j++) {
+                if (c == especiais[j]) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    if (!temLetraMinuscula(senha) || !temLetraMaiuscula(senha) || !temCaractereEspecial(senha))
+ {
         alert(`A senha deve conter:
 
          Pelo menos uma letra minúscula.
