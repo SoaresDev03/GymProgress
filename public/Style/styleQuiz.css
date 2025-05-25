@@ -330,8 +330,13 @@ body {
     border: #054c8a;
     border-radius: 10px;
     background-color: #FFF;
+    overflow-y: scroll;
 }
-    
+
+#resposta{
+    overflow: hidden;
+}
+
 #boxResposta.expandir {
     height: 280px;
     padding: 10px;

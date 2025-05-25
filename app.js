@@ -8,10 +8,13 @@ require("dotenv").config({ path: caminho_env });
 var express = require("express");
 var cors = require("cors");
 var path = require("path");
+const { GoogleGenAI } = require("@google/genai");
 var PORTA_APP = process.env.APP_PORT;
 var HOST_APP = process.env.APP_HOST;
 
 var app = express();
+
+const chatIA = new GoogleGenAI({ apiKey: process.env.MINHA_CHAVE });
 
 var userRouter = require("./src/routes/usuarios");
 var quizRouter = require("./src/routes/quiz");
@@ -46,3 +49,45 @@ app.listen(PORTA_APP, function () {
     \tSe .:producao:. você está se conectando ao banco remoto. \n\n
     \t\tPara alterar o ambiente, comente ou descomente as linhas 1 ou 2 no arquivo 'app.js'\n\n`);
 });
+
+
+app.post("/perguntar", async (req, res) => {
+    const nivelTreino = req.body.nivelTreino;
+    const grupoMuscular = req.body.grupoMuscular;
+
+    try {
+        const resultado = await gerarResposta(nivelTreino,grupoMuscular);
+        res.json({ resultado });
+    } catch (error) {
+        res.status(500).json({ error: 'Erro interno do servidor' });
+    }
+
+});
+
+
+async function gerarResposta(nivelTreino,grupoMuscular) {
+    try {
+        const modeloIA = chatIA.models.generateContent({
+            model: "gemini-2.0-flash",
+            contents: `Dê no máximo 3 exercícios de ${grupoMuscular}, para um praticante ${nivelTreino}, utilizando no maximo 20 palavras para cada.`
+        });
+
+        const resposta = (await modeloIA).text;
+
+        const respostaTratada = resposta
+        .replace(/^##\s.*$/gmi, '')
+        .replace(/\*\*(.*?)\*\*/g, '$1') 
+        .replace(/\n{2,}/g, '\n\n')
+        .trim();
+
+        const tokens = (await modeloIA).usageMetadata;
+
+        console.log(respostaTratada);
+        console.log("Uso de Tokens:", tokens);
+
+        return respostaTratada;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}

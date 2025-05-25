@@ -78,7 +78,7 @@ function registrar() {
             alert("Cadastro realizado com sucesso!")
             setTimeout(() => {
                 window.location.href = "login.html";
-            }, 5000);
+            }, 2000);
 
         } else {
             alert("Erro ao cadastrar. Tente novamente.");

@@ -117,8 +117,6 @@ function iniciarQuiz() {
     btnAcao.onclick = processarResposta;
     btnAcao.disabled = false;
 
-    document.getElementById('btnConcluir').disabled = true;
-    document.getElementById('btnTentarNovamente').disabled = true;
     document.getElementById('pontuacaoFinalJogo').style.display = "none";
     document.getElementById('pontuacaoDuranteJogo').style.display = "flex";
 
@@ -363,27 +361,37 @@ function exibirForm() {
     }
 }
 
+async function gerarResposta() {
+    const selects = document.querySelectorAll("select");
 
-function exibirResposta() {
+    for (let select of selects) {
+        if (select.value === "#") {
+            alert("Por favor, responda todas as perguntas antes de finalizar.");
+            return;
+        }
+    }
     const box = document.getElementById("boxResposta");
     box.classList.toggle("expandir");
 
-    var listaPeitoIniciante = ["Supino Máquina", "Supino Inclinado Máquina", "Crucifixo Reto"]
-    var listaPeitoIntermediario = ["Cross-over Polia Baixa", "Supino Inclinado com Halteres", "Flexão de Braço"]
-    var listaPeitoAvancado = ["Supino Reto com Halteres", "Supino Declinado com Halteres", "Fly/Peck-deck"]
+    const nivelTreino = document.getElementById('slcNivel').value;
+    const grupoMuscular = document.getElementById('slcGrupo').value;
 
-    var listaBracoIniciante = ["Rosca Direta com Halteres", "Pulley Frente na Polia", "Rosca Alternada com Halteres"]
-    var listaBracoIntermediario = ["Rosca Direta com Barra", "Rosca Scott com Halteres", "Tríceps Testa"]
-    var listaBracoAvancado = ["Rosca Inversa", ""]
+    resposta.style.overflowY = "scroll"
 
-    var listaPernaIniciante = []
-    var listaPernaIntermediario = []
-    var listaPernaAvancado = []
+    const response = await fetch('/perguntar', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nivelTreino, grupoMuscular })
+    });
 
-    var listaCostasIniciante = []
-    var listaCostasIntermediario = []
-    var listaCostasAvancado = []
+    const data = await response.json();
+
+    resposta.style.display = 'block';
+    document.getElementById('resposta').innerHTML = data.resultado
+        .split('\n')
+        .filter(linha => linha.trim() !== '')
+        .map(linha => `<p>${linha.trim()}</p>`)
+        .join('');
 }
-
-
-

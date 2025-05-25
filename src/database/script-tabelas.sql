@@ -1,4 +1,4 @@
--- Active: 1742234339979@@127.0.0.1@3306@gymp
+-- Active: 1742250764019@@127.0.0.1@3306@mysql
 
 CREATE TABLE usuario (
 	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
