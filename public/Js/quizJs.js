@@ -346,6 +346,7 @@ function fechar() {
     formulario.style.display = "none";
     btnIniciarQuiz.style.display = "flex";
     pontuacaoEJogo.style.display = "flex";
+    resposta.innerHTML="";
 }
 
 function exibirForm() {
@@ -370,14 +371,14 @@ async function gerarResposta() {
             return;
         }
     }
+
+setTimeout
     const box = document.getElementById("boxResposta");
     box.classList.toggle("expandir");
 
     const nivelTreino = document.getElementById('slcNivel').value;
     const grupoMuscular = document.getElementById('slcGrupo').value;
     const idade = document.getElementById('slcIdade').value;
-
-    resposta.style.overflowY = "scroll"
 
     const response = await fetch('/perguntar', {
         method: 'POST',

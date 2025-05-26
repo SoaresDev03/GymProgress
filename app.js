@@ -70,7 +70,7 @@ async function gerarResposta(nivelTreino,grupoMuscular,idade) {
     try {
         const modeloIA = chatIA.models.generateContent({
             model: "gemini-2.0-flash",
-            contents: `Dê no máximo 3 exercícios de ${grupoMuscular}, para um praticante ${nivelTreino} com idade ${idade}, utilizando no maximo 20 palavras para cada.`
+            contents: `Dê no máximo 5 exercícios de ${grupoMuscular}, para um praticante ${nivelTreino} com idade ${idade}, utilizando no maximo 20 palavras para cada.`
         });
 
         const resposta = (await modeloIA).text;
