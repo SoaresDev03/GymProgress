@@ -87,27 +87,13 @@
                 <img id="imgGarrafa" src="Style/assets/WaterBottle.png" alt="">
                 <div class="curiosidade">
                     <img id="imgEugen" src="Style/assets/musulacaoAntes.jpeg" alt="">
-                    <div class="informacao">
-                        <b>Eugen Sandow</b>, considerado o <b>pai da musculação moderna</b>, revolucionou o
-                        fisiculturismo no século XIX com seu físico escultural. <b>Em 1901, organizou o primeiro
-                            concurso da modalidade</b>, o "Great Competition", vencido por Willian Murray. Sandow
-                        desenvolveu técnicas de treino e equipamentos, transformando a musculação em uma prática
-                        esportiva focada na estética corporal e saúde, legado que perdura até hoje. <br>
-                        <a class="fontesRedir"
-                            href="https://www.iped.com.br/materias/educacao-fisica-e-esporte/historia-musculacao.html#:~:text=Eugene%20Sandow%2C%20considerado%20pai%20da,vencedor%20o%20jovem%20Willian%20Murray.">Fonte:
-                            Cursos IPED</a>
+                    <div class="informacao" id="curiosidade1">
+
                     </div>
                 </div>
 
                 <div class="curiosidade">
-                    <div class="informacao1">
-                        Você sabia que a <b>musculação é o segundo exercício mais praticado pelos brasileiros</b>,
-                        perdendo apenas para a caminhada? Segundo dados recentes, os brasileiros estão aderindo cada vez
-                        mais aos treinos de força, seja por <b>saúde, estética ou desempenho físico</b>. <b>Academias e
-                            treinos funcionais</b> são os grandes responsáveis por essa popularização. <br>
-                        <a class="fontesRedir"
-                            href="https://edicaodobrasil.com.br/2019/05/31/musculacao-e-segunda-atividade-fisica-mais-praticada-pelos-brasileiros/">Fonte:
-                            Edição do Brasil</a>
+                    <div class="informacao1" id="curiosidade2">
                     </div>
                     <img src="Style/assets/Ramon.jpeg" alt="">
                 </div>
@@ -115,20 +101,13 @@
                 <div class="curiosidade">
                     <img id="imgLevantamento" src="Style/assets/levantamento.jpeg" alt="">
 
-                    <div class="informacao2">
-                        O <b>mercado fitness brasileiro movimenta bilhões de reais anualmente</b>, sendo um dos mais
-                        relevantes do mundo. Além dos ganhos econômicos, o setor contribui para a <b>redução de custos
-                            no sistema de saúde</b>, já que a prática regular de exercícios diminui riscos de doenças
-                        crônicas. <br>
-                        <a class="fontesRedir"
-                            href="https://fitmass.com.br/mercado-fitness-2/#:~:text=relevante%20e%20competitivo.-,Impacto%20Econômico,sobre%20o%20sistema%20de%20saúde.">Fonte:
-                            FitMass</a>
+                    <div class="informacao2" id="curiosidade3">
                     </div>
 
                 </div>
 
 
-             
+
 
                 <button id="voltarTopo" onclick="window.location.href='#Homepage'"><img src="Style/assets/SetaAcima.svg"
                         alt=""></button>
@@ -138,7 +117,7 @@
 
         </div>
 
-       
+
 
         <div class="footer">
 
@@ -165,3 +144,58 @@
 </body>
 
 </html>
+
+<script>
+    window.onload = function () {
+        var curiosidades = [
+            `  O <b>mercado fitness brasileiro movimenta bilhões de reais anualmente</b>, sendo um dos mais
+                        relevantes do mundo. Além dos ganhos econômicos, o setor contribui para a <b>redução de custos
+                            no sistema de saúde</b>, já que a prática regular de exercícios diminui riscos de doenças
+                        crônicas. <br>
+                        <a class="fontesRedir"
+                            href="https://fitmass.com.br/mercado-fitness-2/#:~:text=relevante%20e%20competitivo.-,Impacto%20Econômico,sobre%20o%20sistema%20de%20saúde.">Fonte:
+                            FitMass</a>`,
+            `  Você sabia que a <b>musculação é o segundo exercício mais praticado pelos brasileiros</b>,
+                        perdendo apenas para a caminhada? Segundo dados recentes, os brasileiros estão aderindo cada vez
+                        mais aos treinos de força, seja por <b>saúde, estética ou desempenho físico</b>. <b>Academias e
+                            treinos funcionais</b> são os grandes responsáveis por essa popularização. <br>
+                        <a class="fontesRedir"
+                            href="https://edicaodobrasil.com.br/2019/05/31/musculacao-e-segunda-atividade-fisica-mais-praticada-pelos-brasileiros/">Fonte:
+                            Edição do Brasil</a>`,
+            `    <b>Eugen Sandow</b>, considerado o <b>pai da musculação moderna</b>, revolucionou o
+                        fisiculturismo no século XIX com seu físico escultural. <b>Em 1901, organizou o primeiro
+                            concurso da modalidade</b>, o "Great Competition", vencido por Willian Murray. Sandow
+                        desenvolveu técnicas de treino e equipamentos, transformando a musculação em uma prática
+                        esportiva focada na estética corporal e saúde, legado que perdura até hoje. <br>
+                        <a class="fontesRedir"
+                            href="https://www.iped.com.br/materias/educacao-fisica-e-esporte/historia-musculacao.html#:~:text=Eugene%20Sandow%2C%20considerado%20pai%20da,vencedor%20o%20jovem%20Willian%20Murray.">Fonte:
+                            Cursos IPED</a>`,
+            `Ao contrário do que muitos pensam, o treino com pesos pode queimar calorias de forma tão eficiente quanto exercícios aeróbicos. O segredo está no EPOC (Excesso de Consumo de Oxigênio Pós-Exercício), que mantém o metabolismo acelerado por horas após o treino, aumentando a queima de gordura. Além disso, o ganho de massa muscular eleva o gasto calórico em repouso.<a class="fontesRedir"
+                            href="https://www.institutocohen.com.br/11-fatos-sobre-musculacao-que-voce-precisa-saber/">Fonte:
+                            Instituto COHEN</a>`,
+
+            `A ideia de que <b>treinar até a falha é essencial para hipertrofia</b> é um mito - estudos comprovam que <b>resultados expressivos podem ser alcançados sem exaustão total</b>. Embora útil como <b>tática pontual para avançados</b>, seu uso constante <b>prejudica o volume de treino</b>, <b>a técnica</b> e <b>aumenta lesões</b>. O ideal é priorizar <b>execução perfeita</b>, <b>progressão inteligente</b> e <b>volume otimizado</b>, usando a falha apenas como <b>recurso estratégico ocasional</b>, não como regra.
+                            <a class="fontesRedir"
+                            href="https://www.tecmundo.com.br/ciencia/261818-veja-5-mitos-musculacao-desbancados-ciencia.htm">Fonte:
+                            TECMUNDO</a>`
+        ]
+
+        // const index = Math.floor(Math.random() * curiosidades.length);
+        // const index2 = Math.floor(Math.random() * curiosidades.length);
+        // const index3 = Math.floor(Math.random() * curiosidades.length);
+
+        // curiosidade1.innerHTML = `${curiosidades[index]}`;
+        // curiosidade2.innerHTML = `${curiosidades[index2]}`;
+        // curiosidade3.innerHTML = `${curiosidades[index3]}`;
+    
+     const embaralhadas = curiosidades.sort(() => 0.5 - Math.random());
+
+        const [c1, c2, c3] = embaralhadas.slice(0, 3);
+
+        // Insere no HTML
+        document.getElementById("curiosidade1").innerHTML = c1;
+        document.getElementById("curiosidade2").innerHTML = c2;
+        document.getElementById("curiosidade3").innerHTML = c3;
+    }
+
+</script>
