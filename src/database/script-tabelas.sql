@@ -1,4 +1,6 @@
 -- Active: 1742250764019@@127.0.0.1@3306@mysql
+use gymP;
+
 
 CREATE TABLE usuario (
 	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -7,6 +9,21 @@ CREATE TABLE usuario (
 	senha VARCHAR(50),
     genero varchar(20)
 );
+
+CREATE TABLE perguntas(
+    idPergunta INT PRIMARY KEY AUTO_INCREMENT,
+    descricao VARCHAR(350),
+    );
+
+CREATE TABLE alternativas(
+    idAlternativa INT AUTO_INCREMENT,
+    fkPergunta INT,
+    resposta VARCHAR(80),
+    correta TINYINT,
+    Foreign Key (fkPergunta) REFERENCES Perguntas(idPergunta),
+    PRIMARY KEY(idAlternativa, fkPergunta)
+);
+
 
 CREATE TABLE resultado_quiz (
     id INT AUTO_INCREMENT PRIMARY KEY,
