@@ -1,20 +1,18 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Style/styleQuiz.css">
-    <script src="Js/quizJs.js"></script>
-    <link rel="shortcut icon" href="Style/assets/logo 2.ico" type="image/x-icon">
-    <script src="Js/sessao.js"></script>
     <title>Quiz</title>
+    <link rel="stylesheet" href="Style/styleQuiz.css">
+    <script defer src="Js/quizJS.js"></script>
+    <script defer src="Js/sessao.js"></script>
 </head>
 
-
-<body onload="onloadEsconder()">
-    <img id="logo" src="Style/assets/GymQuiz-logohalter.png" alt="">
+<body>
     <div id="container">
+        <img src="Style/assets/GymQuiz-logohalter.png" id="logo" alt="">
         <div id="menuLateral">
             <a href="index.html">Home</a>
             <a href="quiz.html">Quiz</a>
@@ -66,141 +64,29 @@
             </div>
             <button id="btnFormulario" onclick="gerarResposta()">Solicitar ficha de treino</button>
         </div>
-        <div id="pontuacaoEJogo">
-            <h3 id="UsernameExib">Olá, <span id="b_usuario">usuário</span>!
-                <br>
-                Está Preparado?
-            </h3>
-            <button id="btnIniciarQuiz" onclick="iniciarQuiz()">Iniciar Quiz</button>
-
-
-            <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
-                <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
-                    <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
-                    <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
-                </div>
-                <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
-                    <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
-                        <span id="spanPontuacaoFinal">***</span>
-                    </span>
-                    <span id="msgFinal" class="width-fit-content">***</span>
-                    <br>
-                    <button id="btnDash" onclick="window.location='dashboard.html'">Vizualize as respostas dos demais
-                        usuários</button>
-                </div>
-            </div>
-
-
-            <div id="jogo" class="width-fit-content flex-colunar border-secondary">
-
-                <div id="infoQuestao" class="padding-8">
-                    <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
-                        questões.</span>
-                </div>
-
-                <div id="perguntaDaQuestaoAtual" class="padding-8">
-                    <span id="spanQuestaoExibida" class="text-bold"></span>
-                </div>
-
-                <div id="infoAlternativas" class="padding-8">
-                    <span><em>Escolha uma opção dentre as abaixo:</em></span>
-                </div>
-
-                <div class="respostas" id="respostas"></div>
-                
-                
-                <div id="respostas" class="flex-colunar padding-8">
-                    <div class="respostas">
-                        <button class="botoes answer">Resposta1</button>
-                        <button class="botoes answer">Resposta2</button>
-                        <button class="botoes answer">Resposta3</button>
-                        <button class="botoes answer">Resposta4</button>
-                    </div> 
-                </div>
-
-                <div id="botoes" class="comecar-avancar">
-                    <button onclick="processarResposta()" id="btnAcao">Enviar resposta</button>
-                    <button class="start botoes">Começar</button>
-                    <button class="next botoes hide">Próxima pergunta</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-
-</html>
-<script>
-    window.onload = function () {
-        const nomeUsuario = sessionStorage.getItem("NOME_USUARIO");
-        const idUsuario = sessionStorage.getItem("ID_USUARIO");
-
-        // if (!nomeUsuario || !idUsuario) {
-        //     alert("Usuário não autenticado. Faça login novamente.");
-        //     window.location.href = "login.html";
-        //     return;
-        // }
-
-        document.getElementById("b_usuario").textContent = nomeUsuario;
-    };
-</script>
- -->
-
-
- <!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>
-    <link rel="stylesheet" href="Style/styleQuiz.css">
-    <script defer src="Js/testequiz.js"></script>
-    <script defer src="Js/sessao.js"></script>
-</head>
-
-<body>
-    <div id="container">
-        <h2>Quiz de Musculação</h2>
-
-        <div id="menuLateral">
-            <a href="index.html">Home</a>
-            <a href="quiz.html">Quiz</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a onclick="exibirForm()">Indicação de treino</a>
-        </div>
 
         <div id="pontuacaoEJogo">
             <h3 id="UsernameExib">Olá, <span id="b_usuario">usuário</span>!<br>Está Preparado?</h3>
             <button class="start botoes" id="btnIniciarQuiz">Iniciar Quiz</button>
 
-            <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
-                <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
-                    <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas">0</span></span>
-                    <span class="width-fit-content">Quantidade de erros: <span id="spanErradas">0</span></span>
-                </div>
-                <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
-                    <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
-                        <span id="spanPontuacaoFinal">***</span>
-                    </span>
-                    <span id="msgFinal" class="width-fit-content">***</span>
-                    <br>
-                    <button id="btnDash" onclick="window.location='dashboard.html'">Visualize as respostas dos demais usuários</button>
-                </div>
-            </div>
-
-            <div id="jogo" class="width-fit-content flex-colunar border-secondary hide">
-                <div class="questoes">
-                    <div id="infoQuestao" class="padding-8">
-                        <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span> questões.</span>
+            <div class="container" id="containerPerguntas">
+                <div class="perguntas">
+                    <div class="questoes hide">
+                        <span class="pergunta">Pergunta</span>
+                        <div class="respostas">
+                            <button class="botoes answer">Resposta1</button>
+                            <button class="botoes answer">Resposta2</button>
+                            <button class="botoes answer">Resposta3</button>
+                            <button class="botoes answer">Resposta4</button>
+                        </div>
                     </div>
-                    <div class="pergunta padding-8" id="spanQuestaoExibida"></div>
-                    <div class="respostas padding-8" id="respostas"></div>
                     <div class="comecar-avancar">
                         <button class="next botoes hide">Próxima pergunta</button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 

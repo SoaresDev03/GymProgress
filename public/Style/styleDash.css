@@ -133,6 +133,7 @@ body {
     box-shadow: 1px 5px 10px 1px #000;
 }
 
+
 .topRankingBox {
     color: #ECE9E9;
     background-color: #1A1363;
@@ -183,4 +184,19 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+#btnTrocaGrafico{
+    font-family: Poppins;
+    position: absolute;
+    color: #fff;
+    right: 490px;
+    font-size: 12px;
+    bottom: 30px;
+    text-decoration: none;
+}
+
+#btnTrocaGrafico:hover{
+transform: scale(1.1);
+transition: 0.5s;
 }

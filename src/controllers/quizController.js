@@ -1,12 +1,12 @@
 var quizModel = require("../models/quizModel");
 
 function registrarResultadoQuiz(req, res) {
-    const { fk_usuario, acertos, erros } = req.body;
-    console.log("Dados recebidos para registrar quiz:", { fk_usuario, acertos, erros });
+    const { fk_usuario, pontos, erros } = req.body;
+    console.log("Dados recebidos para registrar quiz:", { fk_usuario, pontos, erros });
 
-    if (fk_usuario === undefined || acertos === undefined || erros === undefined) {
-        const mensagem = "Todos os campos (fk_usuario, acertos, erros) são obrigatórios";
-        console.warn("Dados incompletos:", { fk_usuario, acertos, erros }, mensagem);
+    if (fk_usuario === undefined || pontos === undefined || erros === undefined) {
+        const mensagem = "Todos os campos (fk_usuario, pontos, erros) são obrigatórios";
+        console.warn("Dados incompletos:", { fk_usuario, pontos, erros }, mensagem);
         return res.status(400).json({ 
             error: "Dados incompletos",
             message: mensagem
@@ -22,7 +22,7 @@ function registrarResultadoQuiz(req, res) {
         });
     }
 
-    quizModel.registrarResultadoQuiz(fk_usuario, acertos, erros)
+    quizModel.registrarResultadoQuiz(fk_usuario, pontos, erros)
         .then(resultado => {
             console.log("Quiz registrado com sucesso:", resultado);
             res.status(200).json({ success: true, message: "Quiz registrado com sucesso", data: resultado }); 

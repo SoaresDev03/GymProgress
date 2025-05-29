@@ -27,7 +27,7 @@
             <div class="containerKpi">
                 <div class="boxKpi">Seus erros<p id="totalErros"></p>
                 </div>
-                <div class="boxKpi">Seus certos<p id="totalAcertos"></p>
+                <div class="boxKpi">Seus acertos<p id="totalPontos"></p>
                 </div>
                 <div class="boxKpi">Suas tentativas<p id="totalQuizzesJogados"></p>
                 </div>
@@ -40,8 +40,11 @@
             <div class="dash">
 
                 <div class="telaGrafico">
-                    <canvas id="topRanking"></canvas>
+                    <canvas id="topRanking" style="display: block;"></canvas>
+                    <canvas id="grafico1" style="display: none;"></canvas>
                 </div>
+
+                <a id="btnTrocaGrafico" href="#">Vizualizar pontuação dos demais usuários</a>
 
                 <div id="graficosDireita">
                     <div class="topRankingBox">
@@ -82,7 +85,70 @@
         buscarTotalUsuarios();
         exibirTop3();
         exibirUsuariosPorGenero();
+        plotarJogadores();
     };
+
+    function plotarJogadores() {
+        fetch('/dash/buscarJogadoresPontuacoes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                const jogadores = data.map(item => item.nome_jogador || item["Nome Jogador"]);
+                const pontuacoes = data.map(item => item.pontos);
+
+                const chartData = {
+                    labels: jogadores,
+                    datasets: [{
+                        label: 'Pontuação dos jogadores',
+                        data: pontuacoes,
+                        backgroundColor: ['#0000FF', '#0080FF', '#6600CC']
+                    }],
+                };
+
+                const ctx = document.getElementById('grafico1').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: chartData,
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Ranking dos Jogadores',
+                                color: '#FFF',
+                                font: {
+                                    size: 20,
+                                    weight: 'bold'
+                                }
+                            },
+                            legend: {
+                                labels: {
+                                    color: '#FFF'
+                                }
+                            },
+                            legend: { display: false }
+                        },
+                        scales: {
+                            x: {
+                                ticks: {
+                                    color: '#FFF'
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: '#FFF'
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Erro ao buscar pontuação dos jogadores:', error));
+    }
+
 
     function exibirTop3() {
         fetch("/usuarios/top3")
@@ -95,7 +161,7 @@
 
                 lista.forEach((usuario, index) => {
                     const item = document.createElement("li");
-                    item.textContent = `${medalhas[index] || ""}${usuario.nome} - ${usuario.total_acertos} acertos`;
+                    item.textContent = `${medalhas[index] || ""}${usuario.nome} - ${usuario.total_acertos} Pontos`;
                     listaTop3.appendChild(item);
                 });
             })
@@ -136,14 +202,14 @@
 
 
     function exibirDados(dados) {
-        let totalAcertos = 0;
+        let totalPontos = 0;
         let totalErros = 0;
         let totalQuizzesJogados = dados.length;
 
         let ultimaTentativa = null;
 
         dados.forEach(resultado => {
-            totalAcertos += resultado.acertos;
+            totalPontos += resultado.pontos;
             totalErros += resultado.erros;
 
             const dataResposta = new Date(resultado.data_resposta);
@@ -153,7 +219,7 @@
         });
 
 
-        document.getElementById("totalAcertos").textContent = totalAcertos;
+        document.getElementById("totalPontos").textContent = totalPontos;
         document.getElementById("totalErros").textContent = totalErros;
         document.getElementById("totalQuizzesJogados").textContent = totalQuizzesJogados;
 
@@ -162,24 +228,24 @@
 
         }
 
-        atualizarGrafico(totalAcertos, totalErros);
+        atualizarGrafico(totalPontos, totalErros);
     }
 
-    function atualizarGrafico(acertos, erros) {
+    function atualizarGrafico(Pontos, erros) {
         const canvasId = 'topRanking';
         const ctx = document.getElementById(canvasId).getContext('2d');
 
-        if (window.graficoAcertosErros instanceof Chart) {
-            window.graficoAcertosErros.destroy();
+        if (window.graficoPontosErros instanceof Chart) {
+            window.graficoPontosErros.destroy();
         }
 
-        window.graficoAcertosErros = new Chart(ctx, {
+        window.graficoPontosErros = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Acertos', 'Erros'],
+                labels: ['Pontos', 'Erros'],
                 datasets: [{
                     label: 'Desempenho do Usuário',
-                    data: [acertos, erros],
+                    data: [Pontos, erros],
                     backgroundColor: ['#38B622', '#FF0000']
                 }]
             },
@@ -194,8 +260,17 @@
                     },
                     legend: { display: false }
                 },
+
                 scales: {
+                    x: {
+                        ticks: {
+                            color: "#FFF"
+                        }
+                    },
                     y: {
+                        ticks: {
+                            color: "#FFF"
+                        },
                         beginAtZero: true,
                         title: {
                             display: true,
@@ -204,6 +279,7 @@
                         }
                     }
                 }
+
             }
         });
     }
@@ -214,8 +290,16 @@
             .then(lista => {
                 const ctx = document.getElementById("graficoGenero").getContext("2d");
 
+                const coresPorGenero = {
+                    'Masculino': '#36A2EB',
+                    'Feminino': '#FF6384',
+                };
+
                 const labels = lista.map(item => item.genero);
                 const dados = lista.map(item => item.quantidade);
+
+
+                const cores = labels.map(genero => coresPorGenero[genero] || '#cccccc');
 
                 new Chart(ctx, {
                     type: 'pie',
@@ -223,8 +307,7 @@
                         labels: labels,
                         datasets: [{
                             label: "Distribuição de Usuários por Gênero",
-                            data: dados,
-                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#8e44ad']
+                            data: dados
                         }]
                     },
                     options: {
@@ -250,5 +333,21 @@
             });
     }
 
+    let mostrandoGrafico1 = true;
 
+    document.getElementById("btnTrocaGrafico").addEventListener("click", function (event) {
+        event.preventDefault();
+        const grafico1 = document.getElementById("grafico1");
+        const topRanking = document.getElementById("topRanking");
+
+        if (mostrandoGrafico1) {
+            grafico1.style.display = "none";
+            topRanking.style.display = "block";
+        } else {
+            grafico1.style.display = "block";
+            topRanking.style.display = "none";
+        }
+
+        mostrandoGrafico1 = !mostrandoGrafico1;
+    });
 </script>

@@ -11,3 +11,5 @@ fetch("/dash/exibir")
     });
   })
   .catch(error => console.error('Erro ao buscar top 3 pontuadores:', error));
+
+ 

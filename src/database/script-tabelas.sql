@@ -1,6 +1,4 @@
- 1742250764019@@127.0.0.1@3306@mysql
 use gymP;
-
 
 CREATE TABLE usuario (
 	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -27,6 +25,20 @@ INSERT INTO perguntas (descricao) VALUES
 ("O que significa a sigla 'RM' na musculação?"),
 ("Qual desses exercícios é considerado um dos melhores para desenvolver os ombros?"),
 ("Qual é a função principal do músculo abdominal?");
+
+INSERT INTO perguntas (descricao) VALUES
+("Qual hormônio é mais associado ao crescimento muscular?"),
+("Qual desses exercícios trabalha mais intensamente o tríceps?"),
+("Qual equipamento é mais comumente usado para exercícios cardiovasculares?"),
+("Qual é o nome do processo de diminuição gradual da carga ao final do treino?"),
+("Qual é a função da creatina no desempenho físico?");
+
+INSERT INTO perguntas (descricao) VALUES
+("Qual desses é um sinal comum de overtraining (excesso de treino)?"),
+("Qual o principal músculo trabalhado no exercício levantamento terra?"),
+("Qual é a recomendação geral de ingestão proteica diária para quem treina visando hipertrofia?"),
+("Qual desses exercícios é mais indicado para trabalhar os glúteos?"),
+("Qual é a principal função do músculo peitoral maior?");
 
 
 
@@ -111,10 +123,76 @@ INSERT INTO alternativas (fkPergunta, resposta, correta) VALUES
 (10, 'Flexão dos braços', 0);
 
 
+
+INSERT INTO alternativas (fkPergunta, resposta, correta) VALUES
+(11, 'Insulina', 0),
+(11, 'Testosterona', 1),
+(11, 'Cortisol', 0),
+(11, 'Estrogênio', 0);
+
+
+INSERT INTO alternativas (fkPergunta, resposta, correta) VALUES
+(12, 'Puxada alta', 0),
+(12, 'Rosca direta', 0),
+(12, 'Paralela (mergulho)', 1),
+(12, 'Agachamento livre', 0);
+
+
+INSERT INTO alternativas (fkPergunta, resposta, correta) VALUES
+(13, 'Máquina Smith', 0),
+(13, 'Esteira', 1),
+(13, 'Leg Press', 0),
+(13, 'Crossover', 0);
+
+
+INSERT INTO alternativas (fkPergunta, resposta, correta) VALUES
+(14, 'Supersérie', 0),
+(14, 'Dropset', 0),
+(14, 'Alongamento', 0),
+(14, 'Desaquecimento (cooldown)', 1);
+
+
+INSERT INTO alternativas (fkPergunta, resposta, correta) VALUES
+(15, 'Aumentar os estoques de glicose', 0),
+(15, 'Melhorar a flexibilidade', 0),
+(15, 'Aumentar a força e explosão muscular', 1),
+(15, 'Reduzir a pressão arterial', 0);
+
+INSERT INTO alternativas (fkPergunta, resposta, correta) VALUES
+(16, 'Aumento de força e energia', 0),
+(16, 'Melhora na qualidade do sono', 0),
+(16, 'Diminuição de rendimento e fadiga constante', 1),
+(16, 'Aumento do apetite', 0);
+
+INSERT INTO alternativas (fkPergunta, resposta, correta) VALUES
+(17, 'Bíceps braquial', 0),
+(17, 'Tríceps sural', 0),
+(17, 'Eretor da espinha e posteriores da coxa', 1),
+(17, 'Deltóide anterior', 0);
+
+INSERT INTO alternativas (fkPergunta, resposta, correta) VALUES
+(18, '0,5g por kg de peso corporal', 0),
+(18, '1,0g por kg de peso corporal', 0),
+(18, '1,6g a 2,2g por kg de peso corporal', 1),
+(18, '3,0g por kg de peso corporal', 0);
+
+INSERT INTO alternativas (fkPergunta, resposta, correta) VALUES
+(19, 'Rosca direta', 0),
+(19, 'Cadeira extensora', 0),
+(19, 'Afundo (passada)', 1),
+(19, 'Desenvolvimento militar', 0);
+
+INSERT INTO alternativas (fkPergunta, resposta, correta) VALUES
+(20, 'Flexionar o cotovelo', 0),
+(20, 'Estabilizar o quadril', 0),
+(20, 'Adotar postura ereta', 0),
+(20, 'Adução e rotação interna do braço', 1);
+
+
 CREATE TABLE resultado_quiz (
     id INT AUTO_INCREMENT PRIMARY KEY,
     fk_usuario INT,
-    acertos INT,
+    pontos INT,
     erros INT,
     data_resposta DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (fk_usuario) REFERENCES usuario(idUsuario)
@@ -131,12 +209,78 @@ CREATE TABLE resultado_quiz (
         ORDER BY p.idPergunta, a.idAlternativa;
 
 select * from usuario;
+
 select * from resultado_quiz;
+
 TRUNCATE table usuario;
+
 TRUNCATE table resultado_quiz;
 
 DROP DATABASE gymP;
 CREATE DATABASE gymP;
 USE gymP;
 
+ SELECT 
+            usuario.idUsuario AS jogador_id, 
+            usuario.nome AS nome_jogador, 
+            MAX(r.pontos) AS pontos
+        FROM resultado_quiz as r
+        JOIN usuario ON r.fk_usuario = usuario.idUsuario
+        GROUP BY usuario.idUsuario, usuario.nome
+        ORDER BY pontos DESC
+        LIMIT 10;
+
+
+     SELECT 
+        u.nome,
+        COALESCE(SUM(r.pontos), 0) AS total_acertos
+        FROM usuario u
+        LEFT JOIN resultado_quiz r ON u.idUsuario = r.fk_usuario
+        GROUP BY u.idUsuario
+        ORDER BY total_acertos DESC
+        LIMIT 3;
+
+    -- inserts para teste
+    INSERT INTO usuario (nome, email, senha, genero) VALUES 
+('Ana Souza', 'ana.souza@email.com', 'senha!23', 'Feminino'),
+('Bruno Lima', 'bruno.lima@email.com', 'senha!23', 'Masculino'),
+('Carla Mendes', 'carla.mendes@email.com', 'senha!23', 'Feminino'),
+('Diego Rocha', 'diego.rocha@email.com', 'senha!23', 'Masculino'),
+('Eduarda Silva', 'eduarda.silva@email.com', 'senha!23', 'Feminino'),
+('Felipe Torres', 'felipe.torres@email.com', 'senha!23', 'Masculino'),
+('Gabriela Costa', 'gabriela.costa@email.com', 'senha!23', 'Feminino'),
+('Henrique Almeida', 'henrique.almeida@email.com', 'senha!23', 'Masculino'),
+('Isabela Martins', 'isabela.martins@email.com', 'senha!23', 'Feminino'),
+('João Pedro', 'joao.pedro@email.com', 'senha!23', 'Masculino');
+
+INSERT INTO resultado_quiz (pontos, erros, data_resposta, fk_usuario) VALUES 
+(8, 2, '2024-05-10 14:30:00', 1),
+(10, 0, '2024-05-12 09:15:00', 1),
+
+(6, 4, '2024-05-11 10:20:00', 2),
+(9, 1, '2024-05-13 11:00:00', 2),
+
+(7, 3, '2024-05-10 16:45:00', 3),
+(8, 2, '2024-05-14 13:10:00', 3),
+
+(10, 0, '2024-05-09 12:00:00', 4),
+(10, 0, '2024-05-15 15:30:00', 4),
+
+(5, 5, '2024-05-08 10:00:00', 5),
+(7, 3, '2024-05-12 14:45:00', 5),
+
+(9, 1, '2024-05-07 13:15:00', 6),
+(10, 0, '2024-05-13 16:20:00', 6),
+
+(4, 6, '2024-05-06 11:30:00', 7),
+(6, 4, '2024-05-11 12:30:00', 7),
+
+(8, 2, '2024-05-10 10:10:00', 8),
+(9, 1, '2024-05-14 14:00:00', 8),
+
+(5, 5, '2024-05-12 09:00:00', 9),
+(7, 3, '2024-05-15 17:40:00', 9),
+
+(10, 0, '2024-05-09 18:20:00', 10),
+(10, 0, '2024-05-13 08:45:00', 10);
 
