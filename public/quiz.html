@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -106,27 +106,22 @@
                     <span><em>Escolha uma opção dentre as abaixo:</em></span>
                 </div>
 
-                <div id="opcoes" class="flex-colunar padding-8">
-                    <span>
-                        <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
-                        <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
-                    </span>
-                    <span>
-                        <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
-                        <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
-                    </span>
-                    <span>
-                        <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
-                        <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
-                    </span>
-                    <span>
-                        <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
-                        <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
-                    </span>
+                <div class="respostas" id="respostas"></div>
+                
+                
+                <div id="respostas" class="flex-colunar padding-8">
+                    <div class="respostas">
+                        <button class="botoes answer">Resposta1</button>
+                        <button class="botoes answer">Resposta2</button>
+                        <button class="botoes answer">Resposta3</button>
+                        <button class="botoes answer">Resposta4</button>
+                    </div> 
                 </div>
 
-                <div id="botoes" class="flex-colunar padding-8">
+                <div id="botoes" class="comecar-avancar">
                     <button onclick="processarResposta()" id="btnAcao">Enviar resposta</button>
+                    <button class="start botoes">Começar</button>
+                    <button class="next botoes hide">Próxima pergunta</button>
                 </div>
             </div>
         </div>
@@ -139,12 +134,74 @@
         const nomeUsuario = sessionStorage.getItem("NOME_USUARIO");
         const idUsuario = sessionStorage.getItem("ID_USUARIO");
 
-        if (!nomeUsuario || !idUsuario) {
-            alert("Usuário não autenticado. Faça login novamente.");
-            window.location.href = "login.html";
-            return;
-        }
+        // if (!nomeUsuario || !idUsuario) {
+        //     alert("Usuário não autenticado. Faça login novamente.");
+        //     window.location.href = "login.html";
+        //     return;
+        // }
 
         document.getElementById("b_usuario").textContent = nomeUsuario;
     };
 </script>
+ -->
+
+
+ <!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="Style/styleQuiz.css">
+    <script defer src="Js/testequiz.js"></script>
+    <script defer src="Js/sessao.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <h2>Quiz de Musculação</h2>
+
+        <div id="menuLateral">
+            <a href="index.html">Home</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a onclick="exibirForm()">Indicação de treino</a>
+        </div>
+
+        <div id="pontuacaoEJogo">
+            <h3 id="UsernameExib">Olá, <span id="b_usuario">usuário</span>!<br>Está Preparado?</h3>
+            <button class="start botoes" id="btnIniciarQuiz">Iniciar Quiz</button>
+
+            <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
+                <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
+                    <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas">0</span></span>
+                    <span class="width-fit-content">Quantidade de erros: <span id="spanErradas">0</span></span>
+                </div>
+                <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
+                    <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
+                        <span id="spanPontuacaoFinal">***</span>
+                    </span>
+                    <span id="msgFinal" class="width-fit-content">***</span>
+                    <br>
+                    <button id="btnDash" onclick="window.location='dashboard.html'">Visualize as respostas dos demais usuários</button>
+                </div>
+            </div>
+
+            <div id="jogo" class="width-fit-content flex-colunar border-secondary hide">
+                <div class="questoes">
+                    <div id="infoQuestao" class="padding-8">
+                        <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span> questões.</span>
+                    </div>
+                    <div class="pergunta padding-8" id="spanQuestaoExibida"></div>
+                    <div class="respostas padding-8" id="respostas"></div>
+                    <div class="comecar-avancar">
+                        <button class="next botoes hide">Próxima pergunta</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

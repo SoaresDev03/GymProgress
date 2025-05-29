@@ -194,14 +194,14 @@ body {
     gap: 10px;
 }
 
-#botoes button {
+/* #respostas button {
     padding: 12px;
     border: none;
     border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
-}
+} */
 
 #btnAcao {
     background-color: #1A1363;
@@ -390,4 +390,51 @@ body {
         text-decoration: underline;
 
     }
+}
+
+.respostas {
+    display: flex;
+    width: 90%;
+    flex-wrap: wrap;
+    margin: auto;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8%;
+}
+
+
+.botoes {
+    border-radius: 20px;
+    display: flex;
+    margin: auto;
+    border: none;
+    width: 45%;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 5%;
+}
+
+.botoes:not(:disabled):hover {
+    filter: brightness(0.8);
+    transform: scale(1.2);
+}
+
+.hide {
+    display: none;
+}
+
+.correto {
+    background-color: #28a745;
+}
+
+.incorreto {
+    background-color: #dc3545;
+}
+
+.answer:disabled {
+    cursor: not-allowed;
 }
