@@ -285,53 +285,53 @@
     }
 
     function exibirUsuariosPorGenero() {
-        fetch("/usuarios/usuarios-por-genero")
-            .then(res => res.json())
-            .then(lista => {
-                const ctx = document.getElementById("graficoGenero").getContext("2d");
+    fetch("/usuarios/usuarios-por-genero")
+        .then(res => res.json())
+        .then(lista => {
+            const ctx = document.getElementById("graficoGenero").getContext("2d");
 
-                const coresPorGenero = {
-                    'Masculino': '#36A2EB',
-                    'Feminino': '#FF6384',
-                };
+            const coresPorGenero = {
+                'Masculino': '#36A2EB',
+                'Feminino': '#FF6384',
+            };
 
-                const labels = lista.map(item => item.genero);
-                const dados = lista.map(item => item.quantidade);
+            const labels = lista.map(item => item.genero);
+            const dados = lista.map(item => item.quantidade);
+            const cores = labels.map(genero => coresPorGenero[genero] || '#cccccc');
 
-
-                const cores = labels.map(genero => coresPorGenero[genero] || '#cccccc');
-
-                new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: "Distribuição de Usuários por Gênero",
-                            data: dados
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: 'Distribuição de Usuários por Gênero',
-                                color: 'white',
-                                font: { size: 16 }
-                            },
-                            legend: {
-                                labels: {
-                                    color: 'white'
-                                }
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: "Distribuição de Usuários por Gênero",
+                        data: dados,
+                        backgroundColor: cores
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Distribuição de Usuários por Gênero',
+                            color: 'white',
+                            font: { size: 16 }
+                        },
+                        legend: {
+                            labels: {
+                                color: 'white'
                             }
                         }
                     }
-                });
-            })
-            .catch(err => {
-                console.error("Erro ao buscar usuários por gênero:", err);
+                }
             });
-    }
+        })
+        .catch(err => {
+            console.error("Erro ao buscar usuários por gênero:", err);
+        });
+}
+
 
     let mostrandoGrafico1 = true;
 

@@ -1,3 +1,4 @@
+CREATE DATABASE gymP;
 use gymP;
 
 CREATE TABLE usuario (
@@ -8,23 +9,54 @@ CREATE TABLE usuario (
     genero varchar(20)
 );
 
+create table quiz(
+    idQuiz int PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(45)
+);
+
+CREATE TABLE resultado_quiz (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fk_usuario INT,
+    fk_quiz int,
+    pontos INT,
+    erros INT,
+    data_resposta DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (fk_usuario) REFERENCES usuario(idUsuario),
+    FOREIGN KEY (fk_quiz) REFERENCES quiz(idQuiz)
+);
+
+
 CREATE TABLE perguntas(
     idPergunta INT PRIMARY KEY AUTO_INCREMENT,
-    descricao VARCHAR(350)
+    descricao VARCHAR(350),
+    fk_quiz int,
+    FOREIGN KEY (fk_quiz) REFERENCES quiz (idQuiz)
     );
 
+CREATE TABLE alternativas(
+    idAlternativa INT AUTO_INCREMENT,
+    fkPergunta INT,
+    resposta VARCHAR(80),
+    correta TINYINT,
+    Foreign Key (fkPergunta) REFERENCES Perguntas(idPergunta),
+    PRIMARY KEY(idAlternativa, fkPergunta)
+);
 
-INSERT INTO perguntas (descricao) VALUES
-("Qual é o músculo mais forte do corpo humano em relação ao seu tamanho?"),
-("Qual é o principal músculo trabalhado no exercício supino reto?"),
-("Qual desses exercícios é considerado um dos melhores para desenvolver as costas?"),
-("Quantos grupos musculares principais existem no corpo humano?"),
-("Qual é o tempo ideal de descanso entre séries para hipertrofia muscular?"),
-("Qual desses nutrientes é mais importante para a recuperação muscular pós-treino?"),
-("Qual é o principal músculo trabalhado no agachamento?"),
-("O que significa a sigla 'RM' na musculação?"),
-("Qual desses exercícios é considerado um dos melhores para desenvolver os ombros?"),
-("Qual é a função principal do músculo abdominal?");
+INSERT INTO quiz (nome) values
+("quiz geral musculação");
+
+
+INSERT INTO perguntas (descricao,fk_quiz) VALUES
+("Qual é o músculo mais forte do corpo humano em relação ao seu tamanho?",1),
+("Qual é o principal músculo trabalhado no exercício supino reto?",1),
+("Qual desses exercícios é considerado um dos melhores para desenvolver as costas?",1),
+("Quantos grupos musculares principais existem no corpo humano?",1),
+("Qual é o tempo ideal de descanso entre séries para hipertrofia muscular?",1),
+("Qual desses nutrientes é mais importante para a recuperação muscular pós-treino?",1),
+("Qual é o principal músculo trabalhado no agachamento?",1),
+("O que significa a sigla 'RM' na musculação?",1),
+("Qual desses exercícios é considerado um dos melhores para desenvolver os ombros?",1),
+("Qual é a função principal do músculo abdominal?",1);
 
 INSERT INTO perguntas (descricao) VALUES
 ("Qual hormônio é mais associado ao crescimento muscular?"),
@@ -39,19 +71,6 @@ INSERT INTO perguntas (descricao) VALUES
 ("Qual é a recomendação geral de ingestão proteica diária para quem treina visando hipertrofia?"),
 ("Qual desses exercícios é mais indicado para trabalhar os glúteos?"),
 ("Qual é a principal função do músculo peitoral maior?");
-
-
-
-CREATE TABLE alternativas(
-    idAlternativa INT AUTO_INCREMENT,
-    fkPergunta INT,
-    resposta VARCHAR(80),
-    correta TINYINT,
-    Foreign Key (fkPergunta) REFERENCES Perguntas(idPergunta),
-    PRIMARY KEY(idAlternativa, fkPergunta)
-);
-
-
 
 INSERT INTO alternativas (fkPergunta, resposta, correta) VALUES
 (1, 'Bíceps', 0),
@@ -188,16 +207,6 @@ INSERT INTO alternativas (fkPergunta, resposta, correta) VALUES
 (20, 'Adotar postura ereta', 0),
 (20, 'Adução e rotação interna do braço', 1);
 
-
-CREATE TABLE resultado_quiz (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    fk_usuario INT,
-    pontos INT,
-    erros INT,
-    data_resposta DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (fk_usuario) REFERENCES usuario(idUsuario)
-);
-
     SELECT p.idPergunta, p.descricao AS pergunta, a.idAlternativa, a.resposta, a.correta
         FROM (
             SELECT idPergunta, descricao
@@ -212,9 +221,9 @@ select * from usuario;
 
 select * from resultado_quiz;
 
-TRUNCATE table usuario;
-
-TRUNCATE table resultado_quiz;
+describe perguntas;
+describe alternativas;
+describe resultado_quiz;
 
 DROP DATABASE gymP;
 CREATE DATABASE gymP;
