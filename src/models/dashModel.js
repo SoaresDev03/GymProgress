@@ -16,6 +16,24 @@ function selecionarDados(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
+function selecionarDadosMelhor(idUsuario) {
+    const instrucaoSql = `
+    SELECT 
+        u.nome,
+        r.fk_usuario,
+        r.pontos,
+        r.erros,
+        r.data_resposta
+    FROM resultado_quiz as r
+    JOIN usuario as u ON r.fk_usuario = u.idUsuario
+    WHERE u.idUsuario = ${Number(idUsuario)}
+    order BY pontos desc
+    LIMIT 1;
+    `;
+    console.log("Executando SQL para selecionar dados do usuário:", instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function buscarJogadoresPontuacoes() {
     const instrucaoSql = `
         SELECT 
@@ -34,5 +52,6 @@ function buscarJogadoresPontuacoes() {
 
 module.exports = {
     selecionarDados,
-    buscarJogadoresPontuacoes
+    buscarJogadoresPontuacoes,
+    selecionarDadosMelhor
 };

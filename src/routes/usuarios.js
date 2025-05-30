@@ -13,5 +13,7 @@ router.post("/autenticar", function (req, res) {
 router.get("/total", usuarioController.obterTotalUsuarios);
 router.get("/top3", usuarioController.listarTop3);
 router.get("/usuarios-por-genero", usuarioController.obterUsuariosPorGenero);
+router.get("/ranking/:idUsuario", usuarioController.exibirPosicaoRanking);
+
 
 module.exports = router;

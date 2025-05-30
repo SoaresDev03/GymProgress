@@ -82,16 +82,25 @@ body {
     width: 100%;
 }
 
+.containerPaiKpi {
+    width: 96%;
+    display: flex;
+    align-items: center;
+    gap: 34px;
+}
+
 .containerKpi {
     padding: 10px;
-    width: 80%;
+    max-width: 56%;
+    min-width: 56%;
     background-color: #5f9ea066;
-    margin: 10px;
+    margin: 8px;
     border-radius: 20px;
     display: flex;
-    gap: 20px;
+    gap: 10px;
     height: 80px;
     align-items: center;
+    margin-right: 100px;
 }
 
 .containerKpi p {
@@ -130,18 +139,30 @@ body {
     background-color: #1A1363;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 1px 5px 10px 1px #000;
+  box-shadow: 1px 1px 10px 0.1px #000;
 }
 
+#kpiTotalUsers {
+    display: flex;
+    height: 70px;
+    box-shadow: 1px 1px 10px 0.1px #000;
+    height: 80px;
+
+}
+
+#totalUsuarios{
+    font-weight: 700;
+    font-size: 25px;
+}
 
 .topRankingBox {
     color: #ECE9E9;
     background-color: #1A1363;
-    width: 290px;
+    width: 340px;
     height: 140px;
     padding: 5px;
     border-radius: 20px;
-    box-shadow: 1px 5px 10px 1px #000;
+ box-shadow: 1px 1px 10px 0.1px #000;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -168,35 +189,45 @@ body {
 #graficosDireita {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
     justify-content: center;
     align-items: center;
+}
+
+.posicaoRanking{
+    display: flex;
+    position: absolute;
+    bottom: 35px;
+    left: 255px;
+    font-weight: 600;
+    color: #fff;  
+    gap: 5px;  
 }
 
 .porcentGenero {
     color: #ECE9E9;
     background-color: #1A1363;
-    width: 290px;
+    width: 340px;
     height: 200px;
     padding: 5px;
     border-radius: 20px;
-    box-shadow: 1px 5px 10px 1px #000;
+   box-shadow: 1px 1px 10px 0.1px #000;
     align-items: center;
     justify-content: center;
     text-align: center;
 }
 
-#btnTrocaGrafico{
+#btnTrocaGrafico {
     font-family: Poppins;
     position: absolute;
     color: #fff;
-    right: 490px;
+    right: 500px;
     font-size: 12px;
-    bottom: 30px;
+    bottom: 40px;
     text-decoration: none;
 }
 
-#btnTrocaGrafico:hover{
-transform: scale(1.1);
-transition: 0.5s;
+#btnTrocaGrafico:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
 }

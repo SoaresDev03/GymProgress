@@ -25,21 +25,22 @@
             <h3 id="UsernameExib">Bem-vindo, <span id="b_usuario">usuário</span>!
                 <br>
             </h3>
-
-            <div class="containerKpi">
-                <div class="boxKpi">Seus erros<p id="totalErros"></p>
+            <div class="containerPaiKpi">
+                <div class="containerKpi">
+                    <div class="boxKpi">Seus erros<p id="totalErros"></p>
+                    </div>
+                    <div class="boxKpi">Seus acertos<p id="totalPontos"></p>
+                    </div>
+                    <div class="boxKpi">Suas tentativas<p id="totalQuizzesJogados"></p>
+                    </div>
+                    <div class="boxKpi">Última tentativa<p id="ultimaTentativa"></p>
+                    </div>
                 </div>
-                <div class="boxKpi">Seus acertos<p id="totalPontos"></p>
-                </div>
-                <div class="boxKpi">Suas tentativas<p id="totalQuizzesJogados"></p>
-                </div>
-
-                <div class="boxKpi">Total de usuarios<p id="totalUsuarios"></p>
-                </div>
-                <div class="boxKpi">Última tentativa<p id="ultimaTentativa"></p>
+                <div class="boxKpi" id="kpiTotalUsers">Total de usuarios<p id="totalUsuarios"></p>
                 </div>
             </div>
             <div class="dash">
+                <div class="posicaoRanking">Sua posição no Ranking: <p id="rankingUsuario"></p></div>
 
                 <div class="telaGrafico">
                     <canvas id="topRanking" style="display: block;"></canvas>
@@ -84,11 +85,32 @@
 
         bUsuario.textContent = nomeUsuario;
         obterDadosQuiz(idUsuario);
+        obterMelhorTentativa(idUsuario);
+        buscarRankingUsuario(idUsuario);
+
         buscarTotalUsuarios();
         exibirTop3();
         exibirUsuariosPorGenero();
         plotarJogadores();
     };
+
+    function buscarRankingUsuario(idUsuario) {
+        fetch(`/usuarios/ranking/${idUsuario}`)
+            .then(res => res.json())
+            .then(dados => {
+                console.log("Resposta da API do ranking:", dados);
+
+                if (dados && dados.posicao != null) {
+                    document.getElementById("rankingUsuario").textContent = ` ${dados.posicao}°`;
+                } else {
+                    document.getElementById("rankingUsuario").textContent = "Sem ranking ainda";
+                }
+            })
+            .catch(erro => {
+                console.error("Erro ao buscar posição do ranking:", erro);
+            });
+    }
+
 
     function plotarJogadores() {
         fetch('/dash/buscarJogadoresPontuacoes', {
@@ -229,9 +251,27 @@
             document.getElementById("ultimaTentativa").textContent = ultimaTentativa.toISOString().split('T')[0];
 
         }
-
-        atualizarGrafico(totalPontos, totalErros);
     }
+
+    function obterMelhorTentativa(idUsuario) {
+        fetch(`/dash/exibir-melhor?idUsuario=${idUsuario}`)
+            .then(resposta => {
+                if (!resposta.ok) {
+                    throw new Error("Erro ao obter dados da melhor tentativa: " + resposta.status);
+                }
+                return resposta.json();
+            })
+            .then(dados => {
+                if (dados.length > 0) {
+                    const tentativa = dados[0];
+                    atualizarGrafico(tentativa.pontos, tentativa.erros);
+                }
+            })
+            .catch(erro => {
+                console.error("Erro ao buscar melhor tentativa:", erro);
+            });
+    }
+
 
     function atualizarGrafico(Pontos, erros) {
         const canvasId = 'topRanking';
@@ -256,7 +296,7 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Desempenho no Quiz',
+                        text: 'Seu desempenho no Quiz (Melhor tentativa)',
                         color: 'white',
                         font: { size: 18 }
                     },

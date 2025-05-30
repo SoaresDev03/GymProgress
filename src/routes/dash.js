@@ -8,5 +8,8 @@ router.post("/buscarJogadoresPontuacoes", function (req, res) {
 router.get("/exibir", function (req, res) {
     dashController.exibirDados(req, res);
 });
+router.get("/exibir-melhor", function (req, res) {
+    dashController.exibirDadosMelhor(req, res);
+});
 
 module.exports = router;

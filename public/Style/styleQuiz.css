@@ -267,15 +267,16 @@ body {
 
 #formulario {
     position: absolute;
-    display: none;
+    /* display: none; */
+    display: flex;
     gap: 10px;
     flex-direction: column;
     z-index: 3;
-    width: 500px;
+    width: 520px;
     max-height: 500;
     height: 500;
     top: 50px;
-    left: 550px;
+    left: 548px;
     background-color: #80b4b6;
     padding: 10px;
     align-items: center;

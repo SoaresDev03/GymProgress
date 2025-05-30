@@ -293,3 +293,45 @@ INSERT INTO resultado_quiz (pontos, erros, data_resposta, fk_usuario) VALUES
 (10, 0, '2024-05-09 18:20:00', 10),
 (10, 0, '2024-05-13 08:45:00', 10);
 
+ SELECT 
+        u.nome,
+        r.fk_usuario,
+        r.pontos,
+        r.erros,
+        r.data_resposta
+    FROM resultado_quiz as r
+    JOIN usuario as u ON r.fk_usuario = u.idUsuario
+    WHERE u.idUsuario =2
+    order BY pontos desc
+    LIMIT 1;
+
+        SELECT 
+        u.nome AS 'Nome Jogador', 
+        MAX(r.pontos) AS pontos
+    FROM resultado_quiz as r
+    JOIN Usuario as u ON r.fk_usuario = u.idUsuario
+    GROUP BY u.idUsuario, u.nome
+    ORDER BY pontos DESC
+    LIMIT 3;
+
+      SELECT 
+        u.nome, 
+        MAX(r.pontos) AS total_acertos
+    FROM resultado_quiz as r
+    JOIN usuario as u ON r.fk_usuario = u.idUsuario
+    GROUP BY u.idUsuario, u.nome
+    ORDER BY total_acertos DESC
+    LIMIT 3;
+
+
+    SELECT ranking.posicao, ranking.nome, ranking.total_acertos FROM (
+    SELECT 
+        u.idUsuario,
+        u.nome, 
+        MAX(r.pontos) AS total_acertos,
+        RANK() OVER (ORDER BY MAX(r.pontos) DESC) AS posicao
+    FROM resultado_quiz r
+    JOIN usuario u ON r.fk_usuario = u.idUsuario
+    GROUP BY u.idUsuario, u.nome
+) AS ranking
+WHERE ranking.idUsuario = 3;

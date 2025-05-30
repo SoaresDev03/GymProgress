@@ -99,10 +99,28 @@ function obterUsuariosPorGenero(req, res) {
 }
 
 
+async function exibirPosicaoRanking(req, res) {
+    const idUsuario = req.params.idUsuario;
+
+    try {
+        const resultado = await usuarioModel.obterPosicaoRanking(idUsuario);
+        if (resultado.length > 0) {
+            res.json(resultado[0]);
+        } else {
+            res.status(404).json({ erro: "Usuário não encontrado no ranking" });
+        }
+    } catch (erro) {
+        console.error("Erro ao buscar posição no ranking:", erro);
+        res.status(500).json({ erro: "Erro ao buscar posição no ranking" });
+    }
+}
+
+
 module.exports = {
     autenticar,
     cadastrar,
     obterTotalUsuarios,
     listarTop3,
-    obterUsuariosPorGenero
+    obterUsuariosPorGenero,
+    exibirPosicaoRanking
 };
