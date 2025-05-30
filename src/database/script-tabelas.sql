@@ -58,12 +58,12 @@ INSERT INTO perguntas (descricao,fk_quiz) VALUES
 ("Qual desses exercícios é considerado um dos melhores para desenvolver os ombros?",1),
 ("Qual é a função principal do músculo abdominal?",1);
 
-INSERT INTO perguntas (descricao) VALUES
-("Qual hormônio é mais associado ao crescimento muscular?"),
-("Qual desses exercícios trabalha mais intensamente o tríceps?"),
-("Qual equipamento é mais comumente usado para exercícios cardiovasculares?"),
-("Qual é o nome do processo de diminuição gradual da carga ao final do treino?"),
-("Qual é a função da creatina no desempenho físico?");
+INSERT INTO perguntas (descricao,fk_quiz) VALUES
+("Qual hormônio é mais associado ao crescimento muscular?",1),
+("Qual desses exercícios trabalha mais intensamente o tríceps?",1),
+("Qual equipamento é mais comumente usado para exercícios cardiovasculares?",1),
+("Qual é o nome do processo de diminuição gradual da carga ao final do treino?",1),
+("Qual é a função da creatina no desempenho físico?",1);
 
 INSERT INTO perguntas (descricao,fk_quiz) VALUES
 ("Qual desses é um sinal comum de overtraining (excesso de treino)?",1),
