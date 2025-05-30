@@ -10,6 +10,9 @@
 </head>
 
 <body>
+
+    <button id="voltarTopo" onclick="window.location.href='#Homepage'"><img src="Style/assets/SetaAcima.svg"
+            alt=""></button>
     <div class="container">
         <div id="Homepage">
             <div class="header">
@@ -105,16 +108,7 @@
                     </div>
 
                 </div>
-
-
-
-
-                <button id="voltarTopo" onclick="window.location.href='#Homepage'"><img src="Style/assets/SetaAcima.svg"
-                        alt=""></button>
-
-
             </div>
-
         </div>
 
 
@@ -180,19 +174,10 @@
                             TECMUNDO</a>`
         ]
 
-        // const index = Math.floor(Math.random() * curiosidades.length);
-        // const index2 = Math.floor(Math.random() * curiosidades.length);
-        // const index3 = Math.floor(Math.random() * curiosidades.length);
-
-        // curiosidade1.innerHTML = `${curiosidades[index]}`;
-        // curiosidade2.innerHTML = `${curiosidades[index2]}`;
-        // curiosidade3.innerHTML = `${curiosidades[index3]}`;
-    
-     const embaralhadas = curiosidades.sort(() => 0.5 - Math.random());
+        const embaralhadas = curiosidades.sort(() => 0.5 - Math.random());
 
         const [c1, c2, c3] = embaralhadas.slice(0, 3);
 
-        // Insere no HTML
         document.getElementById("curiosidade1").innerHTML = c1;
         document.getElementById("curiosidade2").innerHTML = c2;
         document.getElementById("curiosidade3").innerHTML = c3;

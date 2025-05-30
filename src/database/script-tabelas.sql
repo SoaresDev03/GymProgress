@@ -65,12 +65,12 @@ INSERT INTO perguntas (descricao) VALUES
 ("Qual é o nome do processo de diminuição gradual da carga ao final do treino?"),
 ("Qual é a função da creatina no desempenho físico?");
 
-INSERT INTO perguntas (descricao) VALUES
-("Qual desses é um sinal comum de overtraining (excesso de treino)?"),
-("Qual o principal músculo trabalhado no exercício levantamento terra?"),
-("Qual é a recomendação geral de ingestão proteica diária para quem treina visando hipertrofia?"),
-("Qual desses exercícios é mais indicado para trabalhar os glúteos?"),
-("Qual é a principal função do músculo peitoral maior?");
+INSERT INTO perguntas (descricao,fk_quiz) VALUES
+("Qual desses é um sinal comum de overtraining (excesso de treino)?",1),
+("Qual o principal músculo trabalhado no exercício levantamento terra?",1),
+("Qual é a recomendação geral de ingestão proteica diária para quem treina visando hipertrofia?",1),
+("Qual desses exercícios é mais indicado para trabalhar os glúteos?",1),
+("Qual é a principal função do músculo peitoral maior?",1);
 
 INSERT INTO alternativas (fkPergunta, resposta, correta) VALUES
 (1, 'Bíceps', 0),
