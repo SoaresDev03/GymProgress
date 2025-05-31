@@ -68,7 +68,7 @@ function cadastrar(req, res) {
 function obterTotalUsuarios(req, res) {
     usuarioModel.contarUsuarios()
         .then(resultado => {
-            res.json(resultado[0]); // envia { total: X }
+            res.json(resultado[0]);
         })
         .catch(erro => {
             console.error("Erro ao contar usuários:", erro);

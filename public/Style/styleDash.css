@@ -12,9 +12,9 @@ body {
 }
 
 #logo {
-    width: 180px;
+    width: 190px;
     top: 10px;
-    left: 18px;
+    left: 30px;
     position: absolute;
 }
 
@@ -27,12 +27,13 @@ body {
     display: flex;
     flex-direction: column;
     background-color: #1A1363;
-    width: 19%;
-    height: 100%;
+    min-width: 250px;
+    max-width: 250px;
+    height: 719px;
     align-items: center;
     justify-content: center;
     gap: 40px;
-
+    
     a {
         text-align: center;
         text-decoration: none;
@@ -46,7 +47,7 @@ body {
     a:hover {
         color: black;
         text-decoration: underline;
-
+        
     }
 }
 
@@ -86,13 +87,13 @@ body {
     width: 96%;
     display: flex;
     align-items: center;
-    gap: 34px;
+    gap: 45px;
 }
 
 .containerKpi {
     padding: 10px;
-    max-width: 56%;
-    min-width: 56%;
+    max-width: 58%;
+    min-width: 58%;
     background-color: #5f9ea066;
     margin: 8px;
     border-radius: 20px;
@@ -128,17 +129,18 @@ body {
 
 .dash {
     display: flex;
-    gap: 100px;
+    gap: 130px;
     padding-top: 20px;
     align-items: center;
+    
 }
 
 .telaGrafico {
-    width: 600px;
-    height: 350px;
+    width: 680px;
+    height: 390px;
     background-color: #1A1363;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
   box-shadow: 1px 1px 10px 0.1px #000;
 }
 
@@ -159,7 +161,7 @@ body {
     color: #ECE9E9;
     background-color: #1A1363;
     width: 340px;
-    height: 140px;
+    height: 150px;
     padding: 5px;
     border-radius: 20px;
  box-shadow: 1px 1px 10px 0.1px #000;
@@ -197,8 +199,8 @@ body {
 .posicaoRanking{
     display: flex;
     position: absolute;
-    bottom: 35px;
-    left: 255px;
+    bottom: 65px;
+    left: 295px;
     font-weight: 600;
     color: #fff;  
     gap: 5px;  
@@ -208,7 +210,7 @@ body {
     color: #ECE9E9;
     background-color: #1A1363;
     width: 340px;
-    height: 200px;
+    height: 235px;
     padding: 5px;
     border-radius: 20px;
    box-shadow: 1px 1px 10px 0.1px #000;
@@ -221,9 +223,9 @@ body {
     font-family: Poppins;
     position: absolute;
     color: #fff;
-    right: 500px;
+    right: 530px;
     font-size: 12px;
-    bottom: 40px;
+    bottom: 70px;
     text-decoration: none;
 }
 
