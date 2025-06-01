@@ -72,8 +72,6 @@
     }
 
     function entrar() {
-
-
         var emailVar = inputEmail.value;
         var senhaVar = inputSenha.value;
 
@@ -94,7 +92,6 @@
                     senhaServer: senhaVar
                 })
             }).then(function (resposta) {
-                console.log("ESTOU NO THEN DO entrar()!")
 
                 if (resposta.ok) {
                     console.log(resposta);
@@ -111,9 +108,6 @@
                     });
                 } else {
                     exibirErro();
-
-                    console.log("Houve um erro ao tentar realizar o login!");
-
 
                     resposta.text().then(texto => {
                         console.error(texto);

@@ -86,10 +86,10 @@ function finalizarQuiz() {
     perguntas.innerHTML = `
         <div class="msgFinal">
             <p>
-                Você acertou ${pontos} de ${qtdPerguntas} perguntas!
+                Você obteve ${pontos} acertos, em um total de ${qtdPerguntas} perguntas!
             </p>
             <span>
-                Tente de novo ou acesse a dashboard e veja como foi seu desempenho comparado ao dos outros usuários
+                Caso queira fazer uma nova tentativa, clique em "Quiz" no menu, ou veja os resultados do demais usuários, em nossa dashboard, clicando em "Dashboard" no menu lateral.
             </span>
             <button onclick="window.location.reload()" class="botoes end">
                 Tentar novamente
@@ -137,8 +137,6 @@ window.onload = () => {
     }
 
     document.getElementById("b_usuario").textContent = nomeUsuario;
-
-
 
     fetch(`/quiz/perguntas`)
         .then(res => res.json())
